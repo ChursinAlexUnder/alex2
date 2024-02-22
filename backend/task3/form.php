@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="style.css">
 <section>
-  <h2>Форма</h2>
-  <form action="" method="POST">
+  <h1>Форма</h1>
+  <form action="index.php" method="POST">
     <label>
       ФИО:<br>
       <input name="fio" placeholder="Введите ваши ФИО" />
@@ -43,16 +43,16 @@
     <div class="rowradio">
       Пол:
       <label class="labelradio">
-        <input class="radiobutton" type="radio" checked="checked" name="radio-group-1" value="Мужской" /> Мужской
+        <input class="radiobutton" type="radio" name=" gender" value="man" /> Мужской
       </label>
       <label class="labelradio">
-        <input class="radiobutton" type="radio" name="radio-group-2" value="Женский" /> Женский
+        <input class="radiobutton" type="radio" name=" gender" value="woman" /> Женский
       </label>
     </div><br>
     <label>
       Любимый язык программирования:
       <br>
-      <select name="field-language-2[]" multiple="multiple">
+      <select name="language[]" multiple="multiple">
         <option value="Pascal">Pascal</option>
         <option value="C">C</option>
         <option value="C++" selected="selected">C++</option>

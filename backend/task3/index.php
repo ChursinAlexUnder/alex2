@@ -20,20 +20,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Проверяем ошибки.
 $errors = FALSE;
-if (empty($_POST['fio'])) {
+
+if (empty($_POST["fio"])) {
   print('Заполните имя.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
+if (empty($_POST["year"])/*|| !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])*/) {
   print('Заполните год.<br/>');
   $errors = TRUE;
 }
+if (empty($_POST["month"])) {
+  print('Заполните месяц.<br/>');
+  $errors = TRUE;
+}
+$months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+$months[1] += ($_POST["year"] % 4 == 0);
+if (empty($_POST["day"])) {
+  print('Заполните день.<br/>');
+  $errors = TRUE;
+}
+else if ($_POST["day"] > $months[$_POST["month"]-1])
+{
+  print('Заполните день корректно.<br/>');
+  $errors = TRUE;
+}
 
+if (empty($_POST["gender"]))
+{
+  print('Выберите пол.<br/>');
+  $errors = TRUE;
+}
 
-// *************
-// Тут необходимо проверить правильность заполнения всех остальных полей.
-// *************
+if (empty($_POST["language[]"]))
+{
+  print('Выберите любимый язык программирования.<br/>');
+  $errors = TRUE;
+}
+
+if (empty($_POST["biography"]))
+{
+  print('Введите биографию.<br/>');
+  $errors = TRUE;
+}
+
+if (empty($_POST["check"]))
+{
+  print('Ознакомьтесь с контрактом и поставьте галочку.<br/>');
+  $errors = TRUE;
+}
 
 if ($errors) {
   // При наличии ошибок завершаем работу скрипта.
@@ -64,7 +99,7 @@ $db = new PDO('mysql:host=localhost;dbname=u67335', $user, $pass,
 //$stmt -> execute(['label'=>'perfect', 'color'=>'green']);
  
 //Еще вариант
-$stmt = $db->prepare("INSERT INTO users (fio, tel, email, year, ) VALUES (:firstname, :lastname, :email, )");
+$stmt = $db->prepare("INSERT INTO users (fio, tel, email) VALUES (:firstname, :lastname, :email)");
 $stmt->bindParam(':firstname', $firstname);
 $stmt->bindParam(':lastname', $lastname);
 $stmt->bindParam(':email', $email);
