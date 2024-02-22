@@ -48,14 +48,14 @@ $db = new PDO('mysql:host=localhost;dbname=u67335', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
 
 // Подготовленный запрос. Не именованные метки.
-try {
-  $stmt = $db->prepare("INSERT INTO application SET name = ?");
-  $stmt->execute([$_POST['fio']]);
-}
-catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
-  exit();
-}
+// try {
+//   $stmt = $db->prepare("INSERT INTO application SET name = ?");
+//   $stmt->execute([$_POST['fio']]);
+// }
+// catch(PDOException $e){
+//   print('Error : ' . $e->getMessage());
+//   exit();
+// }
 
 //  stmt - это "дескриптор состояния".
  
@@ -64,7 +64,7 @@ catch(PDOException $e){
 //$stmt -> execute(['label'=>'perfect', 'color'=>'green']);
  
 //Еще вариант
-/*$stmt = $db->prepare("INSERT INTO users (firstname, lastname, email) VALUES (:firstname, :lastname, :email)");
+$stmt = $db->prepare("INSERT INTO users (fio, tel, email, year, ) VALUES (:firstname, :lastname, :email, )");
 $stmt->bindParam(':firstname', $firstname);
 $stmt->bindParam(':lastname', $lastname);
 $stmt->bindParam(':email', $email);
@@ -72,7 +72,7 @@ $firstname = "John";
 $lastname = "Smith";
 $email = "john@test.com";
 $stmt->execute();
-*/
+
 
 // Делаем перенаправление.
 // Если запись не сохраняется, но ошибок не видно, то можно закомментировать эту строку чтобы увидеть ошибку.
