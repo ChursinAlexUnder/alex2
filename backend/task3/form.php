@@ -43,10 +43,10 @@
     <div class="rowradio">
       Пол:
       <label class="labelradio">
-        <input class="radiobutton" type="radio" name=" gender" value="man" /> Мужской
+        <input class="radiobutton" type="radio" name="gender" value="man" /> Мужской
       </label>
       <label class="labelradio">
-        <input class="radiobutton" type="radio" name=" gender" value="woman" /> Женский
+        <input class="radiobutton" type="radio" name="gender" value="woman" /> Женский
       </label>
     </div><br>
     <label>
@@ -73,7 +73,7 @@
     <br>
     <label class="labelcheck">
       С контрактом ознакомлен (а)
-      <input type="checkbox" checked="checked" name="check" />
+      <input type="checkbox" name="check" />
     </label><br>
     <input type="submit" value="Сохранить" />
   </form>
