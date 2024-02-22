@@ -55,7 +55,7 @@
       <select name="language[]" multiple="multiple">
         <option value="Pascal">Pascal</option>
         <option value="C">C</option>
-        <option value="C++" selected="selected">C++</option>
+        <option value="C++">C++</option>
         <option value="JavaScript">JavaScript</option>
         <option value="PHP">PHP</option>
         <option value="Python">Python</option>
