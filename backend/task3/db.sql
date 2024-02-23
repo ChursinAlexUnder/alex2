@@ -16,7 +16,7 @@ CREATE TABLE users (
   email varchar(40) NOT NULL DEFAULT '',
   birth varchar(30) NOT NULL DEFAULT '',
   gender varchar(10) NOT NULL DEFAULT '',
-  languages JSON NOT NULL DEFAULT '',
+  languages varchar(200) NOT NULL DEFAULT '',
   biography varchar(200) NOT NULL DEFAULT '',
   checkBut BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY (id)

@@ -136,7 +136,7 @@ $tel = $_POST['tel'];
 $email = $_POST['email'];
 $birth = $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'];
 $gender = $_POST['gender'];
-$languages = $_POST['languages'];
+$languages = implode(", ", $_POST['languages']);
 $biography = $_POST['biography'];
 $checkBut = $_POST['checkBut'];
 $stmt->execute();
