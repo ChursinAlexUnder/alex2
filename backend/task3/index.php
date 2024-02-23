@@ -24,57 +24,92 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 $errors = FALSE;
 
 if (empty($_POST["fio"])) {
-  print('Заполните имя.<br/>');
+  print("Заполните ФИО.<br/>");
+  $errors = TRUE;
+}
+else if (!preg_match('/(\w[^0-9_])+\s*(\w[^0-9_])+\s*(\w[^0-9_])/', $_POST["fio"]))
+{
+  print("Заполните ФИО правильно.<br/>");
+  $errors = TRUE;
+}
+else if (mb_strlen($_POST["fio"]) > 150)
+{
+  print("У вас слишком длинное ФИО.<br/>");
   $errors = TRUE;
 }
 
-if (empty($_POST["year"])/*|| !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])*/) {
-  print('Заполните год.<br/>');
+if (empty($_POST["tel"]))
+{
+  print("Заполните телефон.<br/>");
+  $errors = TRUE;
+}
+else if (!preg_match('/^\+?([0-9]{10})/', $_POST["tel"]))
+{
+  print("Заполните телефон правильно.<br/>");
+  $errors = TRUE;
+}
+
+if (empty($_POST["email"]))
+{
+  print("Заполните почту.<br/>");
+  $errors = TRUE;
+}
+else if (!preg_match('/\w+@\w+\.\w+/', $_POST["email"]))
+{
+  print("Заполните почту правильно.<br/>");
+  $errors = TRUE;
+}
+
+if (empty($_POST["year"])) {
+  print("Заполните год.<br/>");
   $errors = TRUE;
 }
 if (empty($_POST["month"])) {
-  print('Заполните месяц.<br/>');
+  print("Заполните месяц.<br/>");
   $errors = TRUE;
 }
 $months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 $months[1] += ($_POST["year"] % 4 == 0);
 if (empty($_POST["day"])) {
-  print('Заполните день.<br/>');
+  print("Заполните день.<br/>");
   $errors = TRUE;
 }
 else if ($_POST["day"] > $months[$_POST["month"]-1])
 {
-  print('Заполните день корректно.<br/>');
+  print("Заполните день корректно.<br/>");
   $errors = TRUE;
 }
 
 if (empty($_POST["gender"]))
 {
-  print('Выберите пол.<br/>');
+  print("Выберите пол.<br/>");
   $errors = TRUE;
 }
 
 if (empty($_POST["language[]"]))
 {
-  print('Выберите любимый язык программирования.<br/>');
+  print("Выберите любимый язык программирования.<br/>");
   $errors = TRUE;
 }
 
 if (empty($_POST["biography"]))
 {
-  print('Введите биографию.<br/>');
+  print("Введите биографию.<br/>");
   $errors = TRUE;
 }
 
 if (empty($_POST["check"]))
 {
-  print('Ознакомьтесь с контрактом и поставьте галочку.<br/>');
+  print("Ознакомьтесь с контрактом и поставьте галочку.<br/>");
   $errors = TRUE;
 }
 
 if ($errors) {
   // При наличии ошибок завершаем работу скрипта.
   exit();
+}
+else {
+  print("данные успешно сохранены.<br/>");
 }
 
 // Сохранение в базу данных.
