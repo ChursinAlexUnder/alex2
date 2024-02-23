@@ -31,7 +31,7 @@ else if (!preg_match('/[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA
   print('Заполните ФИО правильно.<br/>');
   $errors = TRUE;
 }
-else if (mb_strlen($_POST['fio']) > 150)
+else if (strlen($_POST['fio']) > 150)
 {
   print('У вас слишком длинное ФИО.<br/>');
   $errors = TRUE;
@@ -85,7 +85,7 @@ if (empty($_POST['gender']))
   $errors = TRUE;
 }
 
-if (empty($_POST['languages'])) // в принципе не работает!!!!!
+if (empty($_POST['languages']))
 {
   print('Выберите любимый язык программирования.<br/>');
   $errors = TRUE;
