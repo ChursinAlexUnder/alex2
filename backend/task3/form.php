@@ -4,7 +4,7 @@
   <form action="index.php" method="POST">
     <label>
       ФИО:<br>
-      <input name="fio" placeholder="Введите ваши ФИО" />
+      <input name="fio" type="text" placeholder="Введите ваши ФИО" />
     </label><br>
     <label>
       Телефон:<br>
@@ -52,7 +52,7 @@
     <label>
       Любимый язык программирования:
       <br>
-      <select name="language[]" multiple="multiple">
+      <select name="languages[]" multiple="multiple">
         <option value="Pascal">Pascal</option>
         <option value="C">C</option>
         <option value="C++">C++</option>

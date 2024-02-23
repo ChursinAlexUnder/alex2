@@ -20,10 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Проверяем ошибки.
 
-// добавить регулярки для fio, tel, email и проверить остальное!!!!!
 $errors = FALSE;
 
-if (empty($_POST['fio'])) {
+if (empty($_POST['fio'])) { // если поле фио правильное, то никакие другие ошибки не отображает, исправить!!!
   print('Заполните ФИО.<br/>');
   $errors = TRUE;
 }
@@ -86,7 +85,7 @@ if (empty($_POST['gender']))
   $errors = TRUE;
 }
 
-if (empty($_POST['language[]']))
+if (empty($_POST['languages'])) // в принципе не работает!!!!!
 {
   print('Выберите любимый язык программирования.<br/>');
   $errors = TRUE;
