@@ -27,7 +27,7 @@ if (empty($_POST["fio"])) {
   print("Заполните ФИО.<br/>");
   $errors = TRUE;
 }
-else if (!preg_match('/(\w[^0-9_])+\s*(\w[^0-9_])+\s*(\w[^0-9_])/', $_POST["fio"]))
+else if (!preg_match('/[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+/', $_POST["fio"]))
 {
   print("Заполните ФИО правильно.<br/>");
   $errors = TRUE;
