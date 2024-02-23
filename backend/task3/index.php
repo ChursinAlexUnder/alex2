@@ -23,84 +23,84 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // добавить регулярки для fio, tel, email и проверить остальное!!!!!
 $errors = FALSE;
 
-if (empty($_POST["fio"])) {
-  print("Заполните ФИО.<br/>");
+if (empty($_POST['fio'])) {
+  print('Заполните ФИО.<br/>');
   $errors = TRUE;
 }
-else if (!preg_match('/[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+/', $_POST["fio"]))
+else if (!preg_match('/[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+/', $_POST['fio']))
 {
-  print("Заполните ФИО правильно.<br/>");
+  print('Заполните ФИО правильно.<br/>');
   $errors = TRUE;
 }
-else if (mb_strlen($_POST["fio"]) > 150)
+else if (mb_strlen($_POST['fio']) > 150)
 {
-  print("У вас слишком длинное ФИО.<br/>");
+  print('У вас слишком длинное ФИО.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST["tel"]))
+if (empty($_POST['tel']))
 {
-  print("Заполните телефон.<br/>");
+  print('Заполните телефон.<br/>');
   $errors = TRUE;
 }
-else if (!preg_match('/^\+?([0-9]{10})/', $_POST["tel"]))
+else if (!preg_match('/^\+?([0-9]{11})/', $_POST['tel']))
 {
-  print("Заполните телефон правильно.<br/>");
+  print('Заполните телефон правильно.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST["email"]))
+if (empty($_POST['email']))
 {
-  print("Заполните почту.<br/>");
+  print('Заполните почту.<br/>');
   $errors = TRUE;
 }
-else if (!preg_match('/\w+@\w+\.\w+/', $_POST["email"]))
+else if (!preg_match('/\w+@\w+\.\w+/', $_POST['email']))
 {
-  print("Заполните почту правильно.<br/>");
+  print('Заполните почту правильно.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST["year"])) {
-  print("Заполните год.<br/>");
+if (empty($_POST['year'])) {
+  print('Заполните год.<br/>');
   $errors = TRUE;
 }
-if (empty($_POST["month"])) {
-  print("Заполните месяц.<br/>");
+if (empty($_POST['month'])) {
+  print('Заполните месяц.<br/>');
   $errors = TRUE;
 }
 $months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-$months[1] += ($_POST["year"] % 4 == 0);
-if (empty($_POST["day"])) {
-  print("Заполните день.<br/>");
+$months[1] += ($_POST['year'] % 4 == 0);
+if (empty($_POST['day'])) {
+  print('Заполните день.<br/>');
   $errors = TRUE;
 }
-else if ($_POST["day"] > $months[$_POST["month"]-1])
+else if ($_POST['day'] > $months[$_POST['month']-1])
 {
-  print("Заполните день корректно.<br/>");
-  $errors = TRUE;
-}
-
-if (empty($_POST["gender"]))
-{
-  print("Выберите пол.<br/>");
+  print('Заполните день корректно.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST["language[]"]))
+if (empty($_POST['gender']))
 {
-  print("Выберите любимый язык программирования.<br/>");
+  print('Выберите пол.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST["biography"]))
+if (empty($_POST['language[]']))
 {
-  print("Введите биографию.<br/>");
+  print('Выберите любимый язык программирования.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST["check"]))
+if (empty($_POST['biography']))
 {
-  print("Ознакомьтесь с контрактом и поставьте галочку.<br/>");
+  print('Введите биографию.<br/>');
+  $errors = TRUE;
+}
+
+if (empty($_POST['check']))
+{
+  print('Ознакомьтесь с контрактом и поставьте галочку.<br/>');
   $errors = TRUE;
 }
 
@@ -109,7 +109,7 @@ if ($errors) {
   exit();
 }
 else {
-  print("данные успешно сохранены.<br/>");
+  print('данные успешно сохранены.<br/>');
 }
 
 // Сохранение в базу данных.
