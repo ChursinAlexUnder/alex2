@@ -22,39 +22,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 $errors = FALSE;
 
-if (empty($_POST['fio'])) { // если поле фио правильное, то никакие другие ошибки не отображает, исправить!!!
+if (empty($_POST['fio'])) {
   print('Заполните ФИО.<br/>');
   $errors = TRUE;
-}
-else if (!preg_match('/[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+/', $_POST['fio']))
-{
+} else if (!preg_match('/[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+/', $_POST['fio'])) {
   print('Заполните ФИО правильно.<br/>');
   $errors = TRUE;
-}
-else if (strlen($_POST['fio']) > 150)
-{
+} else if (strlen($_POST['fio']) > 150) {
   print('У вас слишком длинное ФИО.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['tel']))
-{
+if (empty($_POST['tel'])) {
   print('Заполните телефон.<br/>');
   $errors = TRUE;
-}
-else if (!preg_match('/^\+?([0-9]{11})/', $_POST['tel']))
-{
+} else if (!preg_match('/^\+?([0-9]{11})/', $_POST['tel'])) {
   print('Заполните телефон правильно.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['email']))
-{
+if (empty($_POST['email'])) {
   print('Заполните почту.<br/>');
   $errors = TRUE;
-}
-else if (!preg_match('/\w+@\w+\.\w+/', $_POST['email']))
-{
+} else if (!preg_match('/\w+@\w+\.\w+/', $_POST['email'])) {
   print('Заполните почту правильно.<br/>');
   $errors = TRUE;
 }
@@ -72,33 +62,27 @@ $months[1] += ($_POST['year'] % 4 == 0);
 if (empty($_POST['day'])) {
   print('Заполните день.<br/>');
   $errors = TRUE;
-}
-else if ($_POST['day'] > $months[$_POST['month']-1])
-{
+} else if ($_POST['day'] > $months[$_POST['month'] - 1]) {
   print('Заполните день корректно.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['gender']))
-{
+if (empty($_POST['gender'])) {
   print('Выберите пол.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['languages']))
-{
+if (empty($_POST['languages'])) {
   print('Выберите любимый язык программирования.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['biography']))
-{
+if (empty($_POST['biography'])) {
   print('Введите биографию.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['check']))
-{
+if (empty($_POST['checkBut'])) {
   print('Ознакомьтесь с контрактом и поставьте галочку.<br/>');
   $errors = TRUE;
 }
@@ -106,8 +90,7 @@ if (empty($_POST['check']))
 if ($errors) {
   // При наличии ошибок завершаем работу скрипта.
   exit();
-}
-else {
+} else {
   print('данные успешно сохранены.<br/>');
 }
 
@@ -115,8 +98,12 @@ else {
 
 $user = 'u67335'; // Заменить на ваш логин uXXXXX
 $pass = '5596746'; // Заменить на пароль, такой же, как от SSH
-$db = new PDO('mysql:host=localhost;dbname=u67335', $user, $pass,
-  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
+$db = new PDO(
+  'mysql:host=localhost;dbname=u67335',
+  $user,
+  $pass,
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+); // Заменить test на имя БД, совпадает с логином uXXXXX
 
 // Подготовленный запрос. Не именованные метки.
 // try {
@@ -129,19 +116,29 @@ $db = new PDO('mysql:host=localhost;dbname=u67335', $user, $pass,
 // }
 
 //  stmt - это "дескриптор состояния".
- 
+
 //  Именованные метки.
 //$stmt = $db->prepare("INSERT INTO test (label,color) VALUES (:label,:color)");
 //$stmt -> execute(['label'=>'perfect', 'color'=>'green']);
- 
+
 //Еще вариант
-$stmt = $db->prepare("INSERT INTO users (fio, tel, email) VALUES (:firstname, :lastname, :email)");
-$stmt->bindParam(':firstname', $firstname);
-$stmt->bindParam(':lastname', $lastname);
+$stmt = $db->prepare("INSERT INTO users (fio, tel, email, birth, gender, languages, biography, checkBut) VALUES (:fio, :tel, :email, :birth, :gender, :languages, :biography, :checkBut)");
+$stmt->bindParam(':fio', $fio);
+$stmt->bindParam(':tel', $tel);
 $stmt->bindParam(':email', $email);
-$firstname = "John";
-$lastname = "Smith";
-$email = "john@test.com";
+$stmt->bindParam(':birth', $birth);
+$stmt->bindParam(':gender', $gender);
+$stmt->bindParam(':languages', $languages);
+$stmt->bindParam(':biography', $biography);
+$stmt->bindParam(':checkBut', $checkBut);
+$fio = $_POST['fio'];
+$tel = $_POST['tel'];
+$email = $_POST['email'];
+$birth = $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'];
+$gender = $_POST['gender'];
+$languages = $_POST['languages'];
+$biography = $_POST['biography'];
+$checkBut = $_POST['checkBut'];
 $stmt->execute();
 
 

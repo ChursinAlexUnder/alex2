@@ -73,7 +73,7 @@
     <br>
     <label class="labelcheck">
       С контрактом ознакомлен (а)
-      <input type="checkbox" name="check" />
+      <input type="checkbox" name="checkBut" />
     </label><br>
     <input type="submit" value="Сохранить" />
   </form>
