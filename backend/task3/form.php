@@ -69,7 +69,19 @@
     <label>
       Биография:<br>
       <textarea name="biography" placeholder="О себе"></textarea>
-    </label><br>
+    </label>
+    <br>
+    <label>
+      Выберите способность:
+      <br>
+      <select name="abilities[]" multiple="multiple">
+        <option value="Способность быть Богом">Способность быть Богом</option>
+        <option value="Способность летать">Способность летать</option>
+        <option value="Способность останавливать время">Способность останавливать время</option>
+        <option value="Способность метать огненные шары">Способность метать огненные шары</option>
+        <option value="Способность ускорять время">Способность ускорять время</option>
+      </select>
+    </label>
     <br>
     <label class="labelcheck">
       С контрактом ознакомлен (а)

@@ -9,6 +9,8 @@ CREATE TABLE application (
   PRIMARY KEY (id)
 );
 
+--  мои базы данных
+
 CREATE TABLE users (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   fio varchar(150) NOT NULL DEFAULT '',
@@ -21,3 +23,17 @@ CREATE TABLE users (
   checkBut BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE users_abilities (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  id_user int(10) NOT NULL DEFAULT 0,
+  ability varchar(128) NOT NULL DEFAULT '',
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE abilities (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  name varchar(128) NOT NULL DEFAULT '',
+  PRIMARY KEY (id)
+);
+

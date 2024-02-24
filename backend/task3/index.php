@@ -82,6 +82,11 @@ if (empty($_POST['biography'])) {
   $errors = TRUE;
 }
 
+if (empty($_POST['abilities'])) {
+  print('Выберите способность.<br/>');
+  $errors = TRUE;
+}
+
 if (empty($_POST['checkBut'])) {
   print('Ознакомьтесь с контрактом и поставьте галочку.<br/>');
   $errors = TRUE;
@@ -138,6 +143,17 @@ $languages = implode(", ", $_POST['languages']);
 $biography = $_POST['biography'];
 $checkBut = true;
 $stmt->execute();
+
+$id = $db->lastInsertId();
+
+foreach ($_POST['abilities'] as $ability) {
+  // Вставляем $ability в БД
+  $stmt = $db->prepare("INSERT INTO users_abilities (id_user, ability) VALUES (:id_user, :ability)");
+  $stmt->bindParam(':id_user', $id_user);
+  $stmt->bindParam(':ability', $ability);
+  $id_user = $id;
+  $stmt->execute();
+}
 
 
 // Делаем перенаправление.
