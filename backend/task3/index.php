@@ -140,7 +140,7 @@ $stmt->execute();
 $id = $db->lastInsertId();
 
 foreach ($_POST['languages'] as $id_lang) {
-  // Вставляем $lang в БД
+  // Вставляем $id_lang в БД
   $stmt = $db->prepare("INSERT INTO users_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
   $stmt->bindParam(':id_user', $id_user);
   $stmt->bindParam(':id_lang', $id_lang);
