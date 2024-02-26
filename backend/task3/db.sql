@@ -26,7 +26,7 @@ CREATE TABLE users (
 CREATE TABLE users_languages (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   id_user int(10) NOT NULL DEFAULT 0,
-  id_language varchar(128) NOT NULL DEFAULT '',
+  id_lang varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (id)
 );
 
