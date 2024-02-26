@@ -82,11 +82,6 @@ if (empty($_POST['biography'])) {
   $errors = TRUE;
 }
 
-if (empty($_POST['abilities'])) {
-  print('Выберите способность.<br/>');
-  $errors = TRUE;
-}
-
 if (empty($_POST['checkBut'])) {
   print('Ознакомьтесь с контрактом и поставьте галочку.<br/>');
   $errors = TRUE;
@@ -125,7 +120,7 @@ $db = new PDO(
 //$stmt -> execute(['label'=>'perfect', 'color'=>'green']);
 
 //Еще вариант
-$stmt = $db->prepare("INSERT INTO users (fio, tel, email, birth, gender, languages, biography, checkBut) VALUES (:fio, :tel, :email, :birth, :gender, :languages, :biography, :checkBut)");
+$stmt = $db->prepare("INSERT INTO users (fio, tel, email, birth, gender, biography, checkBut) VALUES (:fio, :tel, :email, :birth, :gender, :biography, :checkBut)");
 $stmt->bindParam(':fio', $fio);
 $stmt->bindParam(':tel', $tel);
 $stmt->bindParam(':email', $email);
@@ -139,18 +134,17 @@ $tel = $_POST['tel'];
 $email = $_POST['email'];
 $birth = $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'];
 $gender = $_POST['gender'];
-$languages = implode(", ", $_POST['languages']);
 $biography = $_POST['biography'];
 $checkBut = true;
 $stmt->execute();
 
 $id = $db->lastInsertId();
 
-foreach ($_POST['abilities'] as $ability) {
-  // Вставляем $ability в БД
-  $stmt = $db->prepare("INSERT INTO users_abilities (id_user, ability) VALUES (:id_user, :ability)");
+foreach ($_POST['languages'] as $id_lang) {
+  // Вставляем $lang в БД
+  $stmt = $db->prepare("INSERT INTO users_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
   $stmt->bindParam(':id_user', $id_user);
-  $stmt->bindParam(':ability', $ability);
+  $stmt->bindParam(':id_lang', $id_lang);
   $id_user = $id;
   $stmt->execute();
 }

@@ -53,34 +53,22 @@
       Любимый язык программирования:
       <br>
       <select name="languages[]" multiple="multiple">
-        <option value="Pascal">Pascal</option>
-        <option value="C">C</option>
-        <option value="C++">C++</option>
-        <option value="JavaScript">JavaScript</option>
-        <option value="PHP">PHP</option>
-        <option value="Python">Python</option>
-        <option value="Java">Java</option>
-        <option value="Haskel">Haskel</option>
-        <option value="Clojure">Clojure</option>
-        <option value="Prolog">Prolog</option>
-        <option value="Scala">Scala</option>
+        <option value="1">Pascal</option>
+        <option value="2">C</option>
+        <option value="3">C++</option>
+        <option value="4">JavaScript</option>
+        <option value="5">PHP</option>
+        <option value="6">Python</option>
+        <option value="7">Java</option>
+        <option value="8">Haskel</option>
+        <option value="9">Clojure</option>
+        <option value="10">Prolog</option>
+        <option value="11">Scala</option>
       </select>
     </label><br>
     <label>
       Биография:<br>
       <textarea name="biography" placeholder="О себе"></textarea>
-    </label>
-    <br>
-    <label>
-      Выберите способность:
-      <br>
-      <select name="abilities[]" multiple="multiple">
-        <option value="Способность быть Богом">Способность быть Богом</option>
-        <option value="Способность летать">Способность летать</option>
-        <option value="Способность останавливать время">Способность останавливать время</option>
-        <option value="Способность метать огненные шары">Способность метать огненные шары</option>
-        <option value="Способность ускорять время">Способность ускорять время</option>
-      </select>
     </label>
     <br>
     <label class="labelcheck">
