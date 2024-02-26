@@ -18,20 +18,19 @@ CREATE TABLE users (
   email varchar(40) NOT NULL DEFAULT '',
   birth varchar(30) NOT NULL DEFAULT '',
   gender varchar(10) NOT NULL DEFAULT '',
-  languages varchar(200) NOT NULL DEFAULT '',
   biography varchar(200) NOT NULL DEFAULT '',
   checkBut BOOLEAN NOT NULL DEFAULT FALSE,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE users_abilities (
+CREATE TABLE users_languages (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   id_user int(10) NOT NULL DEFAULT 0,
-  ability varchar(128) NOT NULL DEFAULT '',
+  id_language varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (id)
 );
 
-CREATE TABLE abilities (
+CREATE TABLE languages (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   name varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (id)
