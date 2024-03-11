@@ -1,3 +1,5 @@
+<!-- использовать hashmap -->
+<!-- https://www.php.net/manual/en/pdostatement.fetchall.php -->
 <?php
 // Отправляем браузеру правильную кодировку,
 // файл index.php должен быть в кодировке UTF-8 без BOM.
@@ -76,6 +78,24 @@ if (empty($_POST['languages'])) {
   print('Выберите любимый язык программирования.<br/>');
   $errors = TRUE;
 }
+
+$sth = $dbh->prepare("SELECT id FROM languages");
+$sth->execute();
+
+$langs = $sth->fetchAll();
+
+foreach ($langs as $lang) {
+    $error_lang = TRUE;
+    foreach ($_POST['languages'] as $id_lang) {
+        if ($lang == $id_lang) {
+            $error_lang = FALSE;
+            break;
+        }
+    }
+    if ($id_lang == TRUE) $errors = TRUE;
+}
+print_r($langs);
+
 
 if (empty($_POST['biography'])) {
   print('Введите биографию.<br/>');
