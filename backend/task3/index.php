@@ -74,12 +74,21 @@ if (empty($_POST['gender'])) {
   $errors = TRUE;
 }
 
+$user = 'u67335'; // Заменить на ваш логин uXXXXX
+$pass = '5596746'; // Заменить на пароль, такой же, как от SSH
+$db = new PDO(
+  'mysql:host=localhost;dbname=u67335',
+  $user,
+  $pass,
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+); // Заменить test на имя БД, совпадает с логином uXXXXX
+
 if (empty($_POST['languages'])) {
   print('Выберите любимый язык программирования.<br/>');
   $errors = TRUE;
 }
 
-$sth = $dbh->prepare("SELECT id FROM languages");
+$sth = $db->prepare("SELECT id FROM languages");
 $sth->execute();
 
 $langs = $sth->fetchAll();
@@ -113,15 +122,6 @@ if ($errors) {
 }
 
 // Сохранение в базу данных.
-
-$user = 'u67335'; // Заменить на ваш логин uXXXXX
-$pass = '5596746'; // Заменить на пароль, такой же, как от SSH
-$db = new PDO(
-  'mysql:host=localhost;dbname=u67335',
-  $user,
-  $pass,
-  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-); // Заменить test на имя БД, совпадает с логином uXXXXX
 
 // Подготовленный запрос. Не именованные метки.
 // try {
