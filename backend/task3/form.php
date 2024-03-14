@@ -40,15 +40,11 @@
         ?>
       </select><br>
     </label>
-    <div class="rowradio">
+    <label class="labelradio">
       Пол:
-      <label class="labelradio">
-        <input class="radiobutton" type="radio" name="gender" value="man" /> Мужской
-      </label>
-      <label class="labelradio">
-        <input class="radiobutton" type="radio" name="gender" value="woman" /> Женский
-      </label>
-    </div><br>
+      <input class="radiobutton" type="radio" name="gender" value="man" /> Мужской
+      <input class="radiobutton" type="radio" name="gender" value="woman" /> Женский
+    </label><br>
     <label>
       Любимый язык программирования:
       <br>
