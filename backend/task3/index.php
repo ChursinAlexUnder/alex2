@@ -91,10 +91,10 @@ else { // Из сайта: https://www.php.net/manual/en/pdostatement.fetchall.p
 
   $langs = $sth->fetchAll();
 
-  foreach ($langs as $lang) {
+  foreach ($_POST['languages'] as $id_lang) {
     $error_lang = TRUE;
-    foreach ($_POST['languages'] as $id_lang) {
-        if ($lang[0] == $id_lang) {
+    foreach ($langs as $lang) {
+        if ($id_lang == $lang[0]) {
             $error_lang = FALSE;
             break;
         }
