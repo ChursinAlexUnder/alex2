@@ -10,14 +10,14 @@
   </head>
   <body>
     <?php
-    // if (!empty($messages)) {
-    //   print('<div id="messages">');
-    //   // Выводим все сообщения.
-    //   foreach ($messages as $message) {
-    //     print($message);
-    //   }
-    //   print('</div>');
-    // }
+    if (!empty($messages)) {
+      print('<div id="messages">');
+      // Выводим все сообщения.
+      foreach ($messages as $message) {
+        print($message);
+      }
+      print('</div>');
+    }
 
     // Далее выводим форму отмечая элементы с ошибками классом error
     // и задавая начальные значения элементов ранее сохраненными.
@@ -69,15 +69,11 @@
           </select><br>
           <?php if ($errors['day']) {print($messages['day']); print('<br>');}?>
         </label>
-        <div class="rowradio <?php if ($errors['gender']) {print " error";} ?>">
+        <label class="labelradio <?php if ($errors['gender']) {print " error";} ?>" value="<?php print $values['gender']; ?>">
           Пол:
-          <label class="labelradio">
-            <input class="radiobutton" type="radio" name="gender" value="<?php print $values['gender']; ?>" /> Мужской
-          </label>
-          <label class="labelradio">
-            <input class="radiobutton" type="radio" name="gender" value="<?php print $values['gender']; ?>" /> Женский
-          </label>
-        </div><br>
+          <input class="radiobutton" type="radio" name="gender" value="man"/> Мужской
+          <input class="radiobutton" type="radio" name="gender" value="woman"/> Женский
+        </label><br>
         <?php if ($errors['gender']) {print($messages['gender']); print('<br>');}?>
         <label>
           Любимый язык программирования:

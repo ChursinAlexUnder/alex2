@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('fio_error', '', 100000);
     // Выводим сообщение.
-    $messages['fio'] = '<div class="error">Заполните имя правильно.</div>';
+    $messages['fio'] = '<div class="error">Заполните ФИО правильно.</div>';
   }
   if ($errors['tel']) {
     setcookie('tel_error', '', 100000);
