@@ -35,4 +35,3 @@ CREATE TABLE languages (
   name varchar(128) NOT NULL DEFAULT '',
   PRIMARY KEY (id)
 );
-

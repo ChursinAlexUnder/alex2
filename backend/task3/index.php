@@ -85,23 +85,26 @@ if (empty($_POST['languages'])) {
   print('Выберите любимый язык программирования.<br/>');
   $errors = TRUE;
 }
+else { // Из сайта: https://www.php.net/manual/en/pdostatement.fetchall.php
+  $sth = $db->prepare("SELECT id FROM languages");
+  $sth->execute();
 
-// Из сайта: https://www.php.net/manual/en/pdostatement.fetchall.php
+  $langs = $sth->fetchAll();
 
-$sth = $db->prepare("SELECT id FROM languages");
-$sth->execute();
-
-$langs = $sth->fetchAll();
-
-foreach ($langs as $lang) {
-  $error_lang = TRUE;
-  foreach ($_POST['languages'] as $id_lang) {
-      if ($lang[0] == $id_lang) {
-          $error_lang = FALSE;
-          break;
-      }
+  foreach ($langs as $lang) {
+    $error_lang = TRUE;
+    foreach ($_POST['languages'] as $id_lang) {
+        if ($lang[0] == $id_lang) {
+            $error_lang = FALSE;
+            break;
+        }
+    }
+    if ($error_lang == TRUE) {
+      print('Ошибка! Выбранного языка программирования нет в базе!<br/>');
+      $errors = TRUE;
+      break;
+    }
   }
-  if ($error_lang == TRUE) $errors = TRUE;
 }
 
 if (empty($_POST['biography'])) {
