@@ -10,14 +10,14 @@
   </head>
   <body>
     <?php
-    if (!empty($messages)) {
-      print('<div id="messages">');
-      // Выводим все сообщения.
-      foreach ($messages as $message) {
-        print($message);
-      }
-      print('</div>');
-    }
+    // if (!empty($messages)) {
+    //   print('<div id="messages">');
+    //   // Выводим все сообщения.
+    //   foreach ($messages as $message) {
+    //     print($message);
+    //   }
+    //   print('</div>');
+    // }
 
     // Далее выводим форму отмечая элементы с ошибками классом error
     // и задавая начальные значения элементов ранее сохраненными.
@@ -29,14 +29,17 @@
         ФИО:<br>
         <input name="fio" type="text" <?php if ($errors['fio']) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" placeholder="Введите ваши ФИО" />
         </label><br>
+        <?php if ($errors['fio']) {print($messages['fio']); print('<br>');}?>
         <label>
         Телефон:<br>
         <input name="tel" type="tel" <?php if ($errors['tel']) {print 'class="error"';} ?> value="<?php print $values['tel']; ?>" placeholder="Введите ваш номер телефона" />
         </label><br>
+        <?php if ($errors['tel']) {print($messages['tel']); print('<br>');}?>
         <label>
         Email:<br>
         <input name="email" type="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>" placeholder="Введите вашу почту" />
         </label><br>
+        <?php if ($errors['email']) {print($messages['email']); print('<br>');}?>
         <label>
           Год рождения:<br>
           <select name="year" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php print $values['year']; ?>">
@@ -46,6 +49,7 @@
             }
             ?>
           </select><br>
+          <?php if ($errors['year']) {print($messages['year']); print('<br>');}?>
           Месяц рождения:<br>
           <select name="month" <?php if ($errors['month']) {print 'class="error"';} ?> value="<?php print $values['month']; ?>">
             <?php
@@ -54,6 +58,7 @@
             }
             ?>
           </select><br>
+          <?php if ($errors['month']) {print($messages['month']); print('<br>');}?>
           День рождения:<br>
           <select name="day" <?php if ($errors['day']) {print 'class="error"';} ?> value="<?php print $values['day']; ?>">
             <?php
@@ -62,6 +67,7 @@
             }
             ?>
           </select><br>
+          <?php if ($errors['day']) {print($messages['day']); print('<br>');}?>
         </label>
         <div class="rowradio <?php if ($errors['gender']) {print " error";} ?>">
           Пол:
@@ -72,6 +78,7 @@
             <input class="radiobutton" type="radio" name="gender" value="<?php print $values['gender']; ?>" /> Женский
           </label>
         </div><br>
+        <?php if ($errors['gender']) {print($messages['gender']); print('<br>');}?>
         <label>
           Любимый язык программирования:
           <br>
@@ -89,15 +96,17 @@
             <option value="11">Scala</option>
           </select>
         </label><br>
+        <?php if ($errors['languages']) {print($messages['languages']); print('<br>');}?>
         <label>
           Биография:<br>
           <textarea name="biography" <?php if ($errors['biography']) {print 'class="error"';} ?> value="<?php print $values['biography']; ?>" placeholder="О себе"></textarea>
-        </label>
-        <br>
+        </label><br>
+        <?php if ($errors['biography']) {print($messages['biography']); print('<br>');}?>
         <label class="labelcheck <?php if ($errors['checkBut']) {print " error";} ?>">
           С контрактом ознакомлен (а)
           <input type="checkbox" value="<?php print $values['checkBut']; ?>" name="checkBut" />
         </label><br>
+        <?php if ($errors['checkBut']) {print($messages['checkBut']); print('<br>');}?>
         <input class="finalBut" type="submit" value="Ok" />
       </form>
     </section>

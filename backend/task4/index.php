@@ -43,43 +43,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('fio_error', '', 100000);
     // Выводим сообщение.
-    $messages[] = '<div class="error">Заполните имя.</div>';
+    $messages['fio'] = '<div class="error">Заполните имя правильно.</div>';
   }
   if ($errors['tel']) {
     setcookie('tel_error', '', 100000);
-    $messages[] = '<div class="error">Заполните номер телефона.</div>';
+    $messages['tel'] = '<div class="error">Заполните номер телефона правильно.</div>';
   }
   if ($errors['email']) {
     setcookie('email_error', '', 100000);
-    $messages[] = '<div class="error">Заполните адрес электронной почты.</div>';
+    $messages['email'] = '<div class="error">Заполните адрес электронной почты правильно.</div>';
   }
   if ($errors['year']) {
     setcookie('year_error', '', 100000);
-    $messages[] = '<div class="error">Заполните год рождения.</div>';
+    $messages['year'] = '<div class="error">Заполните год рождения правильно.</div>';
   }
   if ($errors['month']) {
     setcookie('month_error', '', 100000);
-    $messages[] = '<div class="error">Заполните месяц рождения.</div>';
+    $messages['month'] = '<div class="error">Заполните месяц рождения правильно.</div>';
   }
   if ($errors['day']) {
     setcookie('day_error', '', 100000);
-    $messages[] = '<div class="error">Заполните день рождения.</div>';
+    $messages['day'] = '<div class="error">Заполните день рождения правильно.</div>';
   }
   if ($errors['gender']) {
     setcookie('gender_error', '', 100000);
-    $messages[] = '<div class="error">Укажите ваш пол.</div>';
+    $messages['gender'] = '<div class="error">Укажите ваш пол.</div>';
   }
   if ($errors['languages']) {
     setcookie('languages_error', '', 100000);
-    $messages[] = '<div class="error">Выберите любимые языки программирования.</div>';
+    $messages['languages'] = '<div class="error">Выберите любимые языки программирования правильно.</div>';
   }
   if ($errors['biography']) {
     setcookie('biography_error', '', 100000);
-    $messages[] = '<div class="error">Напишите что-нибудь о себе.</div>';
+    $messages['biography'] = '<div class="error">Напишите что-нибудь о себе.</div>';
   }
   if ($errors['checkBut']) {
     setcookie('checkBut_error', '', 100000);
-    $messages[] = '<div class="error">Поставьте галочку.</div>';
+    $messages['checkBut'] = '<div class="error">Поставьте галочку.</div>';
   }
 
   // Складываем предыдущие значения полей в массив, если есть.
@@ -103,8 +103,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {
   // Проверяем ошибки.
+
   $errors = FALSE;
-  if (empty($_POST['fio'])) {
+
+  if (empty($_POST['fio']) || !preg_match('/[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+/u', $_POST['fio']) || strlen($_POST['fio']) > 150) {
     // Выдаем куку на день с флажком об ошибке в поле fio.
     setcookie('fio_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
@@ -114,7 +116,7 @@ else {
     setcookie('fio_value', $_POST['fio'], time() + 30 * 24 * 60 * 60);
   }
 
-  if (empty($_POST['tel'])) {
+  if (empty($_POST['tel']) || !preg_match('/^\+?([0-9]{11})/', $_POST['tel'])) {
     setcookie('tel_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
@@ -122,7 +124,7 @@ else {
     setcookie('tel_value', $_POST['tel'], time() + 30 * 24 * 60 * 60);
   }
 
-  if (empty($_POST['email'])) {
+  if (empty($_POST['email']) || !preg_match('/\w+@\w+\.\w+/', $_POST['email'])) {
     setcookie('email_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
@@ -147,7 +149,10 @@ else {
     setcookie('month_value', $_POST['month'], time() + 30 * 24 * 60 * 60);
   }
 
-  if (empty($_POST['day'])) {
+  $months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  $months[1] += ($_POST['year'] % 4 == 0);
+
+  if (empty($_POST['day']) || $_POST['day'] > $months[$_POST['month'] - 1]) {
     setcookie('day_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
@@ -163,9 +168,39 @@ else {
     setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);
   }
 
+  $user = 'u67335';
+  $pass = '5596746';
+  $db = new PDO(
+    'mysql:host=localhost;dbname=u67335',
+    $user,
+    $pass,
+    [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+  );
+
   if (empty($_POST['languages'])) {
     setcookie('languages_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
+  }
+  else if (!empty($_POST['languages'])) {
+    $sth = $db->prepare("SELECT id FROM languages");
+    $sth->execute();
+
+    $langs = $sth->fetchAll();
+
+    foreach ($_POST['languages'] as $id_lang) {
+      $error_lang = TRUE;
+      foreach ($langs as $lang) {
+          if ($id_lang == $lang[0]) {
+              $error_lang = FALSE;
+              break;
+          }
+      }
+      if ($error_lang == TRUE) {
+        setcookie('languages_error', '1', time() + 24 * 60 * 60);
+        $errors = TRUE;
+        break;
+      }
+    }
   }
   else {
     setcookie('languages_value', $_POST['languages'], time() + 30 * 24 * 60 * 60);
@@ -207,15 +242,6 @@ else {
   }
 
   // Сохранение в БД.
-
-  $user = 'u67335'; // Заменить на ваш логин uXXXXX
-  $pass = '5596746'; // Заменить на пароль, такой же, как от SSH
-  $db = new PDO(
-    'mysql:host=localhost;dbname=u67335',
-    $user,
-    $pass,
-    [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-  );
 
   // Подготовленный запрос. Не именованные метки.
   try {
