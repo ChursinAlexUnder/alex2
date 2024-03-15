@@ -177,11 +177,13 @@ else {
     [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
   );
 
+  $error_lang = FALSE;
   if (empty($_POST['languages'])) {
     setcookie('languages_error', '1', time() + 24 * 60 * 60);
+    $error_lang = TRUE;
     $errors = TRUE;
   }
-  else if (!empty($_POST['languages'])) {
+  else {
     $sth = $db->prepare("SELECT id FROM languages");
     $sth->execute();
 
@@ -190,10 +192,10 @@ else {
     foreach ($_POST['languages'] as $id_lang) {
       $error_lang = TRUE;
       foreach ($langs as $lang) {
-          if ($id_lang == $lang[0]) {
-              $error_lang = FALSE;
-              break;
-          }
+        if ($id_lang == $lang[0]) {
+          $error_lang = FALSE;
+          break;
+        }
       }
       if ($error_lang == TRUE) {
         setcookie('languages_error', '1', time() + 24 * 60 * 60);
@@ -202,7 +204,7 @@ else {
       }
     }
   }
-  else {
+  if ($error_lang == FALSE) {
     setcookie('languages_value', serialize($_POST['languages']), time() + 30 * 24 * 60 * 60);
   }
 
