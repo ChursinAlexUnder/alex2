@@ -76,7 +76,7 @@
           Любимый язык программирования:
           <br>
           <select name="languages[]" multiple="multiple" <?php if ($errors['languages']) {print 'class="error"';} ?>>
-            <option <?php if (!empty($values['languages'])) {foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="1">Pascal</option>
+            <option <?php if (!empty($values['languages'])) {foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="1">Pascal<?php print($values['languages']); ?></option>
             <option <?php if (!empty($values['languages'])) {foreach($values['languages'] as $value) {if ($value == "2") {print('selected');}}} ?> value="2">C</option>
             <option <?php if (!empty($values['languages'])) {foreach($values['languages'] as $value) {if ($value == "3") {print('selected');}}} ?> value="3">C++</option>
             <option <?php if (!empty($values['languages'])) {foreach($values['languages'] as $value) {if ($value == "4") {print('selected');}}} ?> value="4">JavaScript</option>
