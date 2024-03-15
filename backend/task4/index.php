@@ -179,14 +179,14 @@ else {
     setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);
   }
 
-  // $user = 'u67335';
-  // $pass = '5596746';
-  // $db = new PDO(
-  //   'mysql:host=localhost;dbname=u67335',
-  //   $user,
-  //   $pass,
-  //   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-  // );
+  $user = 'u67335';
+  $pass = '5596746';
+  $db = new PDO(
+    'mysql:host=localhost;dbname=u67335',
+    $user,
+    $pass,
+    [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+  );
 
   $error_lang = FALSE;
   if (empty($_POST['languages'])) {
@@ -194,27 +194,27 @@ else {
     $error_lang = TRUE;
     $errors = TRUE;
   }
-  // else {
-  //   $sth = $db->prepare("SELECT id FROM languages");
-  //   $sth->execute();
+  else {
+    $sth = $db->prepare("SELECT id FROM languages");
+    $sth->execute();
 
-  //   $langs = $sth->fetchAll();
+    $langs = $sth->fetchAll();
 
-  //   foreach ($_POST['languages'] as $id_lang) {
-  //     $error_lang = TRUE;
-  //     foreach ($langs as $lang) {
-  //       if ($id_lang == $lang[0]) {
-  //         $error_lang = FALSE;
-  //         break;
-  //       }
-  //     }
-  //     if ($error_lang == TRUE) {
-  //       setcookie('languages_error', '1', time() + 24 * 60 * 60);
-  //       $errors = TRUE;
-  //       break;
-  //     }
-  //   }
-  // }
+    foreach ($_POST['languages'] as $id_lang) {
+      $error_lang = TRUE;
+      foreach ($langs as $lang) {
+        if ($id_lang == $lang[0]) {
+          $error_lang = FALSE;
+          break;
+        }
+      }
+      if ($error_lang == TRUE) {
+        setcookie('languages_error', '1', time() + 24 * 60 * 60);
+        $errors = TRUE;
+        break;
+      }
+    }
+  }
   if ($error_lang == FALSE) {
     setcookie('languages_value', serialize($_POST['languages']), time() + 30 * 24 * 60 * 60);
   }
@@ -257,25 +257,25 @@ else {
   // Сохранение в БД.
 
   // Подготовленный запрос. Не именованные метки.
-  // try {
-  //   $stmt = $db->prepare("INSERT INTO users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
-  //   $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
+  try {
+    $stmt = $db->prepare("INSERT INTO users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
+    $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
 
-  //   $id = $db->lastInsertId();
+    $id = $db->lastInsertId();
 
-  //   foreach ($_POST['languages'] as $id_lang) {
-  //     // Вставляем $id_lang в БД
-  //     $stmt = $db->prepare("INSERT INTO users_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
-  //     $stmt->bindParam(':id_user', $id_user);
-  //     $stmt->bindParam(':id_lang', $id_lang);
-  //     $id_user = $id;
-  //     $stmt->execute();
-  //   }
-  // }
-  // catch(PDOException $e){
-  //   print('Error : ' . $e->getMessage());
-  //   exit();
-  // }
+    foreach ($_POST['languages'] as $id_lang) {
+      // Вставляем $id_lang в БД
+      $stmt = $db->prepare("INSERT INTO users_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
+      $stmt->bindParam(':id_user', $id_user);
+      $stmt->bindParam(':id_lang', $id_lang);
+      $id_user = $id;
+      $stmt->execute();
+    }
+  }
+  catch(PDOException $e){
+    print('Error : ' . $e->getMessage());
+    exit();
+  }
 
   // Сохраняем куку с признаком успешного сохранения.
   setcookie('save', '1');
