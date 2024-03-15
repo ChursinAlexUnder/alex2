@@ -79,17 +79,17 @@
           Любимый язык программирования:
           <br>
           <select name="languages[]" multiple="multiple" <?php if ($errors['languages']) {print 'class="error"';} ?>>
-            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="1">Pascal</option>
-            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="2">C</option>
-            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="3">C++</option>
-            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="4">JavaScript</option>
-            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="5">PHP</option>
-            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="6">Python</option>
-            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="7">Java</option>
-            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="8">Haskel</option>
-            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="9">Clojure</option>
-            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="10">Prolog</option>
-            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}}} ?> value="11">Scala</option>
+            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('checked');}}} ?> value="1">Pascal</option>
+            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('checked');}}} ?> value="2">C</option>
+            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('checked');}}} ?> value="3">C++</option>
+            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('checked');}}} ?> value="4">JavaScript</option>
+            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('checked');}}} ?> value="5">PHP</option>
+            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('checked');}}} ?> value="6">Python</option>
+            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('checked');}}} ?> value="7">Java</option>
+            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('checked');}}} ?> value="8">Haskel</option>
+            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('checked');}}} ?> value="9">Clojure</option>
+            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('checked');}}} ?> value="10">Prolog</option>
+            <option <?php if(!empty($values['languages'])){foreach($values['languages'] as $value) {if ($value == "1") {print('checked');}}} ?> value="11">Scala</option>
           </select>
         </label><br>
         <?php if ($errors['languages']) {print($messages['languages']); print('<br>');}?>
