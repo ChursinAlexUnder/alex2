@@ -43,15 +43,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('fio_error', '', 100000);
     // Выводим сообщение.
-    $messages['fio'] = '<div class="error">Заполните ФИО правильно.</div>';
+    $messages['fio'] = '<div class="error">Заполните ФИО правильно.<br>Доступные символы: руский алфавит, ангийский алфавит, пробельные символы.</div>';
   }
   if ($errors['tel']) {
     setcookie('tel_error', '', 100000);
-    $messages['tel'] = '<div class="error">Заполните номер телефона правильно.</div>';
+    $messages['tel'] = '<div class="error">Заполните номер телефона правильно.<br>Доступные символы: +0123456789.</div>';
   }
   if ($errors['email']) {
     setcookie('email_error', '', 100000);
-    $messages['email'] = '<div class="error">Заполните адрес электронной почты правильно.</div>';
+    $messages['email'] = '<div class="error">Заполните адрес электронной почты правильно.<br>Доступные символы: .@ и английский алфавит.</div>';
   }
   if ($errors['year']) {
     setcookie('year_error', '', 100000);
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
   if ($errors['biography']) {
     setcookie('biography_error', '', 100000);
-    $messages['biography'] = '<div class="error">Напишите что-нибудь о себе.</div>';
+    $messages['biography'] = '<div class="error">Напишите что-нибудь о себе.<br>Доступные символы: все.</div>';
   }
   if ($errors['checkBut']) {
     setcookie('checkBut_error', '', 100000);
@@ -94,6 +94,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['languages'] = empty(unserialize($_COOKIE['languages_value'])) ? '' : unserialize($_COOKIE['languages_value']);
   $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
   $values['checkBut'] = empty($_COOKIE['checkBut_value']) ? '' : $_COOKIE['checkBut_value'];
+
+  function condition_lang($values, $tmp)
+  {
+    if (!empty($values['languages'])) {
+      foreach($values['languages'] as $value) {
+        if ($value == $tmp) {
+          print('selected');
+        }
+      }
+    }
+  }
 
   // Включаем содержимое файла form.php.
   // В нем будут доступны переменные $messages, $errors и $values для вывода 
