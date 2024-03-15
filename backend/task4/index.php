@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!empty($values['languages'])) {
       foreach($values['languages'] as $value) {
         if ($value == $tmp) {
-          print('selected');
+          echo 'selected';
         }
       }
     }
