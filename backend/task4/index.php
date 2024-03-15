@@ -124,7 +124,7 @@ else {
   }
   else {
     // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('fio_value', $_POST['fio'], time() + 30 * 24 * 60 * 60);
+    setcookie('fio_value', $_POST['fio'], time() + 12 * 30 * 24 * 60 * 60);
   }
 
   if (empty($_POST['tel']) || !preg_match('/^\+?([0-9]{11})/', $_POST['tel'])) {
@@ -132,7 +132,7 @@ else {
     $errors = TRUE;
   }
   else {
-    setcookie('tel_value', $_POST['tel'], time() + 30 * 24 * 60 * 60);
+    setcookie('tel_value', $_POST['tel'], time() + 12 * 30 * 24 * 60 * 60);
   }
 
   if (empty($_POST['email']) || !preg_match('/^[A-Za-z0-9_]+@[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/', $_POST['email'])) {
@@ -141,7 +141,7 @@ else {
   }
   else {
 
-    setcookie('email_value', $_POST['email'], time() + 30 * 24 * 60 * 60);
+    setcookie('email_value', $_POST['email'], time() + 12 * + 30 * 24 * 60 * 60);
   }
 
   if (empty($_POST['year'])) {
@@ -149,7 +149,7 @@ else {
     $errors = TRUE;
   }
   else {
-    setcookie('year_value', $_POST['year'], time() + 30 * 24 * 60 * 60);
+    setcookie('year_value', $_POST['year'], time() + 12 * 30 * 24 * 60 * 60);
   }
 
   if (empty($_POST['month'])) {
@@ -157,7 +157,7 @@ else {
     $errors = TRUE;
   }
   else {
-    setcookie('month_value', $_POST['month'], time() + 30 * 24 * 60 * 60);
+    setcookie('month_value', $_POST['month'], time() + 12 * 30 * 24 * 60 * 60);
   }
 
   $months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -168,7 +168,7 @@ else {
     $errors = TRUE;
   }
   else {
-    setcookie('day_value', $_POST['day'], time() + 30 * 24 * 60 * 60);
+    setcookie('day_value', $_POST['day'], time() + 12 * 30 * 24 * 60 * 60);
   }
 
   if (empty($_POST['gender'])) {
@@ -176,7 +176,7 @@ else {
     $errors = TRUE;
   }
   else {
-    setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);
+    setcookie('gender_value', $_POST['gender'], time() + 12 * 30 * 24 * 60 * 60);
   }
 
   $user = 'u67335';
@@ -216,7 +216,7 @@ else {
     }
   }
   if ($error_lang == FALSE) {
-    setcookie('languages_value', serialize($_POST['languages']), time() + 30 * 24 * 60 * 60);
+    setcookie('languages_value', serialize($_POST['languages']), time() + 12 * 30 * 24 * 60 * 60);
   }
 
   if (empty($_POST['biography'])) {
@@ -224,7 +224,7 @@ else {
     $errors = TRUE;
   }
   else {
-    setcookie('biography_value', $_POST['biography'], time() + 30 * 24 * 60 * 60);
+    setcookie('biography_value', $_POST['biography'], time() + 12 * 30 * 24 * 60 * 60);
   }
 
   if (empty($_POST['checkBut'])) {
@@ -232,7 +232,7 @@ else {
     $errors = TRUE;
   }
   else {
-    setcookie('checkBut_value', $_POST['checkBut'], time() + 30 * 24 * 60 * 60);
+    setcookie('checkBut_value', $_POST['checkBut'], time() + 12 * 30 * 24 * 60 * 60);
   }
 
   if ($errors) {
