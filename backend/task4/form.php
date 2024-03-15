@@ -76,17 +76,17 @@
           Любимый язык программирования:
           <br>
           <select name="languages[]" multiple="multiple" <?php if ($errors['languages']) {print 'class="error"';} ?>>
-            <option <?php condition_lang($values['languages'], '1')?> value="1">Pascal</option>
-            <option <?php condition_lang($values['languages'], '2')?> value="2">C</option>
-            <option <?php condition_lang($values['languages'], '3')?> value="3">C++</option>
-            <option <?php condition_lang($values['languages'], '4')?> value="4">JavaScript</option>
-            <option <?php condition_lang($values['languages'], '5')?> value="5">PHP</option>
-            <option <?php condition_lang($values['languages'], '6')?> value="6">Python</option>
-            <option <?php condition_lang($values['languages'], '7')?> value="7">Java</option>
-            <option <?php condition_lang($values['languages'], '8')?> value="8">Haskel</option>
-            <option <?php condition_lang($values['languages'], '9')?> value="9">Clojure</option>
-            <option <?php condition_lang($values['languages'], '10')?> value="10">Prolog</option>
-            <option <?php condition_lang($values['languages'], '11')?> value="11">Scala</option>
+            <option <?php condition_lang($values['languages'], "1")?> value="1">Pascal</option>
+            <option <?php condition_lang($values['languages'], "2")?> value="2">C</option>
+            <option <?php condition_lang($values['languages'], "3")?> value="3">C++</option>
+            <option <?php condition_lang($values['languages'], "4")?> value="4">JavaScript</option>
+            <option <?php condition_lang($values['languages'], "5")?> value="5">PHP</option>
+            <option <?php condition_lang($values['languages'], "6")?> value="6">Python</option>
+            <option <?php condition_lang($values['languages'], "7")?> value="7">Java</option>
+            <option <?php condition_lang($values['languages'], "8")?> value="8">Haskel</option>
+            <option <?php condition_lang($values['languages'], "9")?> value="9">Clojure</option>
+            <option <?php condition_lang($values['languages'], "10")?> value="10">Prolog</option>
+            <option <?php condition_lang($values['languages'], "11")?> value="11">Scala</option>
           </select>
         </label><br>
         <?php if ($errors['languages']) {print($messages['languages']); print('<br>');}?>
