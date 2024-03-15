@@ -135,7 +135,7 @@ else {
     setcookie('tel_value', $_POST['tel'], time() + 30 * 24 * 60 * 60);
   }
 
-  if (empty($_POST['email']) || !preg_match('/\w+@\w+\.\w+/', $_POST['email'])) {
+  if (empty($_POST['email']) || !preg_match('/^[A-Za-z0-9_]+@[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/', $_POST['email'])) {
     setcookie('email_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }

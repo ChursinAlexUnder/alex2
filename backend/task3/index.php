@@ -44,7 +44,7 @@ if (empty($_POST['tel'])) {
 if (empty($_POST['email'])) {
   print('Заполните почту.<br/>');
   $errors = TRUE;
-} else if (!preg_match('/\w+@\w+\.\w+/', $_POST['email'])) {
+} else if (!preg_match('/^[A-Za-z0-9_]+@[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/', $_POST['email'])) {
   print('Заполните почту правильно.<br/>');
   $errors = TRUE;
 }
@@ -84,8 +84,7 @@ $db = new PDO(
 if (empty($_POST['languages'])) {
   print('Выберите любимый язык программирования.<br/>');
   $errors = TRUE;
-}
-else { // Из сайта: https://www.php.net/manual/en/pdostatement.fetchall.php
+} else { // Из сайта: https://www.php.net/manual/en/pdostatement.fetchall.php
   $sth = $db->prepare("SELECT id FROM languages");
   $sth->execute();
 
@@ -94,10 +93,10 @@ else { // Из сайта: https://www.php.net/manual/en/pdostatement.fetchall.p
   foreach ($_POST['languages'] as $id_lang) {
     $error_lang = TRUE;
     foreach ($langs as $lang) {
-        if ($id_lang == $lang[0]) {
-            $error_lang = FALSE;
-            break;
-        }
+      if ($id_lang == $lang[0]) {
+        $error_lang = FALSE;
+        break;
+      }
     }
     if ($error_lang == TRUE) {
       print('Ошибка! Выбранного языка программирования нет в базе!<br/>');
