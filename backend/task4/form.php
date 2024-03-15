@@ -71,25 +71,25 @@
         </label>
         <label class="labelradio <?php if ($errors['gender']) {print " error";} ?>">
           Пол:
-          <input class="radiobutton" type="radio" name="gender" value="man" <?php if ($values['gender'] == 'man') print('selected'); ?>/> Мужской
-          <input class="radiobutton" type="radio" name="gender" value="woman" <?php if ($values['gender'] == 'woman') print('selected'); ?>/> Женский
+          <input class="radiobutton" type="radio" name="gender" value="man" <?php if ($values['gender'] == 'man') print('checked'); ?>/> Мужской
+          <input class="radiobutton" type="radio" name="gender" value="woman" <?php if ($values['gender'] == 'woman') print('checked'); ?>/> Женский
         </label><br>
         <?php if ($errors['gender']) {print($messages['gender']); print('<br>');}?>
         <label>
           Любимый язык программирования:
           <br>
           <select name="languages[]" multiple="multiple" <?php if ($errors['languages']) {print 'class="error"';} ?>>
-            <option <?php foreach($values['languages'] as $value) {if ($value == "1") print('selected');} ?> value="1">Pascal</option>
-            <option <?php foreach($values['languages'] as $value) {if ($value == "2") print('selected');} ?> value="2">C</option>
-            <option <?php foreach($values['languages'] as $value) {if ($value == "3") print('selected');} ?> value="3">C++</option>
-            <option <?php foreach($values['languages'] as $value) {if ($value == "4") print('selected');} ?> value="4">JavaScript</option>
-            <option <?php foreach($values['languages'] as $value) {if ($value == "5") print('selected');} ?> value="5">PHP</option>
-            <option <?php foreach($values['languages'] as $value) {if ($value == "6") print('selected');} ?> value="6">Python</option>
-            <option <?php foreach($values['languages'] as $value) {if ($value == "7") print('selected');} ?> value="7">Java</option>
-            <option <?php foreach($values['languages'] as $value) {if ($value == "8") print('selected');} ?> value="8">Haskel</option>
-            <option <?php foreach($values['languages'] as $value) {if ($value == "9") print('selected');} ?> value="9">Clojure</option>
-            <option <?php foreach($values['languages'] as $value) {if ($value == "10") print('selected');} ?> value="10">Prolog</option>
-            <option <?php foreach($values['languages'] as $value) {if ($value == "11") print('selected');} ?> value="11">Scala</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == "1") {print('selected');}} ?> value="1">Pascal</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == "2") {print('selected');}} ?> value="2">C</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == "3") {print('selected');}} ?> value="3">C++</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == "4") {print('selected');}} ?> value="4">JavaScript</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == "5") {print('selected');}} ?> value="5">PHP</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == "6") {print('selected');}} ?> value="6">Python</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == "7") {print('selected');}} ?> value="7">Java</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == "8") {print('selected');}} ?> value="8">Haskel</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == "9") {print('selected');}} ?> value="9">Clojure</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == "10") {print('selected');}} ?> value="10">Prolog</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == "11") {print('selected');}} ?> value="11">Scala</option>
           </select>
         </label><br>
         <?php if ($errors['languages']) {print($messages['languages']); print('<br>');}?>
@@ -100,7 +100,7 @@
         <?php if ($errors['biography']) {print($messages['biography']); print('<br>');}?>
         <label class="labelcheck <?php if ($errors['checkBut']) {print " error";} ?>">
           С контрактом ознакомлен (а)
-          <input type="checkbox" <?php if (!empty($values['checkBut'])) {print('selected');} ?> name="checkBut" />
+          <input type="checkbox" <?php if (!empty($values['checkBut'])) {print('checked');} ?> name="checkBut" />
         </label><br>
         <?php if ($errors['checkBut']) {print($messages['checkBut']); print('<br>');}?>
         <input class="finalBut" type="submit" value="Ok" />
