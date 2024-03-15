@@ -24,7 +24,7 @@
     ?>
     <section>
       <h1>Форма</h1>
-      <form action="" method="POST">
+      <form action="index.php" method="POST">
         <label>
         ФИО:<br>
         <input name="fio" type="text" <?php if ($errors['fio']) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" placeholder="Введите ваши ФИО" />
@@ -42,60 +42,60 @@
         <?php if ($errors['email']) {print($messages['email']); print('<br>');}?>
         <label>
           Год рождения:<br>
-          <select name="year" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php print $values['year']; ?>">
+          <select name="year" <?php if ($errors['year']) {print 'class="error"';} ?>>
             <?php
             for ($i = 1922; $i <= 2024; $i++) {
-              printf('<option value="%d">%d год</option>', $i, $i);
+              printf('<option %s value="%d">%d год</option>', $values['year'] == $i ? 'selected' : '', $i, $i);
             }
             ?>
           </select><br>
           <?php if ($errors['year']) {print($messages['year']); print('<br>');}?>
           Месяц рождения:<br>
-          <select name="month" <?php if ($errors['month']) {print 'class="error"';} ?> value="<?php print $values['month']; ?>">
+          <select name="month" <?php if ($errors['month']) {print 'class="error"';} ?>>
             <?php
             for ($i = 1; $i <= 12; $i++) {
-              printf('<option value="%d">%d месяц</option>', $i, $i);
+              printf('<option %s value="%d">%d месяц</option>', $values['month'] == $i ? 'selected' : '', $i, $i);
             }
             ?>
           </select><br>
           <?php if ($errors['month']) {print($messages['month']); print('<br>');}?>
           День рождения:<br>
-          <select name="day" <?php if ($errors['day']) {print 'class="error"';} ?> value="<?php print $values['day']; ?>">
+          <select name="day" <?php if ($errors['day']) {print 'class="error"';} ?>>
             <?php
             for ($i = 1; $i <= 31; $i++) {
-              printf('<option value="%d">%d день</option>', $i, $i);
+              printf('<option %s value="%d">%d день</option>', $values['day'] == $i ? 'selected' : '', $i, $i);
             }
             ?>
           </select><br>
           <?php if ($errors['day']) {print($messages['day']); print('<br>');}?>
         </label>
-        <label class="labelradio <?php if ($errors['gender']) {print " error";} ?>" value="<?php print $values['gender']; ?>">
+        <label class="labelradio <?php if ($errors['gender']) {print " error";} ?>">
           Пол:
-          <input class="radiobutton" type="radio" name="gender" value="man"/> Мужской
-          <input class="radiobutton" type="radio" name="gender" value="woman"/> Женский
+          <input class="radiobutton" type="radio" name="gender" value="man" <?php if ($values['gender'] == 'man') print" selected"; ?>/> Мужской
+          <input class="radiobutton" type="radio" name="gender" value="woman" <?php if ($values['gender'] == 'woman') print" selected"; ?>/> Женский
         </label><br>
         <?php if ($errors['gender']) {print($messages['gender']); print('<br>');}?>
         <label>
           Любимый язык программирования:
           <br>
-          <select name="languages[]" multiple="multiple" <?php if ($errors['languages']) {print 'class="error"';} ?> value="<?php print $values['languages']; ?>">
-            <option value="1">Pascal</option>
-            <option value="2">C</option>
-            <option value="3">C++</option>
-            <option value="4">JavaScript</option>
-            <option value="5">PHP</option>
-            <option value="6">Python</option>
-            <option value="7">Java</option>
-            <option value="8">Haskel</option>
-            <option value="9">Clojure</option>
-            <option value="10">Prolog</option>
-            <option value="11">Scala</option>
+          <select name="languages[]" multiple="multiple" <?php if ($errors['languages']) {print 'class="error"';} ?>>
+            <option <?php foreach($values['languages'] as $value) {if ($value == 1) print " selected";} ?> value="1">Pascal</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == 2) print " selected";} ?> value="2">C</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == 3) print " selected";} ?> value="3">C++</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == 4) print " selected";} ?> value="4">JavaScript</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == 5) print " selected";} ?> value="5">PHP</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == 6) print " selected";} ?> value="6">Python</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == 7) print " selected";} ?> value="7">Java</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == 8) print " selected";} ?> value="8">Haskel</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == 9) print " selected";} ?> value="9">Clojure</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == 10) print " selected";} ?> value="10">Prolog</option>
+            <option <?php foreach($values['languages'] as $value) {if ($value == 11) print " selected";} ?> value="11">Scala</option>
           </select>
         </label><br>
         <?php if ($errors['languages']) {print($messages['languages']); print('<br>');}?>
         <label>
           Биография:<br>
-          <textarea name="biography" <?php if ($errors['biography']) {print 'class="error"';} ?> value="<?php print $values['biography']; ?>" placeholder="О себе"></textarea>
+          <textarea name="biography" <?php if ($errors['biography']) {print 'class="error"';} ?> placeholder="О себе"><?php print $values['biography']; ?></textarea>
         </label><br>
         <?php if ($errors['biography']) {print($messages['biography']); print('<br>');}?>
         <label class="labelcheck <?php if ($errors['checkBut']) {print " error";} ?>">
