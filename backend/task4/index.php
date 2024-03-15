@@ -181,27 +181,27 @@ else {
     setcookie('languages_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  // else if (!empty($_POST['languages'])) {
-  //   $sth = $db->prepare("SELECT id FROM languages");
-  //   $sth->execute();
+  else if (!empty($_POST['languages'])) {
+    $sth = $db->prepare("SELECT id FROM languages");
+    $sth->execute();
 
-  //   $langs = $sth->fetchAll();
+    $langs = $sth->fetchAll();
 
-  //   foreach ($_POST['languages'] as $id_lang) {
-  //     $error_lang = TRUE;
-  //     foreach ($langs as $lang) {
-  //         if ($id_lang == $lang[0]) {
-  //             $error_lang = FALSE;
-  //             break;
-  //         }
-  //     }
-  //     if ($error_lang == TRUE) {
-  //       setcookie('languages_error', '1', time() + 24 * 60 * 60);
-  //       $errors = TRUE;
-  //       break;
-  //     }
-  //   }
-  // }
+    foreach ($_POST['languages'] as $id_lang) {
+      $error_lang = TRUE;
+      foreach ($langs as $lang) {
+          if ($id_lang == $lang[0]) {
+              $error_lang = FALSE;
+              break;
+          }
+      }
+      if ($error_lang == TRUE) {
+        setcookie('languages_error', '1', time() + 24 * 60 * 60);
+        $errors = TRUE;
+        break;
+      }
+    }
+  }
   else {
     setcookie('languages_value', serialize($_POST['languages']), time() + 30 * 24 * 60 * 60);
   }
