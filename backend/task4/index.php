@@ -95,6 +95,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
   $values['checkBut'] = empty($_COOKIE['checkBut_value']) ? '' : $_COOKIE['checkBut_value'];
 
+  function condition_lang($values, $tmp)
+  {
+    if (!empty($values['languages'])) {
+      foreach($values['languages'] as $value) {
+        if ($value == $tmp) {
+          return 'selected';
+        }
+      }
+    }
+  }
+
   // Включаем содержимое файла form.php.
   // В нем будут доступны переменные $messages, $errors и $values для вывода 
   // сообщений, полей с ранее заполненными данными и признаками ошибок.
