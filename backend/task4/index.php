@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
   function condition_lang($values, $tmp)
   {
-    if (!empty($values['languages'])) {
+    if (!empty($values) && !empty($values['languages'])) {
       foreach($values['languages'] as $value) {
         if ($value == $tmp) {
           print("selected");
