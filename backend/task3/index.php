@@ -111,7 +111,7 @@ if (empty($_POST['biography'])) {
   $errors = TRUE;
 }
 
-if ($_POST['checkBut'] != 'on') {
+if (empty($_POST['checkBut']) || $_POST['checkBut'] != 'on') {
   print('Ознакомьтесь с контрактом и поставьте галочку.<br/>');
   $errors = TRUE;
 }

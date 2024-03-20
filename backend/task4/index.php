@@ -227,7 +227,7 @@ else {
     setcookie('biography_value', $_POST['biography'], time() + 12 * 30 * 24 * 60 * 60);
   }
 
-  if ($_POST['checkBut'] != 'on') {
+  if (empty($_POST['checkBut']) || $_POST['checkBut'] != 'on') {
     setcookie('checkBut_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
