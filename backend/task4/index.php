@@ -42,43 +42,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if ($errors['fio']) {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('fio_error', '', 100000);
+    setcookie('fio_value', '', 100000);
     // Выводим сообщение.
     $messages['fio'] = '<div class="error">Заполните ФИО правильно.<br>Доступные символы: руский алфавит, ангийский алфавит, пробельные символы.</div>';
   }
   if ($errors['tel']) {
     setcookie('tel_error', '', 100000);
+    setcookie('tel_value', '', 100000);
     $messages['tel'] = '<div class="error">Заполните номер телефона правильно.<br>Доступные символы: +0123456789.</div>';
   }
   if ($errors['email']) {
     setcookie('email_error', '', 100000);
+    setcookie('email_value', '', 100000);
     $messages['email'] = '<div class="error">Заполните адрес электронной почты правильно.<br>Доступные символы: .@ и английский алфавит.</div>';
   }
   if ($errors['year']) {
     setcookie('year_error', '', 100000);
+    setcookie('year_value', '', 100000);
     $messages['year'] = '<div class="error">Заполните год рождения правильно.</div>';
   }
   if ($errors['month']) {
     setcookie('month_error', '', 100000);
+    setcookie('month_value', '', 100000);
     $messages['month'] = '<div class="error">Заполните месяц рождения правильно.</div>';
   }
   if ($errors['day']) {
     setcookie('day_error', '', 100000);
+    setcookie('day_value', '', 100000);
     $messages['day'] = '<div class="error">Заполните день рождения правильно.</div>';
   }
   if ($errors['gender']) {
     setcookie('gender_error', '', 100000);
+    setcookie('gender_value', '', 100000);
     $messages['gender'] = '<div class="error">Укажите ваш пол.</div>';
   }
   if ($errors['languages']) {
     setcookie('languages_error', '', 100000);
+    setcookie('languages_value', '', 100000);
     $messages['languages'] = '<div class="error">Выберите любимые языки программирования правильно.</div>';
   }
   if ($errors['biography']) {
     setcookie('biography_error', '', 100000);
+    setcookie('biography_value', '', 100000);
     $messages['biography'] = '<div class="error">Напишите что-нибудь о себе.<br>Доступные символы: все.</div>';
   }
   if ($errors['checkBut']) {
     setcookie('checkBut_error', '', 100000);
+    setcookie('checkBut_value', '', 100000);
     $messages['checkBut'] = '<div class="error">Поставьте галочку.</div>';
   }
 
