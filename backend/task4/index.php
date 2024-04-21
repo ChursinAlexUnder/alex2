@@ -132,43 +132,32 @@ else {
     setcookie('fio_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
-    // Сохраняем ранее введенное в форму значение на месяц.
+    // Сохраняем ранее введенное в форму значение на год.
     setcookie('fio_value', $_POST['fio'], time() + 12 * 30 * 24 * 60 * 60);
-  }
 
   if (empty($_POST['tel']) || !preg_match('/^\+?([0-9]{11})/', $_POST['tel'])) {
     setcookie('tel_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
     setcookie('tel_value', $_POST['tel'], time() + 12 * 30 * 24 * 60 * 60);
-  }
 
   if (empty($_POST['email']) || !preg_match('/^[A-Za-z0-9_]+@[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/', $_POST['email'])) {
     setcookie('email_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
-
     setcookie('email_value', $_POST['email'], time() + 12 * + 30 * 24 * 60 * 60);
-  }
 
   if (empty($_POST['year'])) {
     setcookie('year_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
     setcookie('year_value', $_POST['year'], time() + 12 * 30 * 24 * 60 * 60);
-  }
 
   if (empty($_POST['month'])) {
     setcookie('month_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
     setcookie('month_value', $_POST['month'], time() + 12 * 30 * 24 * 60 * 60);
-  }
 
   $months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   $months[1] += ($_POST['year'] % 4 == 0);
@@ -177,17 +166,13 @@ else {
     setcookie('day_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
     setcookie('day_value', $_POST['day'], time() + 12 * 30 * 24 * 60 * 60);
-  }
 
   if (empty($_POST['gender'])) {
     setcookie('gender_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
     setcookie('gender_value', $_POST['gender'], time() + 12 * 30 * 24 * 60 * 60);
-  }
 
   $user = 'u67335';
   $pass = '5596746';
@@ -225,25 +210,19 @@ else {
       }
     }
   }
-  if ($error_lang == FALSE) {
     setcookie('languages_value', serialize($_POST['languages']), time() + 12 * 30 * 24 * 60 * 60);
-  }
 
   if (empty($_POST['biography'])) {
     setcookie('biography_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
     setcookie('biography_value', $_POST['biography'], time() + 12 * 30 * 24 * 60 * 60);
-  }
 
   if (empty($_POST['checkBut']) || $_POST['checkBut'] != 'on') {
     setcookie('checkBut_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
     setcookie('checkBut_value', $_POST['checkBut'], time() + 12 * 30 * 24 * 60 * 60);
-  }
 
   if ($errors) {
     // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.
