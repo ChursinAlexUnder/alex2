@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if ($errors['biography']) {
     setcookie('biography_error', '', 100000);
     setcookie('biography_value', '', 100000);
-    $messages['biography'] = '<div class="error">Напишите что-нибудь о себе.<br>Доступные символы: все.</div>';
+    $messages['biography'] = '<div class="error">Напишите что-нибудь о себе.<br>Доступные символы: русский и английские алфавиты, цифры, пробельные символы, символы: !?.,:;-.</div>';
   }
   if ($errors['checkBut']) {
     setcookie('checkBut_error', '', 100000);
@@ -212,7 +212,7 @@ else {
   }
     setcookie('languages_value', serialize($_POST['languages']), time() + 12 * 30 * 24 * 60 * 60);
 
-  if (empty($_POST['biography']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9\s.,!?:;]+$/u', $_POST['biography'])) {
+  if (empty($_POST['biography']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9\s.,!?:;-]+$/u', $_POST['biography'])) {
     setcookie('biography_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
