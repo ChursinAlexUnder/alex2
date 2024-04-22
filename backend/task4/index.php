@@ -147,13 +147,13 @@ else {
   }
     setcookie('email_value', $_POST['email'], time() + 12 * + 30 * 24 * 60 * 60);
 
-  if (empty($_POST['year'])) {
+  if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
     setcookie('year_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
     setcookie('year_value', $_POST['year'], time() + 12 * 30 * 24 * 60 * 60);
 
-  if (empty($_POST['month'])) {
+  if (empty($_POST['month']) || !is_numeric($_POST['month']) || !preg_match('/^\d+$/', $_POST['month'])) {
     setcookie('month_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
@@ -162,13 +162,13 @@ else {
   $months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   $months[1] += ($_POST['year'] % 4 == 0);
 
-  if (empty($_POST['day']) || $_POST['day'] > $months[$_POST['month'] - 1]) {
+  if (empty($_POST['day']) || $_POST['day'] > $months[$_POST['month'] - 1] || !is_numeric($_POST['day']) || !preg_match('/^\d+$/', $_POST['day'])) {
     setcookie('day_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
     setcookie('day_value', $_POST['day'], time() + 12 * 30 * 24 * 60 * 60);
 
-  if (empty($_POST['gender'])) {
+  if (empty($_POST['gender']) || ($_POST['gender'] != 'man' && $_POST['gender'] != 'woman')) {
     setcookie('gender_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
@@ -212,7 +212,7 @@ else {
   }
     setcookie('languages_value', serialize($_POST['languages']), time() + 12 * 30 * 24 * 60 * 60);
 
-  if (empty($_POST['biography'])) {
+  if (empty($_POST['biography']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9\s.,!?:;]+$/u', $_POST['biography'])) {
     setcookie('biography_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
