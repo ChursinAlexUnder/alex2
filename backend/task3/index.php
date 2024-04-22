@@ -106,7 +106,7 @@ if (empty($_POST['languages'])) {
   }
 }
 
-if (empty($_POST['biography']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9\s.,!:;]+$/u', $_POST['biography'])) {
+if (empty($_POST['biography']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9\s.,!?:;]+$/u', $_POST['biography'])) {
   print('Введите биографию.<br/>');
   $errors = TRUE;
 }
