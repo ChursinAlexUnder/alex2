@@ -49,11 +49,11 @@ if (empty($_POST['email'])) {
   $errors = TRUE;
 }
 
-if (empty($_POST['year'])) {
+if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
   print('Заполните год.<br/>');
   $errors = TRUE;
 }
-if (empty($_POST['month'])) {
+if (empty($_POST['month']) || !is_numeric($_POST['month']) || !preg_match('/^\d+$/', $_POST['month'])) {
   print('Заполните месяц.<br/>');
   $errors = TRUE;
 }
@@ -62,12 +62,12 @@ $months[1] += ($_POST['year'] % 4 == 0);
 if (empty($_POST['day'])) {
   print('Заполните день.<br/>');
   $errors = TRUE;
-} else if ($_POST['day'] > $months[$_POST['month'] - 1]) {
+} else if ($_POST['day'] > $months[$_POST['month'] - 1] || !is_numeric($_POST['day']) || !preg_match('/^\d+$/', $_POST['day'])) {
   print('Заполните день корректно.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['gender'])) {
+if (empty($_POST['gender']) || ($_POST['gender'] != 'man' && $_POST['gender'] != 'woman')) {
   print('Выберите пол.<br/>');
   $errors = TRUE;
 }
@@ -106,7 +106,7 @@ if (empty($_POST['languages'])) {
   }
 }
 
-if (empty($_POST['biography'])) {
+if (empty($_POST['biography']) || !preg_match('/[a-zA-Zа-яА-ЯёЁ\s!?.,:;0123456789]+/u', $_POST['biography'])) {
   print('Введите биографию.<br/>');
   $errors = TRUE;
 }
