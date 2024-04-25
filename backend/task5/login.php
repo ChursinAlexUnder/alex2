@@ -21,11 +21,10 @@ if (session_start() && $_COOKIE[session_name()]) {
     ?>
       <form action="" method="post">
         <div>Пользователь уже авторизован</div>
-        <input type="hidden" name="logout" value="1" />
-        <input type="submit" value="Выход" />
+        <input type="submit" name="Выход"/>
       </form>
     <?php
-      if (isset($_POST['logout'])) {
+      if (isset($_POST['Выход'])) {
         session_destroy();
         header('Location: ./');
         exit();
