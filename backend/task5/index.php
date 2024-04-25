@@ -316,15 +316,13 @@ else {
 
   }
   else {
+    // Генерируем уникальный логин и пароль.
+    $login = uniqid('login_');
+    $password = uniqid('pass_');
+    // Сохраняем в Cookies.
+    setcookie('login', $login, time() + 12 * 30 * 24 * 60 * 60);
+    setcookie('pass', $password, time() + 12 * 30 * 24 * 60 * 60);
     try {
-
-      // Генерируем уникальный логин и пароль.
-      $login = uniqid('login_');
-      $password = uniqid('pass_');
-      // Сохраняем в Cookies.
-      setcookie('login', $login, time() + 12 * 30 * 24 * 60 * 60);
-      setcookie('pass', $password, time() + 12 * 30 * 24 * 60 * 60);
-
       $stmt = $db->prepare("INSERT INTO users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
       $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
   
@@ -340,7 +338,7 @@ else {
       }
 
       $stmt = $db->prepare("INSERT INTO log_pass SET login = ?, password = ?");
-      $stmt->execute([$_COOKIE['login'], md5($_COOKIE['pass'])]);
+      $stmt->execute([$login, md5($password)]);
     }
     catch(PDOException $e){
       print('Error : ' . $e->getMessage());
