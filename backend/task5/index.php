@@ -323,8 +323,8 @@ else {
     $login = uniqid();
     $pass = uniqid();
     // Сохраняем в Cookies.
-    setcookie('login', $login);
-    setcookie('pass', $pass);
+    setcookie('login', $login, time() + 12 * 30 * 24 * 60 * 60);
+    setcookie('pass', $pass, time() + 12 * 30 * 24 * 60 * 60);
 
     try {
       $stmt = $db->prepare("INSERT INTO users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
