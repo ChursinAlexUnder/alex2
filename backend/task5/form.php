@@ -14,6 +14,12 @@
       print('<div id="messages">');
       print($messages['success']);
       print('</div>');
+      print('<br>');
+    }
+    if (!empty($messages['session'])) {
+      print('<div id="messages">');
+      print($messages['session']);
+      print('</div>');
     }
 
     // Далее выводим форму отмечая элементы с ошибками классом error

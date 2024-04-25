@@ -25,9 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Выводим сообщение пользователю.
     $messages['success'] = 'Спасибо, результаты сохранены.';
     // Если в куках есть пароль, то выводим сообщение.
-
-    // В form.php не забыть вывести это сообщение!!!!!!
-
     if (!empty($_COOKIE['pass'])) {
       $messages['session'] = sprintf('Вы можете <a href="login.php">войти</a> с логином <strong>%s</strong>
         и паролем <strong>%s</strong> для изменения данных.',
