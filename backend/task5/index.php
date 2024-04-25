@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['month'] = empty($_COOKIE['month_value']) ? '' : strip_tags($_COOKIE['month_value']);
   $values['day'] = empty($_COOKIE['day_value']) ? '' : strip_tags($_COOKIE['day_value']);
   $values['gender'] = empty($_COOKIE['gender_value']) ? '' : strip_tags($_COOKIE['gender_value']);
-  $values['languages'] = empty($_COOKIE['languages_value']) ? '' : strip_tags(unserialize($_COOKIE['languages_value']));
+  $values['languages'] = empty($_COOKIE['languages_value']) ? '' : unserialize(strip_tags($_COOKIE['languages_value']));
   $values['biography'] = empty($_COOKIE['biography_value']) ? '' : strip_tags($_COOKIE['biography_value']);
   $values['checkBut'] = empty($_COOKIE['checkBut_value']) ? '' : strip_tags($_COOKIE['checkBut_value']);
 
