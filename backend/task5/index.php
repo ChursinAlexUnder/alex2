@@ -289,15 +289,14 @@ else {
   }
 
   // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
-  if (!empty($_COOKIE[session_name()]) &&
-      session_start() && !empty($_SESSION['login'])) {
+  if (!empty($_COOKIE[session_name()]) && session_start() && !empty($_SESSION['login'])) {
     $id = $_SESSION['uid'];
     try {
-      $stmt = $db->prepare("UPDATE INTO users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ? where id = $id");
+      $stmt = $db->prepare("UPDATE users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ? where id = $id");
       $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
 
       $stmt = $db->prepare("DELETE FROM users_languages where id_user = ?");
-      $stmt->bindParam("i", $id);
+      $stmt->bindParam("?", $id);
       $stmt->execute();
 
       $stmt = $db->prepare("INSERT INTO users_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
@@ -318,7 +317,7 @@ else {
   else {
     // Генерируем уникальный логин и пароль.
     $login = uniqid('login_');
-    $password = uniqid('pass_');
+    $password = uniqid();
     // Сохраняем в Cookies.
     setcookie('login', $login, time() + 12 * 30 * 24 * 60 * 60);
     setcookie('pass', $password, time() + 12 * 30 * 24 * 60 * 60);
