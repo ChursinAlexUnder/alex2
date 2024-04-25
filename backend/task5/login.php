@@ -15,27 +15,21 @@ header('Content-Type: text/html; charset=UTF-8');
 // В суперглобальном массиве $_SESSION хранятся переменные сессии.
 // Будем сохранять туда логин после успешной авторизации.
 $session_started = false;
-if ($_COOKIE[session_name()] && session_start()) {
+if (session_start() && $_COOKIE[session_name()]) {
   $session_started = true;
   if (!empty($_SESSION['login'])) {
-    // Если есть логин в сессии, то пользователь уже авторизован.
-?>
-    <form action="" method="post">
-      <div>Пользователь уже авторизован</div>
-      <input type="submit" value="Выход" />
-    </form>
-<?php
-    if (isset($_POST['Выход'])) {
-      // TODO: Сделать выход (окончание сессии вызовом session_destroy()
-      //при нажатии на кнопку Выход). +
-      session_destroy();
-      // Делаем перенаправление на форму.
-      header('Location: ./');
-      exit();
-    }
-    
-    
-    
+    ?>
+      <form action="" method="post">
+        <div>Пользователь уже авторизован</div>
+        <input type="hidden" name="logout" value="1" />
+        <input type="submit" value="Выход" />
+      </form>
+    <?php
+      if (isset($_POST['logout'])) {
+        session_destroy();
+        header('Location: ./');
+        exit();
+      }
   }
 }
 
@@ -63,15 +57,15 @@ else {
     $pass,
     [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
   );
-  $sth = $db->prepare("SELECT login, password FROM log_pass");
+  $login = $_POST['login'];
+  $pass = $_POST['pass'];
+  $sth = $db->prepare("SELECT id, login, password FROM log_pass WHERE login = $login and password = $pass");
   $sth->execute();
   $log_pass = $sth->fetchAll();
 
   $error_l_p = TRUE;
-  foreach ($log_pass as $l_p) {
-    if ($_POST['login'] == $l_p[0] && $_POST['pass'] == $l_p[1]) {
-      $error_l_p = FALSE;
-      break;
+  if ($_POST['login'] == $log_pass[0]['login'] && $_POST['pass'] == $log_pass[0]['password']) {
+    $error_l_p = FALSE;
     }
   }
   if ($error_l_p == TRUE)
@@ -86,13 +80,9 @@ else {
     $_SESSION['login'] = $_POST['login'];
 
     // Записываем ID пользователя.
-    $sth = $db->prepare("SELECT id FROM log_pass");
-    $sth->execute();
-    $all_id = $sth->fetchAll();
-    $id = (count($all_id) == 0) ? 1 : count($all_id)+1;
-    $_SESSION['uid'] = $id; // было 123
+    $_SESSION['uid'] = $log_pass[0]['id']; // было 123
   
     // Делаем перенаправление.
     header('Location: ./');
-  }
 }
+
