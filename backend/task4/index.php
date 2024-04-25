@@ -174,8 +174,7 @@ else {
   }
     setcookie('gender_value', $_POST['gender'], time() + 12 * 30 * 24 * 60 * 60);
 
-  $user = 'u67335';
-  $pass = '5596746';
+  include('password.php');
   $db = new PDO(
     'mysql:host=localhost;dbname=u67335',
     $user,
