@@ -72,8 +72,7 @@ if (empty($_POST['gender']) || ($_POST['gender'] != 'man' && $_POST['gender'] !=
   $errors = TRUE;
 }
 
-$user = 'u67335'; // Заменить на ваш логин uXXXXX
-$pass = '5596746'; // Заменить на пароль, такой же, как от SSH
+include('../password.php');
 $db = new PDO(
   'mysql:host=localhost;dbname=u67335',
   $user,
