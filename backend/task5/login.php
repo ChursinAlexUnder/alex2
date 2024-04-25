@@ -15,16 +15,16 @@ header('Content-Type: text/html; charset=UTF-8');
 // В суперглобальном массиве $_SESSION хранятся переменные сессии.
 // Будем сохранять туда логин после успешной авторизации.
 $session_started = false;
-if (session_start() && $_COOKIE[session_name()]) {
+if (session_start()) {
   $session_started = true;
   if (!empty($_SESSION['login'])) {
     ?>
       <form action="" method="post">
         <div>Пользователь уже авторизован</div>
-        <input type="submit" name="Выход"/>
+        <input type="submit" name="logout" value="Выход"/>
       </form>
     <?php
-      if (isset($_POST['Выход'])) {
+      if (isset($_POST['logout'])) {
         session_destroy();
         header('Location: ./');
         exit();
