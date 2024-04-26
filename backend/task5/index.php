@@ -297,8 +297,7 @@ else {
       $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
 
       $stmt = $db->prepare("DELETE FROM users_languages where id_user = ?");
-      $stmt->bindParam("?", $id);
-      $stmt->execute();
+      $stmt->execute([$id]);
 
       $stmt = $db->prepare("INSERT INTO users_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
       foreach ($_POST['languages'] as $id_lang) {
