@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Файл login.php для неавторизованного пользователя выводит форму логина.
+ * Файл login.php для не авторизованного пользователя выводит форму логина.
  * При отправке формы проверяет логин/пароль и создает сессию,
  * записывает в нее логин и id пользователя.
  * После авторизации пользователь перенаправляется на главную страницу
@@ -18,20 +18,25 @@ $session_started = false;
 if ($_COOKIE[session_name()] && session_start()) {
   $session_started = true;
   if (!empty($_SESSION['login'])) {
+    // Если есть логин в сессии, то пользователь уже авторизован.
+    // TODO: Сделать выход (окончание сессии вызовом session_destroy()
+    //при нажатии на кнопку Выход).
     ?>
         <div>Пользователь уже авторизован</div>
         <input type="submit" name="logout" value="Выход"/>
     <?php
-      if (isset($_POST['logout'])) {
-        session_destroy();
-        // header('Location: ./');
-        // exit();
-      }
+    if (isset($_POST['logout'])) {
+      session_destroy();
+      // Делаем перенаправление на форму. ???
+      header('Location: ./');
+      exit();
+    }
+    
   }
 }
 
-// В суперглобальном массиве $_SERVER PHP сохраняет некоторые заголовки запроса HTTP
-// и другие сведения о клиенте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
+// В суперглобальном массиве $_SERVER PHP сохраняет некторые заголовки запроса HTTP
+// и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 ?>
 
@@ -45,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {
-  // TODO: Проверить, есть ли такой логин и пароль в базе данных.
-  // Выдать сообщение об ошибках. +
+  // TODO: Проверть есть ли такой логин и пароль в базе данных.
+  // Выдать сообщение об ошибках.
   include('../password.php');
   $db = new PDO(
     'mysql:host=localhost;dbname=u67335',
@@ -62,23 +67,20 @@ else {
   $sth->execute();
   $log_pass = $sth->fetchAll();
 
-  $error_l_p = true;
   if ($_POST['login'] == $log_pass[0]['login'] && $_POST['pass'] == $log_pass[0]['password']) {
-    $error_l_p = false;
+    if (!$session_started) {
+      session_start();
+    }
+    // Если все ок, то авторизуем пользователя.
+    $_SESSION['login'] = $_POST['login'];
+  
+    // Записываем ID пользователя.
+    $_SESSION['uid'] = $log_pass[0]['id']; // было 123
+  
+    // Делаем перенаправление.
+    header('Location: ./');
   }
-}
-if ($error_l_p == true) {
-  print('Данный пользователь не найден в базе данных.<br/>');
-} else {
-  if (!$session_started) {
-    session_start();
+  else {
+    print('Данный пользователь не найден в базе данных.<br/>');
   }
-  // Если все ок, то авторизуем пользователя.
-  $_SESSION['login'] = $_POST['login'];
-
-  // Записываем ID пользователя.
-  $_SESSION['uid'] = $log_pass[0]['id']; // было 123
-
-  // Делаем перенаправление.
-  // header('Location: ./');
 }
