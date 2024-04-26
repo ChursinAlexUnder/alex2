@@ -61,16 +61,13 @@ else {
   );
   $login = $_POST['login'];
   $pass = $_POST['pass'];
-  $sth = $db->prepare("SELECT id, login, password FROM log_pass WHERE login = :login and password = :pass");
-  $sth->bindParam(':login', $login);
-  $sth->bindParam(':pass', $pass);
+  $sth = $db->prepare("SELECT id, login, password FROM log_pass WHERE login = $login and password = $pass");
   $sth->execute();
   $log_pass = $sth->fetchAll();
   
-  print($log_pass[0]['login']);
-  print($log_pass['login']);
+  print($log_pass[0][1]);
 
-  if ($_POST['login'] == $log_pass[0]['login'] && $_POST['pass'] == $log_pass[0]['password']) {
+  if ($_POST['login'] == $log_pass[0]['login'] && md5($_POST['pass']) == $log_pass[0]['password']) {
     if (!$session_started) {
       session_start();
     }
