@@ -66,6 +66,9 @@ else {
   $sth->bindParam(':pass', $pass);
   $sth->execute();
   $log_pass = $sth->fetchAll();
+  
+  print($log_pass[0]['login']);
+  print($log_pass['login']);
 
   if ($_POST['login'] == $log_pass[0]['login'] && $_POST['pass'] == $log_pass[0]['password']) {
     if (!$session_started) {
