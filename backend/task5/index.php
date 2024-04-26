@@ -296,7 +296,7 @@ else {
       $sth = $db->prepare("SELECT id FROM users_languages where id_user = ?");
       $sth->execute([$id]);
       $all_id = $sth->fetchAll();
-      $first_id = $all_id[0]['id'];
+      $first_id = intval($all_id[0]['id']);
       
       $stmt = $db->prepare("DELETE FROM users_languages where id_user = ?");
       $stmt->execute([$id]);
