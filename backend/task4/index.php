@@ -209,7 +209,7 @@ else {
       }
     }
   }
-    setcookie('languages_value', serialize($_POST['languages']), time() + 12 * 30 * 24 * 60 * 60);
+  setcookie('languages_value', serialize($_POST['languages']), time() + 12 * 30 * 24 * 60 * 60);
 
   if (empty($_POST['biography']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9\s.,!?:;-]+$/u', $_POST['biography'])) {
     setcookie('biography_error', '1', time() + 24 * 60 * 60);

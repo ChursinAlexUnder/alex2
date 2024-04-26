@@ -20,12 +20,15 @@ if (!empty($_COOKIE[session_name()]) && session_start()) {
   if (!empty($_SESSION['login'])) {
     // Если есть логин в сессии, то пользователь уже авторизован.
     ?>
-        <div>Пользователь уже авторизован</div>
-        <input type="submit" name="logout" value="Выход"/>
+      <section>
+        <form action="" method="post">
+          <div>Пользователь уже авторизован</div><br>
+          <input class="finalBut" type="submit" name="logout" value="Выход"/>
+        </form>
+      </section>
     <?php
     if (isset($_POST['logout'])) {
       session_destroy();
-      // Делаем перенаправление на форму. ???
       header('Location: ./');
       exit();
     }
@@ -37,13 +40,19 @@ if (!empty($_COOKIE[session_name()]) && session_start()) {
 // и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 ?>
-
-<form action="" method="post">
-  <input name="login" />
-  <input name="pass" />
-  <input type="submit" value="Войти" />
-</form>
-
+<section>
+  <form action="" method="post">
+    <label>
+      Логин:<br>
+      <input type="text" name="login" />
+    </label><br>
+    <label>
+      Пароль:<br>
+      <input type="text" name="pass" />
+    </label><br>
+    <input class="finalBut" type="submit" value="Войти" />
+  </form>
+</section>
 <?php
 }
 // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.

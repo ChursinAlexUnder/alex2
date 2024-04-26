@@ -51,43 +51,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if (!empty($errors['fio'])) {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('fio_error', '', 100000);
+    setcookie('fio_value', '', 100000);
     // Выводим сообщение.
     $messages['fio'] = '<div class="error">Заполните ФИО правильно.<br>Доступные символы: руский алфавит, ангийский алфавит, пробельные символы.</div>';
   }
   if ($errors['tel']) {
     setcookie('tel_error', '', 100000);
+    setcookie('tel_value', '', 100000);
     $messages['tel'] = '<div class="error">Заполните номер телефона правильно.<br>Доступные символы: +0123456789.</div>';
   }
   if ($errors['email']) {
     setcookie('email_error', '', 100000);
+    setcookie('email_value', '', 100000);
     $messages['email'] = '<div class="error">Заполните адрес электронной почты правильно.<br>Доступные символы: .@ и английский алфавит.</div>';
   }
   if ($errors['year']) {
     setcookie('year_error', '', 100000);
+    setcookie('year_value', '', 100000);
     $messages['year'] = '<div class="error">Заполните год рождения правильно.</div>';
   }
   if ($errors['month']) {
     setcookie('month_error', '', 100000);
+    setcookie('month_value', '', 100000);
     $messages['month'] = '<div class="error">Заполните месяц рождения правильно.</div>';
   }
   if ($errors['day']) {
     setcookie('day_error', '', 100000);
+    setcookie('day_value', '', 100000);
     $messages['day'] = '<div class="error">Заполните день рождения правильно.</div>';
   }
   if ($errors['gender']) {
     setcookie('gender_error', '', 100000);
+    setcookie('gender_value', '', 100000);
     $messages['gender'] = '<div class="error">Укажите ваш пол.</div>';
   }
   if ($errors['languages']) {
     setcookie('languages_error', '', 100000);
+    setcookie('languages_value', '', 100000);
     $messages['languages'] = '<div class="error">Выберите любимые языки программирования правильно.</div>';
   }
   if ($errors['biography']) {
     setcookie('biography_error', '', 100000);
+    setcookie('biography_value', '', 100000);
     $messages['biography'] = '<div class="error">Напишите что-нибудь о себе.<br>Доступные символы: русский и английские алфавиты, цифры, пробельные символы, символы: !?.,:;-.</div>';
   }
   if ($errors['checkBut']) {
     setcookie('checkBut_error', '', 100000);
+    setcookie('checkBut_value', '', 100000);
     $messages['checkBut'] = '<div class="error">Поставьте галочку.</div>';
   }
 
@@ -164,38 +174,32 @@ else {
     setcookie('fio_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
     // Сохраняем ранее введенное в форму значение на год.
     setcookie('fio_value', $_POST['fio'], time() + 12 * 30 * 24 * 60 * 60);
-  }
   if (empty($_POST['tel']) || !preg_match('/^\+?([0-9]{11})/', $_POST['tel'])) {
     setcookie('tel_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else{
-    setcookie('tel_value', $_POST['tel'], time() + 12 * 30 * 24 * 60 * 60);
-  }
+  setcookie('tel_value', $_POST['tel'], time() + 12 * 30 * 24 * 60 * 60);
+
   if (empty($_POST['email']) || !preg_match('/^[A-Za-z0-9_]+@[A-Za-z0-9_]+\.[A-Za-z0-9_]+$/', $_POST['email'])) {
     setcookie('email_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else{
-    setcookie('email_value', $_POST['email'], time() + 12 * + 30 * 24 * 60 * 60);
-  }
+  setcookie('email_value', $_POST['email'], time() + 12 * + 30 * 24 * 60 * 60);
+
   if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
     setcookie('year_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else{
-    setcookie('year_value', $_POST['year'], time() + 12 * 30 * 24 * 60 * 60);
-  }
+  setcookie('year_value', $_POST['year'], time() + 12 * 30 * 24 * 60 * 60);
+
   if (empty($_POST['month']) || !is_numeric($_POST['month']) || !preg_match('/^\d+$/', $_POST['month'])) {
     setcookie('month_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else{
-    setcookie('month_value', $_POST['month'], time() + 12 * 30 * 24 * 60 * 60);
-  }
+  setcookie('month_value', $_POST['month'], time() + 12 * 30 * 24 * 60 * 60);
+
   $months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   $months[1] += ($_POST['year'] % 4 == 0);
 
@@ -203,16 +207,14 @@ else {
     setcookie('day_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else{
-    setcookie('day_value', $_POST['day'], time() + 12 * 30 * 24 * 60 * 60);
-  }
+  setcookie('day_value', $_POST['day'], time() + 12 * 30 * 24 * 60 * 60);
+
   if (empty($_POST['gender']) || ($_POST['gender'] != 'man' && $_POST['gender'] != 'woman')) {
     setcookie('gender_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else{
-    setcookie('gender_value', $_POST['gender'], time() + 12 * 30 * 24 * 60 * 60);
-  }
+  setcookie('gender_value', $_POST['gender'], time() + 12 * 30 * 24 * 60 * 60);
+
 
   $error_lang = FALSE;
   if (empty($_POST['languages'])) {
@@ -248,27 +250,22 @@ else {
         break;
       }
     }
-    if ($error_lang == FALSE)
-    {
-      setcookie('languages_value', serialize($_POST['languages']), time() + 12 * 30 * 24 * 60 * 60);
-    }
   }
+  setcookie('languages_value', serialize($_POST['languages']), time() + 12 * 30 * 24 * 60 * 60);
 
   if (empty($_POST['biography']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9\s.,!?:;-]+$/u', $_POST['biography'])) {
     setcookie('biography_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
-    setcookie('biography_value', $_POST['biography'], time() + 12 * 30 * 24 * 60 * 60);
-  }
+  setcookie('biography_value', $_POST['biography'], time() + 12 * 30 * 24 * 60 * 60);
+
 
   if (empty($_POST['checkBut']) || $_POST['checkBut'] != 'on') {
     setcookie('checkBut_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else {
-    setcookie('checkBut_value', $_POST['checkBut'], time() + 12 * 30 * 24 * 60 * 60);
-  }
+  setcookie('checkBut_value', $_POST['checkBut'], time() + 12 * 30 * 24 * 60 * 60);
+
 
   if ($errors) {
     // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.
@@ -296,16 +293,23 @@ else {
       $stmt = $db->prepare("UPDATE users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ? where id = $id");
       $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
 
+      $sth = $db->prepare("SELECT id FROM users_languages where id_user = ?");
+      $sth->execute([$id]);
+      $all_id = $sth->fetchAll();
+      $first_id = $all_id[0]['id'];
+      
       $stmt = $db->prepare("DELETE FROM users_languages where id_user = ?");
       $stmt->execute([$id]);
 
-      $stmt = $db->prepare("INSERT INTO users_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
+      $stmt = $db->prepare("INSERT INTO users_languages (id, id_user, id_lang) VALUES (:id, :id_user, :id_lang)");
       foreach ($_POST['languages'] as $id_lang) {
         // Вставляем $id_lang в БД
+        $stmt->bindParam(':id', $first_id);
         $stmt->bindParam(':id_user', $id_user);
         $stmt->bindParam(':id_lang', $id_lang);
         $id_user = $id;
         $stmt->execute();
+        $first_id++;
     }
     }
     catch(PDOException $e){
