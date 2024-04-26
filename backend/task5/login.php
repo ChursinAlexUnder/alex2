@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Файл login.php для не авторизованного пользователя выводит форму логина.
+ * Файл login.php для неавторизованного пользователя выводит форму логина.
  * При отправке формы проверяет логин/пароль и создает сессию,
  * записывает в нее логин и id пользователя.
  * После авторизации пользователь перенаправляется на главную страницу
@@ -30,8 +30,8 @@ if ($_COOKIE[session_name()] && session_start()) {
   }
 }
 
-// В суперглобальном массиве $_SERVER PHP сохраняет некторые заголовки запроса HTTP
-// и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
+// В суперглобальном массиве $_SERVER PHP сохраняет некоторые заголовки запроса HTTP
+// и другие сведения о клиенте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 ?>
 
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {
-  // TODO: Проверть есть ли такой логин и пароль в базе данных.
+  // TODO: Проверить, есть ли такой логин и пароль в базе данных.
   // Выдать сообщение об ошибках. +
   include('../password.php');
   $db = new PDO(
@@ -56,30 +56,29 @@ else {
   );
   $login = $_POST['login'];
   $pass = $_POST['pass'];
-  $sth = $db->prepare("SELECT id, login, password FROM log_pass WHERE login = $login and password = $pass");
+  $sth = $db->prepare("SELECT id, login, password FROM log_pass WHERE login = :login and password = :pass");
+  $sth->bindParam(':login', $login);
+  $sth->bindParam(':pass', $pass);
   $sth->execute();
   $log_pass = $sth->fetchAll();
 
-  $error_l_p = TRUE;
+  $error_l_p = true;
   if ($_POST['login'] == $log_pass[0]['login'] && $_POST['pass'] == $log_pass[0]['password']) {
-    $error_l_p = FALSE;
-    }
+    $error_l_p = false;
   }
-  if ($error_l_p == TRUE)
-  {
-    print('Данный пользователь не найден в базе данных.<br/>');
-  }
-  else {
-    if (!$session_started) {
-      session_start();
-    }
-    // Если все ок, то авторизуем пользователя.
-    $_SESSION['login'] = $_POST['login'];
-
-    // Записываем ID пользователя.
-    $_SESSION['uid'] = $log_pass[0]['id']; // было 123
-  
-    // Делаем перенаправление.
-    header('Location: ./');
 }
+if ($error_l_p == true) {
+  print('Данный пользователь не найден в базе данных.<br/>');
+} else {
+  if (!$session_started) {
+    session_start();
+  }
+  // Если все ок, то авторизуем пользователя.
+  $_SESSION['login'] = $_POST['login'];
 
+  // Записываем ID пользователя.
+  $_SESSION['uid'] = $log_pass[0]['id']; // было 123
+
+  // Делаем перенаправление.
+  header('Location: ./');
+}
