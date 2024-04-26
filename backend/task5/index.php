@@ -32,10 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         strip_tags($_COOKIE['pass']));
     }
   }
-  if (empty($_SESSION['login']))
-  {
-    $massages['signin'] = print('Вы можете <a href="login.php">авторизоваться</a> для изменения данных.');
-  }
   
 
   // Складываем признак ошибок в массив.

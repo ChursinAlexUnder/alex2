@@ -15,12 +15,10 @@ header('Content-Type: text/html; charset=UTF-8');
 // В суперглобальном массиве $_SESSION хранятся переменные сессии.
 // Будем сохранять туда логин после успешной авторизации.
 $session_started = false;
-if (!empty($_COOKIE[session_name()]) && $_COOKIE[session_name()] && session_start()) {
+if ($_COOKIE[session_name()] && session_start()) {
   $session_started = true;
   if (!empty($_SESSION['login'])) {
     // Если есть логин в сессии, то пользователь уже авторизован.
-    // TODO: Сделать выход (окончание сессии вызовом session_destroy()
-    //при нажатии на кнопку Выход).
     ?>
         <div>Пользователь уже авторизован</div>
         <input type="submit" name="logout" value="Выход"/>
@@ -50,8 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {
-  // TODO: Проверть есть ли такой логин и пароль в базе данных.
-  // Выдать сообщение об ошибках.
   include('../password.php');
   $db = new PDO(
     'mysql:host=localhost;dbname=u67335',
