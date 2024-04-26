@@ -24,8 +24,8 @@ if ($_COOKIE[session_name()] && session_start()) {
     <?php
       if (isset($_POST['logout'])) {
         session_destroy();
-        header('Location: ./');
-        exit();
+        // header('Location: ./');
+        // exit();
       }
   }
 }
@@ -80,5 +80,5 @@ if ($error_l_p == true) {
   $_SESSION['uid'] = $log_pass[0]['id']; // было 123
 
   // Делаем перенаправление.
-  header('Location: ./');
+  // header('Location: ./');
 }
