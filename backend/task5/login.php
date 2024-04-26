@@ -69,8 +69,6 @@ else {
   $sth = $db->prepare("SELECT id, login, password FROM log_pass");
   $sth->execute();
   $log_pass = $sth->fetchAll();
-  
-  print($log_pass[0][1]);
 
   $flagSign = false;
   foreach ($log_pass as $l_p) {
