@@ -20,6 +20,7 @@
       print('<div id="messages">');
       print($messages['session']);
       print('</div>');
+      print('<br>');
     }
     if (!empty($messages['signin'])) {
       print('<div id="messages">');
