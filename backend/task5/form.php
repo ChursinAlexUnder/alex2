@@ -21,6 +21,11 @@
       print($messages['session']);
       print('</div>');
     }
+    if (!empty($messages['signin'])) {
+      print('<div id="messages">');
+      print($messages['signin']);
+      print('</div>');
+    }
 
     // Далее выводим форму отмечая элементы с ошибками классом error
     // и задавая начальные значения элементов ранее сохраненными.
