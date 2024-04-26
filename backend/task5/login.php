@@ -60,14 +60,22 @@ else {
     [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
   );
   $login = $_POST['login'];
-  $pass = $_POST['pass'];
-  $sth = $db->prepare("SELECT id, login, password FROM log_pass WHERE login = $login and password = $pass");
+  $pass = md5($_POST['pass']);
+  $sth = $db->prepare("SELECT id, login, password FROM log_pass");
   $sth->execute();
   $log_pass = $sth->fetchAll();
   
   print($log_pass[0][1]);
 
-  if ($_POST['login'] == $log_pass[0]['login'] && md5($_POST['pass']) == $log_pass[0]['password']) {
+  $flagSign = false;
+  foreach ($log_pass as $l_p) {
+    if ($login == $l_p['login'] && $pass == $l_p['password']) {
+      $flagSign = true;
+      break;
+    }
+  }
+
+  if ($flagSign == true) {
     if (!$session_started) {
       session_start();
     }
