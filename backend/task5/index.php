@@ -301,7 +301,7 @@ else {
       $all_id = $sth->fetchAll();
       $first_id = intval($all_id[0]['id']);
 
-      print(string($id) + '  '+ string($first_id));
+      print(strval($id) + '  '+ strval($first_id));
       
       $stmt = $db->prepare("DELETE FROM users_languages where id_user = ?");
       $stmt->execute([$id]);
