@@ -66,7 +66,7 @@ else {
   );
   $login = $_POST['login'];
   $pass = md5($_POST['pass']);
-  $sth = $db->prepare("SELECT id, login, password FROM log_pass");
+  $sth = $db->prepare("SELECT * FROM log_pass");
   $sth->execute();
   $log_pass = $sth->fetchAll();
 
@@ -86,7 +86,7 @@ else {
     $_SESSION['login'] = $_POST['login'];
   
     // Записываем ID пользователя.
-    $_SESSION['uid'] = $log_pass[0]['id']; // было 123
+    $_SESSION['uid'] = count($log_pass); // было 123
   
     // Делаем перенаправление.
     header('Location: ./');
