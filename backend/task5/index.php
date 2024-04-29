@@ -291,7 +291,7 @@ else {
 
   // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
   if (!empty($_COOKIE[session_name()]) && session_start() && !empty($_SESSION['login'])) {
-    $id = ntval($_SESSION['uid']);
+    $id = intval($_SESSION['uid']);
     try {
       $stmt = $db->prepare("UPDATE users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ? where id = $id");
       $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
