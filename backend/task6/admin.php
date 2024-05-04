@@ -102,7 +102,7 @@ $users_lang = $sth->fetchAll();
 </section>
 <?php
   if (isset($_POST['return'])) {
-    header('Location: ./');
+    header('Location: index.php');
     exit();
   }
 ?>
