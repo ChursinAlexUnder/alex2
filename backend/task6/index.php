@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
   }
   // Возможность войти как admin
-  if (empty($_COOKIE[session_name()]) && !session_start() && empty($_SESSION['login']))
+  if (empty($_COOKIE[session_name()]) && empty($_SESSION['login']))
   {
     $messages['admin'] = '<a href="admin.php">Войти</a> как администратор.';
   }
