@@ -4,11 +4,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['action'] == 'change') {
         include('../password.php');
         $sth = $db->prepare("SELECT * FROM log_pass where id = ?");
-        $sth->execute([$uid]);
+        $sth->execute([$_POST['id']]);
         $log_pass = $sth->fetchAll();
-        if (!$session_started) {
-            session_start();
-        }
+        session_start();
         $_SESSION['login'] = $log_pass[0]['login'];
         $_SESSION['uid'] = $_POST['id'];
         include('fill.php');

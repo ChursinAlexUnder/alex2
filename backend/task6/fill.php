@@ -7,7 +7,7 @@ $user = $sth->fetchAll();
 $values['fio'] = strip_tags($user[0]['fio']);
 $values['tel'] = strip_tags($user[0]['tel']);
 $values['email'] = strip_tags($user[0]['email']);
-$pos1 = strpos(strip_tags($data[0]['birth']),'.');
+$pos1 = strpos(strip_tags($user[0]['birth']),'.');
 $values['day']=strip_tags(intval(substr($user[0]['birth'], 0, $pos1)));
 
 $pos2 = strrpos(strip_tags($user[0]['birth']),'.');
