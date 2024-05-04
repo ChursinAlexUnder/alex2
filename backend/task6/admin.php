@@ -96,13 +96,13 @@ $users_lang = $sth->fetchAll();
 </table>
 
 <section>
-  <form action="" method="post">
+  <form action="index.php" method="post">
     <input class="finalBut" type="submit" name="return" value="Вернуться"/>
   </form>
 </section>
 <?php
   if (isset($_POST['return'])) {
-    header('Location: index.php');
+    header('Location: ./');
     exit();
   }
 ?>
