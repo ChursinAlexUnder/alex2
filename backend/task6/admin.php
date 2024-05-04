@@ -96,7 +96,7 @@ $users_lang = $sth->fetchAll();
 </table>
 
 <section>
-  <form action="index.php" method="post">
+  <form action="" method="post">
     <input class="finalBut" type="submit" name="return" value="Вернуться"/>
   </form>
 </section>
