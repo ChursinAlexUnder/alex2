@@ -18,7 +18,8 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
   exit();
 }
 
-print('<h1>Вы успешно авторизовались и видите защищенные паролем данные.</h1>');
+print('Вы успешно авторизовались и видите защищенные паролем данные.');
+include('../password.php');
 $sth = $db->prepare("SELECT * FROM users");
 $sth->execute();
 $users = $sth->fetchAll();
