@@ -85,10 +85,12 @@ section {
   {
     margin-bottom: 30px;
   }
-  .users {
-    width: 90%;
+  table {
     margin: 23px auto;
     border-collapse: collapse;
+  }
+  .users {
+    width: 90%;
   }
   .languages {
     width: 70%;
