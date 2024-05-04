@@ -36,20 +36,37 @@ $users = $sth->fetchAll();
     <th>Дата рождения</th>
     <th>Пол</th>
     <th>Биография</th>
+    <th></th>
+    <th></th>
   </tr>
   <?php
     foreach($users as $user) {
       printf('<tr>
+      <td>%d</td>
       <td>%s</td>
       <td>%s</td>
       <td>%s</td>
       <td>%s</td>
       <td>%s</td>
       <td>%s</td>
-      <td>%s</td>
+      <td>
+        <form action="processing.php" method="POST">
+          <input type="hidden" name="action" value="change">
+          <input type="hidden" name="id" value="%d">
+          <input type="submit" value="изменить"/>
+        </form>
+      </td>
+      <td>
+        <form action="processing.php" method="POST">
+          <input type="hidden" name="action" value="delete">
+          <input type="hidden" name="id" value="%d">
+          <input type="submit" value="удалить"/>
+        </form>
+      </td>
       </tr>',
       $user['id'], $user['fio'], $user['tel'], $user['email'],
-      $user['birth'], $user['gender'], $user['biography']);
+      $user['birth'], $user['gender'], $user['biography'],
+      $user['id'], $user['id']);
     }
   ?>
 </table>
