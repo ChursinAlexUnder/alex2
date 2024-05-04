@@ -25,9 +25,11 @@ $sth = $db->prepare("SELECT * FROM users");
 $sth->execute();
 $users = $sth->fetchAll();
 ?>
+
 <h2>Таблица пользователей</h2>
 <table>
   <tr>
+    <th>ID</th>
     <th>ФИО</th>
     <th>Телефон</th>
     <th>Email</th>
@@ -44,15 +46,40 @@ $users = $sth->fetchAll();
       <td>%s</td>
       <td>%s</td>
       <td>%s</td>
+      <td>%s</td>
       </tr>',
-      $user['fio'], $user['tel'], $user['email'],
+      $user['id'], $user['fio'], $user['tel'], $user['email'],
       $user['birth'], $user['gender'], $user['biography']);
     }
   ?>
 </table>
+// вывести ID пользователя и названия языков, которые он любит.
 
 <?php
+$sth = $db->prepare("SELECT u_l.id_user, lang.name FROM users_languages u_l join languages lang on u_l.id_lang = lang.id");
+$sth->execute();
+$users_lang = $sth->fetchAll();
+?>
 
+<h2>Таблица языков программирования</h2>
+<table>
+  <tr>
+    <th>ID пользователя</th>
+    <th>Язык программирования</th>
+  </tr>
+  <?php
+    foreach($users_lang as $user_lang) {
+      printf('<tr>
+      <td>%s</td>
+      <td>%s</td>
+      </tr>',
+      $user_lang['id_user'], $user_lang['name']);
+    }
+  ?>
+</table>
+
+
+<?php
 // *********
 // Здесь нужно прочитать отправленные ранее пользователями данные и вывести в таблицу.
 // Реализовать просмотр и удаление всех данных.
