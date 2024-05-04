@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         session_start();
         $_SESSION['login'] = $log_pass[0]['login'];
         $_SESSION['uid'] = $_POST['id'];
+        $values = array();
         include('fill.php');
         printf('Изменение данных пользователя с id %d от имени администратора', $_POST['id']);
         include('form.php');
