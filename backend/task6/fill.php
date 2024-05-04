@@ -19,7 +19,7 @@ $sth = $db->prepare("SELECT id_lang FROM users_languages where id_user = $uid");
 $sth->execute();
 $languages = $sth->fetchAll();
 foreach($languages as $l) {
-  array_push($values['languages'], strip_tags($l));
+  array_push($values['languages'], $l);
 }
 $values['biography'] = strip_tags($user[0]['biography']);
 $values['checkBut'] = strip_tags($user[0]['checkBut']);
