@@ -53,7 +53,6 @@ $users = $sth->fetchAll();
     }
   ?>
 </table>
-// вывести ID пользователя и названия языков, которые он любит.
 
 <?php
 $sth = $db->prepare("SELECT u_l.id_user, lang.name FROM users_languages u_l join languages lang on u_l.id_lang = lang.id");
