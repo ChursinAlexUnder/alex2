@@ -9,8 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         session_start();
         $_SESSION['login'] = $log_pass[0]['login'];
         $_SESSION['uid'] = $_POST['id'];
-        include('index.php');
-        header('Location: admin.php');
+        header('Location: index.php');
     }
     elseif ($_POST['action'] == 'delete') {
 
