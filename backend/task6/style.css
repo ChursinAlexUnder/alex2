@@ -82,6 +82,15 @@ section {
   {
     margin-bottom: 30px;
   }
+  table {
+    width: 99%;
+    margin: 23px auto;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 2px;
+  }
   
   @media (max-width: 600px) {
     form {
