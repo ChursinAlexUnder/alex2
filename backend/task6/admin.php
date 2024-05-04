@@ -27,7 +27,7 @@ $users = $sth->fetchAll();
 ?>
 
 <h2>Таблица пользователей</h2>
-<table>
+<table class="users">
   <tr>
     <th>ID</th>
     <th>ФИО</th>
@@ -55,13 +55,14 @@ $users = $sth->fetchAll();
 </table>
 
 <?php
-$sth = $db->prepare("SELECT u_l.id_user, lang.name FROM users_languages u_l join languages lang on u_l.id_lang = lang.id");
+$sth = $db->prepare("SELECT u_l.id_user, lang.name 
+FROM users_languages u_l join languages lang on u_l.id_lang = lang.id");
 $sth->execute();
 $users_lang = $sth->fetchAll();
 ?>
 
 <h2>Таблица языков программирования</h2>
-<table>
+<table class="languages">
   <tr>
     <th>ID пользователя</th>
     <th>Язык программирования</th>

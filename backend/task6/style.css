@@ -85,10 +85,13 @@ section {
   {
     margin-bottom: 30px;
   }
-  table {
+  .users {
     width: 90%;
     margin: 23px auto;
     border-collapse: collapse;
+  }
+  .languages {
+    width: 70%;
   }
   th, td {
     border: 1px solid black;
