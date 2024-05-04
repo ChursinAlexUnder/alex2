@@ -11,20 +11,23 @@
   <body>
     <?php
     if (!empty($messages['success'])) {
-      print('<div id="messages">');
+      print('<div class="mes" id="messages">');
       print($messages['success']);
       print('</div>');
       print('<br>');
     }
     if (!empty($messages['session'])) {
-      print('<div id="messages">');
+      print('<div class="mes" id="messages">');
       print($messages['session']);
       print('</div>');
       print('<br>');
     }
-
-    // Далее выводим форму отмечая элементы с ошибками классом error
-    // и задавая начальные значения элементов ранее сохраненными.
+    if (!empty($messages['admin'])) {
+      print('<div class="mes" id="messages">');
+      print($messages['admin']);
+      print('</div>');
+      print('<br>');
+    }
     ?>
     <section>
       <h1>Форма</h1>

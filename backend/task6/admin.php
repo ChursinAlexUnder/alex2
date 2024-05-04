@@ -18,9 +18,41 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
   exit();
 }
 
-print('Вы успешно авторизовались и видите защищенные паролем данные.');
+print('<h1>Вы успешно авторизовались и видите защищенные паролем данные.</h1>');
+$sth = $db->prepare("SELECT * FROM users");
+$sth->execute();
+$users = $sth->fetchAll();
+?>
+<h2>Таблица пользователей</h2>
+<table>
+  <tr>
+    <th>ФИО</th>
+    <th>Телефон</th>
+    <th>Email</th>
+    <th>Дата рождения</th>
+    <th>Пол</th>
+    <th>Биография</th>
+  </tr>
+  <?php
+    foreach($users as $user) {
+      printf('<tr>
+      <td>%s</td>
+      <td>%s</td>
+      <td>%s</td>
+      <td>%s</td>
+      <td>%s</td>
+      <td>%s</td>
+      </tr>',
+      $user['fio'], $user['tel'], $user['email'],
+      $user['birth'], $user['gender'], $user['biography']);
+    }
+  ?>
+</table>
+
+<?php
 
 // *********
 // Здесь нужно прочитать отправленные ранее пользователями данные и вывести в таблицу.
 // Реализовать просмотр и удаление всех данных.
 // *********
+?>

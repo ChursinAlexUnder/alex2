@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
   }
   // Возможность войти как admin
-  // $messages['admin'] = ''
+  $messages['admin'] = '<a href="admin.php">Войти</a> как администратор.';
   
 
   // Складываем признак ошибок в массив.
@@ -129,12 +129,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
 
   include('../password.php');
-  $db = new PDO(
-    'mysql:host=localhost;dbname=u67335',
-    $user,
-    $pass,
-    [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-  );
 
   // Если нет предыдущих ошибок ввода, есть кука сессии, начали сессию и
   // ранее в сессию записан факт успешного логина.
@@ -229,12 +223,6 @@ else {
   }
   else {
     include('../password.php');
-    $db = new PDO(
-      'mysql:host=localhost;dbname=u67335',
-      $user,
-      $pass,
-      [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
     $sth = $db->prepare("SELECT id FROM languages");
     $sth->execute();
 

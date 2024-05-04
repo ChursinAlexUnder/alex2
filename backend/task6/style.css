@@ -9,12 +9,13 @@ section {
     max-width: 500px;
     margin: 0 auto;
   }
-  
-  h2 {
+  .mes {
+    text-align: center;
     font-size: 24px;
-    margin-bottom: 20px;
   }
-  
+  h1 {
+    font-size: 30px;
+  }
   label {
     display: flex;
     flex-direction: column;
