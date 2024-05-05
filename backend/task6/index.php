@@ -272,20 +272,10 @@ else {
       $sth = $db->prepare("SELECT id FROM users_languages where id_user = ?");
       $sth->execute([$id]);
       $all_id = $sth->fetchAll();
-      $first_id = intval($all_id[0]['id']);
+      $tmp_id = intval($all_id[0]['id']);
       
       include('delete_langs.php');
-
-      $stmt = $db->prepare("INSERT INTO users_languages (id, id_user, id_lang) VALUES (:id, :id_user, :id_lang)");
-      foreach ($_POST['languages'] as $id_lang) {
-        // Вставляем $id_lang в БД
-        $stmt->bindParam(':id', $first_id);
-        $stmt->bindParam(':id_user', $id_user);
-        $stmt->bindParam(':id_lang', $id_lang);
-        $id_user = $id;
-        $stmt->execute();
-        $first_id++;
-    }
+      include('insert_langs.php');
     }
     catch(PDOException $e){
       print('Error : ' . $e->getMessage());
@@ -301,19 +291,15 @@ else {
     setcookie('login', $login, time() + 12 * 30 * 24 * 60 * 60);
     setcookie('pass', $password, time() + 12 * 30 * 24 * 60 * 60);
     try {
-      $stmt = $db->prepare("INSERT INTO users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
-      $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
+      include('select_users.php');
+      $stmt = $db->prepare("INSERT INTO users SET id = ? fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
+      $stmt->execute([count($users)+1, $_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
   
       $id = $db->lastInsertId();
-  
-      $stmt = $db->prepare("INSERT INTO users_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
-      foreach ($_POST['languages'] as $id_lang) {
-        // Вставляем $id_lang в БД
-        $stmt->bindParam(':id_user', $id_user);
-        $stmt->bindParam(':id_lang', $id_lang);
-        $id_user = $id;
-        $stmt->execute();
-      }
+      
+      include('select_u_l.php');
+      $tmp_id = count($users_langs)+1;
+      include('insert_langs.php');
 
       $stmt = $db->prepare("INSERT INTO log_pass SET login = ?, password = ?");
       $stmt->execute([$login, md5($password)]);

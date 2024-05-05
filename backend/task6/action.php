@@ -18,6 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             include('delete_langs.php');
             $stmt = $db->prepare("DELETE FROM users where id = ?");
             $stmt->execute([$id]);
+            include('select_users.php');
+            $countId = count($users);
+            for ($i = 1; $i <= $countId; $i++) {
+                $stmt = $db->prepare("UPDATE users SET id = ?");
+                $stmt->execute([$i]);
+            }
         }
         catch(PDOException $e){
             print('Error : ' . $e->getMessage());

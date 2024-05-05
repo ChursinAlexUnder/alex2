@@ -40,9 +40,7 @@ if (!empty($_COOKIE['save'])) {
 }
 setcookie('admin', true, time() + 24 * 60 * 60);
 include('../password.php');
-$sth = $db->prepare("SELECT * FROM users");
-$sth->execute();
-$users = $sth->fetchAll();
+include('select_users.php');
 ?>
 
 <h2>Таблица пользователей</h2>
