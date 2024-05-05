@@ -113,7 +113,24 @@ $users_lang = $sth->fetchAll();
 </table>
 
 <h2>Статистика популярности языков программирования</h2>
-
+<table class="user_count">
+  <tr>
+    <th>Язык программирования</th>
+    <th>Количество поклонников</th>
+  </tr>
+  <?php
+    $sth = $db->prepare("SELECT l.name AS language_name, COUNT(ul.id_user) AS user_count FROM languages l LEFT JOIN users_languages ul ON l.id = ul.id_lang GROUP BY l.name");
+    $sth->execute();
+    $user_count = $sth->fetchAll();
+    foreach($user_count as $u_c) {
+      printf('<tr>
+      <td>%s</td>
+      <td>%s</td>
+      </tr>',
+      $u_c['language_name'], $u_c['user_count']);
+    }
+  ?>
+</table>
 
 <form action="index.php" method="POST">
   <input type="submit" class="finalBut Button" name="exit_admin" value="Выход">
