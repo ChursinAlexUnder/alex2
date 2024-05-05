@@ -23,6 +23,18 @@ print('Вы успешно авторизовались и видите защи
 if (!empty($_COOKIE['save'])) {
   print('<br>');
   print('Операция выполнена успешно.');
+  setcookie('save', '', 100000);
+  setcookie('fio_value', '', 100000);
+  setcookie('tel_value', '', 100000);
+  setcookie('email_value', '', 100000);
+  setcookie('year_value', '', 100000);
+  setcookie('month_value', '', 100000);
+  setcookie('day_value', '', 100000);
+  setcookie('gender_value', '', 100000);
+  setcookie('languages_value', '', 100000);
+  setcookie('biography_value', '', 100000);
+  setcookie('checkBut_value', '', 100000);
+  session_destroy();
 }
 setcookie('admin', true, time() + 24 * 60 * 60);
 include('../password.php');
