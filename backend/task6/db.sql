@@ -42,3 +42,10 @@ CREATE TABLE log_pass (
   password varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (id)
 );
+
+CREATE TABLE l_g_admin (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  login varchar(40) NOT NULL DEFAULT '',
+  password varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (id)
+);
