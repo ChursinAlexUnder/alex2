@@ -292,9 +292,9 @@ else {
     setcookie('pass', $password, time() + 12 * 30 * 24 * 60 * 60);
     try {
       include('select_users.php');
-      $temp_idU = count($users)+1;
-      $stmt = $db->prepare("INSERT INTO users SET id = ? fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
-      $stmt->execute([$temp_idU, $_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
+      // $temp_idU = count($users)+1;
+      $stmt = $db->prepare("INSERT INTO users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
+      $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
   
       $id = $db->lastInsertId();
       
