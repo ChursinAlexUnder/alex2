@@ -4,7 +4,8 @@
     include('select_u_l.php');
     $index = 0;
     for ($i = 1; $i <= $countId; $i++) {
-        $stmt = $db->prepare("UPDATE users_languages SET id = $i where id = strval($users_langs[$index]['id'])");
-        $stmt->execute();
+        $tempUL = intval($users_langs[$index]['id']);
+        $stmt = $db->prepare("UPDATE users_languages SET id = ? where id = $tempUL");
+        $stmt->execute([$i]);
         $index++;
     }
