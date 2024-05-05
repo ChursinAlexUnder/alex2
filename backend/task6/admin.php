@@ -17,7 +17,7 @@ $sth->execute();
 $l_g_admin = $sth->fetchAll();
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
-    $_SERVER['PHP_AUTH_USER'] != 'admin' ||
+    $_SERVER['PHP_AUTH_USER'] != $l_g_admin[0]['login'] ||
     md5($_SERVER['PHP_AUTH_PW']) != $l_g_admin[0]['password']) {
   header('HTTP/1.1 401 Unanthorized');
   header('WWW-Authenticate: Basic realm="My site"');
