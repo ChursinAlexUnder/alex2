@@ -293,19 +293,6 @@ else {
         $stmt->execute([$i]);
         $index++;
       }
-      
-      $sth = $db->prepare("SELECT * FROM users_languages ORDER BY id_user ASC");
-      $sth->execute();
-      $users_langs = $sth->fetchAll();
-      $stmt = $db->prepare("DELETE FROM users_languages");
-      $stmt->execute();
-      $stmt = $db->prepare("INSERT INTO users_languages (id, id_user, id_lang) VALUES (:id, :id_user, :id_lang)");
-      foreach($users_langs as $u_l) {
-        $stmt->bindParam(':id', $u_l['id']);
-        $stmt->bindParam(':id_user', $u_l['id_user']);
-        $stmt->bindParam(':id_lang', $u_l['id_lang']);
-        $stmt->execute();
-      }
     }
     catch(PDOException $e){
       print('Error : ' . $e->getMessage());
