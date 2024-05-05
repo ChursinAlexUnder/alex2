@@ -132,7 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
   // Если нет предыдущих ошибок ввода, есть кука сессии, начали сессию и
   // ранее в сессию записан факт успешного логина.
-  if (empty($errors) && !empty($_COOKIE[session_name()]) && !empty($_SESSION['login'])) {
+  // empty($errors) && 
+  if (!empty($_COOKIE[session_name()]) && session_start() && !empty($_SESSION['login'])) {
     include('fill.php');
     printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
   }
