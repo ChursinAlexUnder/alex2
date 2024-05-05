@@ -269,10 +269,8 @@ else {
       $stmt = $db->prepare("UPDATE users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ? where id = $id");
       $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
 
-      $sth = $db->prepare("SELECT id FROM users_languages where id_user = ?");
-      $sth->execute([$id]);
-      $all_id = $sth->fetchAll();
-      $tmp_id = count($all_id)+1;
+      include('select_u_l.php');
+      $tmp_id = count($users_langs)+1;
       
       $stmt = $db->prepare("DELETE FROM users_languages where id_user = ?");
       $stmt->execute([$id]);
