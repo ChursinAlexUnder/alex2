@@ -144,6 +144,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {
+  if(isset($_POST['exit_admin'])) {
+    setcookie('admin', '', 100000);
+    header('Location: ./');
+    exit;
+  }
   // Проверяем ошибки.
   $errors = FALSE;
   if (empty($_POST['fio']) || !preg_match('/[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+/u', $_POST['fio']) || strlen($_POST['fio']) > 150) {
@@ -323,6 +328,11 @@ else {
   // Сохраняем куку с признаком успешного сохранения.
   setcookie('save', '1');
 
-  // Делаем перенаправление.
-  header('Location: ./');
+    // Делаем перенаправление.
+  if (!empty($_COOKIE['admin'])) {
+    header('Location: admin.php');
+  }
+  else {
+    header('Location: ./');
+  }
 }

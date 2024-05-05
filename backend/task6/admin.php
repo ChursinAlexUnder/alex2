@@ -20,6 +20,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 }
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.');
+setcookie('admin', true, time() + 24 * 60 * 60);
 include('../password.php');
 $sth = $db->prepare("SELECT * FROM users");
 $sth->execute();
@@ -94,6 +95,9 @@ $users_lang = $sth->fetchAll();
     }
   ?>
 </table>
+<form action="index.php" method="POST">
+  <input type="submit" name="exit_admin" value="Выход">
+</form>
 
 <?php
 // *********
