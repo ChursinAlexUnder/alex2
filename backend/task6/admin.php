@@ -11,6 +11,7 @@
 // Пример HTTP-аутентификации.
 // PHP хранит логин и пароль в суперглобальном массиве $_SERVER.
 // Подробнее см. стр. 26 и 99 в учебном пособии Веб-программирование и веб-сервисы.
+include('../password.php');
 $sth = $db->prepare("SELECT * FROM l_g_admin");
 $sth->execute();
 $l_g_admin = $sth->fetchAll();
