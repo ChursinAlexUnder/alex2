@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = $db->prepare("DELETE FROM users where id = ?");
             $stmt->execute([$id]);
             include('select_users.php');
+            $countId = count($users);
             $indexU = 0;
             for ($i = 1; $i <= $countId; $i++) {
                 $tempU = intval($users[$indexU]['id']);
