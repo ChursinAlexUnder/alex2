@@ -111,6 +111,10 @@ $users_lang = $sth->fetchAll();
     }
   ?>
 </table>
+
+<h2>Статистика популярности языков программирования</h2>
+
+
 <form action="index.php" method="POST">
   <input type="submit" class="finalBut Button" name="exit_admin" value="Выход">
 </form>

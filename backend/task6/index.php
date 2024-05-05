@@ -277,13 +277,13 @@ else {
       $stmt = $db->prepare("INSERT INTO users_languages (id, id_user, id_lang) VALUES (:id, :id_user, :id_lang)");
       foreach ($_POST['languages'] as $id_lang) {
       // Вставляем $id_lang в БД
-      $stmt->bindParam(':id', $tmp_id);
-      $stmt->bindParam(':id_user', $id_user);
-      $stmt->bindParam(':id_lang', $id_lang);
-      $id_user = $id;
-      $stmt->execute();
-      $tmp_id++;
-    }
+        $stmt->bindParam(':id', $tmp_id);
+        $stmt->bindParam(':id_user', $id_user);
+        $stmt->bindParam(':id_lang', $id_lang);
+        $id_user = $id;
+        $stmt->execute();
+        $tmp_id++;
+      }
       include('select_u_l.php');
       $countId = count($users_langs);
       $index = 0;
@@ -292,6 +292,19 @@ else {
         $stmt = $db->prepare("UPDATE users_languages SET id = ? where id = $tempUL");
         $stmt->execute([$i]);
         $index++;
+      }
+      
+      $sth = $db->prepare("SELECT * FROM users_languages ORDER BY id_user ASC;");
+      $sth->execute();
+      $users_langs = $sth->fetchAll();
+      $stmt = $db->prepare("DELETE FROM users_languages");
+      $stmt->execute();
+      $stmt = $db->prepare("INSERT INTO users_languages (id, id_user, id_lang) VALUES (:id, :id_user, :id_lang)");
+      foreach($users_langs as $u_l) {
+        $stmt->bindParam(':id', $u_l['id']);
+        $stmt->bindParam(':id_user', $u_l['id_user']);
+        $stmt->bindParam(':id_lang', $u_l['id_lang']);
+        $stmt->execute();
       }
     }
     catch(PDOException $e){
