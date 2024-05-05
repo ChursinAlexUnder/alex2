@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
                 print($tempU);
-                print('  ');
+                print('  ');   
 
-                
+
                 $stmt = $db->prepare("UPDATE users SET id = ? where id = $tempU");
                 $stmt->execute([$i]);
                 $indexU++;
@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             print('Error : ' . $e->getMessage());
             exit();
         }
+        exit();
         setcookie('save', '1');
         header('Location: admin.php');
     }
