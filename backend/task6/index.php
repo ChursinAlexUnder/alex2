@@ -274,8 +274,7 @@ else {
       $all_id = $sth->fetchAll();
       $first_id = intval($all_id[0]['id']);
       
-      $stmt = $db->prepare("DELETE FROM users_languages where id_user = ?");
-      $stmt->execute([$id]);
+      include('delete_langs.php');
 
       $stmt = $db->prepare("INSERT INTO users_languages (id, id_user, id_lang) VALUES (:id, :id_user, :id_lang)");
       foreach ($_POST['languages'] as $id_lang) {

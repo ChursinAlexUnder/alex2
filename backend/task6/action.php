@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    include('../password.php');
     if ($_POST['action'] == 'change') {
-        include('../password.php');
         $sth = $db->prepare("SELECT * FROM log_pass where id = ?");
         $sth->execute([$_POST['id']]);
         $log_pass = $sth->fetchAll();
@@ -13,6 +13,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header('Location: index.php');
     }
     elseif ($_POST['action'] == 'delete') {
-
+        try {
+            $id = $_POST['id'];
+            include('delete_langs.php');
+            $stmt = $db->prepare("DELETE FROM users where id = ?");
+            $stmt->execute([$id]);
+        }
+        catch(PDOException $e){
+            print('Error : ' . $e->getMessage());
+            exit();
+        }
+        setcookie('save', '1');
+        header('Location: admin.php');
     }
 }
