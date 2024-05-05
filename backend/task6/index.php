@@ -294,7 +294,7 @@ else {
         $index++;
       }
       
-      $sth = $db->prepare("SELECT * FROM users_languages ORDER BY id_user ASC;");
+      $sth = $db->prepare("SELECT * FROM users_languages ORDER BY id_user ASC");
       $sth->execute();
       $users_langs = $sth->fetchAll();
       $stmt = $db->prepare("DELETE FROM users_languages");
