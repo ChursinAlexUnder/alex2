@@ -22,13 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $countId = count($users);
             $indexU = 0;
             for ($i = 1; $i <= $countId; $i++) {
-                $tempU = intval($users[$indexU]['id']);
-
-
-                print($tempU);
-                print('  ');   
-
-
+                $tempU = intval($users[$indexU]['id']); 
                 $stmt = $db->prepare("UPDATE users SET id = ? where id = $tempU");
                 $stmt->execute([$i]);
                 $indexU++;
@@ -38,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             print('Error : ' . $e->getMessage());
             exit();
         }
-        exit();
         setcookie('save', '1');
         header('Location: admin.php');
     }
