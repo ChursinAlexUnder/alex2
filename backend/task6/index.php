@@ -272,10 +272,29 @@ else {
       $sth = $db->prepare("SELECT id FROM users_languages where id_user = ?");
       $sth->execute([$id]);
       $all_id = $sth->fetchAll();
-      $tmp_id = intval($all_id[0]['id']);
+      $tmp_id = count($all_id)+1;
       
-      include('delete_langs.php');
-      include('insert_langs.php');
+      $stmt = $db->prepare("DELETE FROM users_languages where id_user = ?");
+      $stmt->execute([$id]);
+      $stmt = $db->prepare("INSERT INTO users_languages (id, id_user, id_lang) VALUES (:id, :id_user, :id_lang)");
+      foreach ($_POST['languages'] as $id_lang) {
+      // Вставляем $id_lang в БД
+      $stmt->bindParam(':id', $tmp_id);
+      $stmt->bindParam(':id_user', $id_user);
+      $stmt->bindParam(':id_lang', $id_lang);
+      $id_user = $id;
+      $stmt->execute();
+      $tmp_id++;
+    }
+      include('select_u_l.php');
+      $countId = count($users_langs);
+      $index = 0;
+      for ($i = 1; $i <= $countId; $i++) {
+        $tempUL = intval($users_langs[$index]['id']);
+        $stmt = $db->prepare("UPDATE users_languages SET id = ? where id = $tempUL");
+        $stmt->execute([$i]);
+        $index++;
+      }
     }
     catch(PDOException $e){
       print('Error : ' . $e->getMessage());
