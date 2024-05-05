@@ -18,12 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             include('delete_langs.php');
             $stmt = $db->prepare("DELETE FROM users where id = ?");
             $stmt->execute([$id]);
+            $stmt = $db->prepare("DELETE FROM log_pass where id = ?");
+            $stmt->execute([$id]);
             include('select_users.php');
             $countId = count($users);
             $indexU = 0;
             for ($i = 1; $i <= $countId; $i++) {
                 $tempU = intval($users[$indexU]['id']);
                 $stmt = $db->prepare("UPDATE users SET id = ? where id = $tempU");
+                $stmt->execute([$i]);
+                $stmt = $db->prepare("UPDATE log_pass SET id = ? where id = $tempU");
                 $stmt->execute([$i]);
                 $stmt = $db->prepare("UPDATE users_languages SET id_user = ? where id_user = $tempU");
                 $stmt->execute([$i]);

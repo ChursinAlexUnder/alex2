@@ -302,8 +302,8 @@ else {
       $tmp_id = count($users_langs)+1;
       include('insert_langs.php');
 
-      $stmt = $db->prepare("INSERT INTO log_pass SET login = ?, password = ?");
-      $stmt->execute([$login, md5($password)]);
+      $stmt = $db->prepare("INSERT INTO log_pass SET id = ?, login = ?, password = ?");
+      $stmt->execute([$temp_idU, $login, md5($password)]);
     }
     catch(PDOException $e){
       print('Error : ' . $e->getMessage());
