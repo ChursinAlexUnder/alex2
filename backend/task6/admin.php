@@ -34,7 +34,6 @@ if (!empty($_COOKIE['save'])) {
   setcookie('languages_value', '', 100000);
   setcookie('biography_value', '', 100000);
   setcookie('checkBut_value', '', 100000);
-  session_destroy();
 }
 setcookie('admin', true, time() + 24 * 60 * 60);
 include('../password.php');
