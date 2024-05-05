@@ -22,8 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $countId = count($users);
             $indexU = 0;
             for ($i = 1; $i <= $countId; $i++) {
-                $tempU = intval($users[$indexU]['id']); 
+                $tempU = intval($users[$indexU]['id']);
                 $stmt = $db->prepare("UPDATE users SET id = ? where id = $tempU");
+                $stmt->execute([$i]);
+                $stmt = $db->prepare("UPDATE users_languages SET id_user = ? where id_user = $tempU");
                 $stmt->execute([$i]);
                 $indexU++;
             }
