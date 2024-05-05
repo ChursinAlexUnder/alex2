@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             include('select_users.php');
             $indexU = 0;
             for ($i = 1; $i <= $countId; $i++) {
-                $stmt = $db->prepare("UPDATE users SET id = ? where id = $users[$indexU]['id']");
-                $stmt->execute([$i]);
+                $stmt = $db->prepare("UPDATE users SET id = $i where id = strval($users[$indexU]['id'])");
+                $stmt->execute();
                 $indexU++;
             }
         }
