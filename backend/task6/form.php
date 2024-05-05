@@ -110,7 +110,7 @@
           <input type="checkbox" <?php if (!empty($values['checkBut'])) {print('checked');} ?> name="checkBut" />
         </label><br>
         <?php if ($errors['checkBut']) {print($messages['checkBut']); print('<br>');}?>
-        <input class="finalBut" type="submit" value="Ok" />
+        <input class="finalBut Button" type="submit" value="Ok" />
       </form>
     </section>
   </body>

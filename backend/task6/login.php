@@ -23,7 +23,7 @@ if (!empty($_COOKIE[session_name()]) && session_start()) {
       <section>
         <form action="" method="post">
           <div>Пользователь уже авторизован</div><br>
-          <input class="finalBut" type="submit" name="logout" value="Выход"/>
+          <input class="finalBut Button" type="submit" name="logout" value="Выход"/>
         </form>
       </section>
     <?php
@@ -50,7 +50,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
       Пароль:<br>
       <input type="text" name="pass" />
     </label><br>
-    <input class="finalBut" type="submit" value="Войти" />
+    <input class="finalBut Button" type="submit" value="Войти" />
   </form>
 </section>
 <?php

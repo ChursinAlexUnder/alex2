@@ -72,7 +72,7 @@ section {
 
   }
   
-  input[type="submit"] {
+  .Button {
     padding: 10px 20px;
     background-color: #4caf50;
     color: #fff;
