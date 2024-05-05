@@ -20,6 +20,9 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 }
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.');
+if (!empty($_COOKIE['save'])) {
+  print('Операция выполнена успешно');
+}
 setcookie('admin', true, time() + 24 * 60 * 60);
 include('../password.php');
 $sth = $db->prepare("SELECT * FROM users");
