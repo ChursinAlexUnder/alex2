@@ -330,7 +330,6 @@ else {
 
     // Делаем перенаправление.
   if (!empty($_COOKIE['admin'])) {
-    session_destroy();
     header('Location: admin.php');
   }
   else {
