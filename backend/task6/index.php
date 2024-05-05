@@ -331,8 +331,11 @@ else {
   // Сохраняем куку с признаком успешного сохранения.
   setcookie('save', '1');
 
+  $sth = $db->prepare("SELECT * FROM l_g_admin");
+  $sth->execute();
+  $l_g_admin = $sth->fetchAll();
     // Делаем перенаправление.
-  if (!empty($_COOKIE['admin'])) {
+  if (!empty($_COOKIE['admin']) && $_COOKIE['admin'] == $l_g_admin[0]['password']) {
     header('Location: admin.php');
   }
   else {

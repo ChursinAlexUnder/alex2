@@ -11,10 +11,13 @@
 // Пример HTTP-аутентификации.
 // PHP хранит логин и пароль в суперглобальном массиве $_SERVER.
 // Подробнее см. стр. 26 и 99 в учебном пособии Веб-программирование и веб-сервисы.
+$sth = $db->prepare("SELECT * FROM l_g_admin");
+$sth->execute();
+$l_g_admin = $sth->fetchAll();
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != 'admin' ||
-    md5($_SERVER['PHP_AUTH_PW']) != md5('123')) {
+    md5($_SERVER['PHP_AUTH_PW']) != $l_g_admin[0]['password']) {
   header('HTTP/1.1 401 Unanthorized');
   header('WWW-Authenticate: Basic realm="My site"');
   print('<h1>401 Требуется авторизация</h1>');
@@ -38,7 +41,10 @@ if (!empty($_COOKIE['save'])) {
   setcookie('biography_value', '', 100000);
   setcookie('checkBut_value', '', 100000);
 }
-setcookie('admin', true, time() + 24 * 60 * 60);
+$sth = $db->prepare("SELECT * FROM l_g_admin");
+$sth->execute();
+$l_g_admin = $sth->fetchAll();
+setcookie('admin', $l_g_admin[0]['password'], time() + 24 * 60 * 60);
 include('../password.php');
 include('select_users.php');
 ?>
