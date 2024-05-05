@@ -53,8 +53,8 @@ include('select_users.php');
     <th>Дата рождения</th>
     <th>Пол</th>
     <th>Биография</th>
-    <th></th>
-    <th></th>
+    <th class="nullCell"></th>
+    <th class="nullCell"></th>
   </tr>
   <?php
     foreach($users as $user) {
@@ -66,18 +66,18 @@ include('select_users.php');
       <td>%s</td>
       <td>%s</td>
       <td>%s</td>
-      <td>
+      <td class="nullCell">
         <form action="action.php" method="POST">
           <input type="hidden" name="action" value="change">
           <input type="hidden" name="id" value="%d">
-          <input type="submit" value="изменить"/>
+          <input type="submit" class="tableButtonCh" value="изменить"/>
         </form>
       </td>
-      <td>
+      <td class="nullCell">
         <form action="action.php" method="POST">
           <input type="hidden" name="action" value="delete">
           <input type="hidden" name="id" value="%d">
-          <input type="submit" value="удалить"/>
+          <input type="submit" class="tableButtonDel" value="удалить"/>
         </form>
       </td>
       </tr>',
