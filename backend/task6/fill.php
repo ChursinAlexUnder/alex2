@@ -20,7 +20,7 @@ $sth->execute();
 $languages = $sth->fetchAll();
 $values['languages'] = array();
 foreach($languages as $l) {
-  array_push($values['languages'], strval($l));
+  array_push($values['languages'], $l['id_lang']);
 }
 $values['biography'] = strip_tags($user[0]['biography']);
 $values['checkBut'] = strip_tags($user[0]['checkBut']);
