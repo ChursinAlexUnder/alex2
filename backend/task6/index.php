@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     setcookie('fio_error', '', 100000);
     setcookie('fio_value', '', 100000);
     // Выводим сообщение.
-    $messages['fio'] = '<div class="error">Заполните ФИО правильно.<br>Доступные символы: руский алфавит, ангийский алфавит, пробельные символы.</div>';
+    $messages['fio'] = '<div class="error">Заполните ФИО правильно.<br>Доступные символы: русский алфавит, английский алфавит, пробельные символы.</div>';
   }
   if ($errors['tel']) {
     setcookie('tel_error', '', 100000);
@@ -151,14 +151,14 @@ else {
   }
   // Проверяем ошибки.
   $errors = FALSE;
-  if (empty($_POST['fio']) || !preg_match('/[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+/u', $_POST['fio']) || strlen($_POST['fio']) > 150) {
+  if (empty($_POST['fio']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+$/u', $_POST['fio']) || strlen($_POST['fio']) > 150) {
     // Выдаем куку на день с флажком об ошибке в поле fio.
     setcookie('fio_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
     // Сохраняем ранее введенное в форму значение на год.
     setcookie('fio_value', $_POST['fio'], time() + 12 * 30 * 24 * 60 * 60);
-  if (empty($_POST['tel']) || !preg_match('/^\+?([0-9]{11})/', $_POST['tel'])) {
+  if (empty($_POST['tel']) || !preg_match('/^\+?([0-9]{11})$/', $_POST['tel'])) {
     setcookie('tel_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
@@ -292,9 +292,9 @@ else {
     setcookie('pass', $password, time() + 12 * 30 * 24 * 60 * 60);
     try {
       include('select_users.php');
-      // $temp_idU = count($users)+1;
-      $stmt = $db->prepare("INSERT INTO users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
-      $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
+      $temp_idU = count($users)+1;
+      $stmt = $db->prepare("INSERT INTO users SET id = ?, fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
+      $stmt->execute([$temp_idU, $_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
   
       $id = $db->lastInsertId();
       
