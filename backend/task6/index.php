@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['checkBut'] = !empty($_COOKIE['checkBut_error']);
 
   // Выдаем сообщения об ошибках.
-  if (!empty($errors['fio'])) {
+  if ($errors['fio']) {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('fio_error', '', 100000);
     setcookie('fio_value', '', 100000);
@@ -132,10 +132,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
   // Если нет предыдущих ошибок ввода, есть кука сессии, начали сессию и
   // ранее в сессию записан факт успешного логина.
-  // empty($errors) && 
   if (!empty($_COOKIE[session_name()]) && session_start() && !empty($_SESSION['login'])) {
     include('fill.php');
-    printf('Вход с логином %s, uid %d', $_SESSION['login'], $_SESSION['uid']);
+    printf('Вход с логином %s, ID пользователя %d', $_SESSION['login'], $_SESSION['uid']);
   }
 
   // Включаем содержимое файла form.php.
