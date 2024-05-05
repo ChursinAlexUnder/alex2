@@ -24,7 +24,7 @@ if (!empty($_COOKIE['save'])) {
   print('<br>');
   print('Операция выполнена успешно.');
   setcookie('save', '', 100000);
-  setcookie('PHPSESSID', '', 100000);
+  setcookie('PHPSESSID', '', 100000, '/');
   setcookie('fio_value', '', 100000);
   setcookie('tel_value', '', 100000);
   setcookie('email_value', '', 100000);
