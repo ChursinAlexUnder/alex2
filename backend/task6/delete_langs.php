@@ -5,6 +5,10 @@
     $index = 0;
     for ($i = 1; $i <= $countId; $i++) {
         $tempUL = intval($users_langs[$index]['id']);
+
+        print($tempUL);
+        print('  ');
+
         $stmt = $db->prepare("UPDATE users_languages SET id = ? where id = $tempUL");
         $stmt->execute([$i]);
         $index++;

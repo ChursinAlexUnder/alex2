@@ -22,6 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $indexU = 0;
             for ($i = 1; $i <= $countId; $i++) {
                 $tempU = intval($users[$indexU]['id']);
+
+
+                print($tempU);
+                print('  ');
+
+                
                 $stmt = $db->prepare("UPDATE users SET id = ? where id = $tempU");
                 $stmt->execute([$i]);
                 $indexU++;
