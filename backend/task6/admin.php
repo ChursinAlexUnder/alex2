@@ -69,14 +69,14 @@ $users = $sth->fetchAll();
       <td>%s</td>
       <td>%s</td>
       <td>
-        <form action="processing.php" method="POST">
+        <form action="action.php" method="POST">
           <input type="hidden" name="action" value="change">
           <input type="hidden" name="id" value="%d">
           <input type="submit" value="изменить"/>
         </form>
       </td>
       <td>
-        <form action="processing.php" method="POST">
+        <form action="action.php" method="POST">
           <input type="hidden" name="action" value="delete">
           <input type="hidden" name="id" value="%d">
           <input type="submit" value="удалить"/>
