@@ -18,6 +18,7 @@ $values['gender'] = strip_tags($user[0]['gender']);
 $sth = $db->prepare("SELECT id_lang FROM users_languages where id_user = $uid");
 $sth->execute();
 $languages = $sth->fetchAll();
+$values['languages'] = array();
 foreach($languages as $l) {
   array_push($values['languages'], $l);
 }
