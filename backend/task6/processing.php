@@ -10,8 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['login'] = $log_pass[0]['login'];
         $_SESSION['uid'] = $_POST['id'];
         print('Вход от имени администратора.');
-        include('index.php');
-        header('Location: admin.php');
+        header('Location: index.php');
     }
     elseif ($_POST['action'] == 'delete') {
 
