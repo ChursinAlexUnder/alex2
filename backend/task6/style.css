@@ -131,7 +131,13 @@ section {
     background-color: #f2f2f2;
   }
   
-  input[type="submit"]:hover {
+  .Button:hover {
     background-color: #45a049;
+  }
+  .tableButtonCh:hover {
+    background-color: #2e46c8;
+  }
+  .tableButtonDel:hover {
+    background-color: #d03838;
   }
   
