@@ -150,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $sth->execute();
     $languages = $sth->fetchAll();
     foreach($languages as $l) {
-      array_push($values['languages'], strip_tags($l));
+      array_push($values['languages'], strip_tags($l['id_lang']));
     }
     $values['biography'] = strip_tags($user[0]['biography']);
     $values['checkBut'] = strip_tags($user[0]['checkBut']);
