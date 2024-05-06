@@ -127,18 +127,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
 
   include('../password.php');
-  $db = new PDO(
-    'mysql:host=localhost;dbname=u67335',
-    $user,
-    $pass,
-    [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-  );
 
   // Если нет предыдущих ошибок ввода, есть кука сессии, начали сессию и
   // ранее в сессию записан факт успешного логина.
   if (!empty($_COOKIE[session_name()]) && session_start() && !empty($_SESSION['login'])) {
     $uid = $_SESSION['uid'];
-    $sth = $db->prepare("SELECT * FROM users where id = $uid");
+    $sth = $db->prepare("SELECT * FROM users5 where id = $uid");
     $sth->execute();
     $user = $sth->fetchAll();
     $values['fio'] = strip_tags($user[0]['fio']);
@@ -152,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $values['year']=strip_tags(intval(substr($user[0]['birth'], $pos2 + 1, 4)));
     $values['gender'] = strip_tags($user[0]['gender']);
 
-    $sth = $db->prepare("SELECT id_lang FROM users_languages where id_user = $uid");
+    $sth = $db->prepare("SELECT id_lang FROM users_languages5 where id_user = $uid");
     $sth->execute();
     $languages = $sth->fetchAll();
     foreach($languages as $l) {
@@ -227,12 +221,6 @@ else {
   }
   else {
     include('../password.php');
-    $db = new PDO(
-      'mysql:host=localhost;dbname=u67335',
-      $user,
-      $pass,
-      [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
     $sth = $db->prepare("SELECT id FROM languages");
     $sth->execute();
 
@@ -293,20 +281,20 @@ else {
   if (!empty($_COOKIE[session_name()]) && session_start() && !empty($_SESSION['login'])) {
     $id = intval($_SESSION['uid']);
     try {
-      $stmt = $db->prepare("UPDATE users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ? where id = $id");
+      $stmt = $db->prepare("UPDATE users5 SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ? where id = $id");
       $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
 
-      $sth = $db->prepare("SELECT id FROM users_languages where id_user = ?");
+      $sth = $db->prepare("SELECT id FROM users_languages5 where id_user = ?");
       $sth->execute([$id]);
       $all_id = $sth->fetchAll();
       $first_id = intval($all_id[0]['id']);
 
       print(strval($id) . '  '. strval($first_id));
       
-      $stmt = $db->prepare("DELETE FROM users_languages where id_user = ?");
+      $stmt = $db->prepare("DELETE FROM users_languages5 where id_user = ?");
       $stmt->execute([$id]);
 
-      $stmt = $db->prepare("INSERT INTO users_languages (id, id_user, id_lang) VALUES (:id, :id_user, :id_lang)");
+      $stmt = $db->prepare("INSERT INTO users_languages5 (id, id_user, id_lang) VALUES (:id, :id_user, :id_lang)");
       foreach ($_POST['languages'] as $id_lang) {
         // Вставляем $id_lang в БД
         $stmt->bindParam(':id', $first_id);
@@ -331,12 +319,12 @@ else {
     setcookie('login', $login, time() + 12 * 30 * 24 * 60 * 60);
     setcookie('pass', $password, time() + 12 * 30 * 24 * 60 * 60);
     try {
-      $stmt = $db->prepare("INSERT INTO users SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
+      $stmt = $db->prepare("INSERT INTO users5 SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, biography = ?, checkBut = ?");
       $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['biography'], true]);
   
       $id = $db->lastInsertId();
   
-      $stmt = $db->prepare("INSERT INTO users_languages (id_user, id_lang) VALUES (:id_user, :id_lang)");
+      $stmt = $db->prepare("INSERT INTO users_languages5 (id_user, id_lang) VALUES (:id_user, :id_lang)");
       foreach ($_POST['languages'] as $id_lang) {
         // Вставляем $id_lang в БД
         $stmt->bindParam(':id_user', $id_user);
@@ -345,7 +333,7 @@ else {
         $stmt->execute();
       }
 
-      $stmt = $db->prepare("INSERT INTO log_pass SET login = ?, password = ?");
+      $stmt = $db->prepare("INSERT INTO log_pass5 SET login = ?, password = ?");
       $stmt->execute([$login, md5($password)]);
     }
     catch(PDOException $e){

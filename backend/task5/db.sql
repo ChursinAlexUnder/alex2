@@ -11,7 +11,7 @@ CREATE TABLE application (
 
 --  мои базы данных
 
-CREATE TABLE users (
+CREATE TABLE users5 (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   fio varchar(150) NOT NULL DEFAULT '',
   tel varchar(12) NOT NULL DEFAULT '',
@@ -23,7 +23,7 @@ CREATE TABLE users (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE users_languages (
+CREATE TABLE users_languages5 (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   id_user int(10) NOT NULL DEFAULT 0,
   id_lang varchar(128) NOT NULL DEFAULT '',
@@ -36,7 +36,7 @@ CREATE TABLE languages (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE log_pass (
+CREATE TABLE log_pass5 (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   login varchar(40) NOT NULL DEFAULT '',
   password varchar(50) NOT NULL DEFAULT '',
