@@ -149,6 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $sth = $db->prepare("SELECT id_lang FROM users_languages5 where id_user = $uid");
     $sth->execute();
     $languages = $sth->fetchAll();
+    $values['languages'] = array();
     foreach($languages as $l) {
       array_push($values['languages'], strip_tags($l['id_lang']));
     }
