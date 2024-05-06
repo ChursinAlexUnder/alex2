@@ -29,6 +29,7 @@ if (!empty($_COOKIE[session_name()]) && session_start()) {
     <?php
     if (isset($_POST['logout'])) {
       session_destroy();
+      setcookie('PHPSESSID', '', 100000, '/');
       header('Location: ./');
       exit();
     }
