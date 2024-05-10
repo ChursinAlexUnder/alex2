@@ -8,11 +8,6 @@
         </style>
     </head>
     <body>
-        <?php
-        if (!empty($messages['success'])) {
-            printf('<div>%s</div><br>', $messages['success']);
-        }
-        ?>
         <form action="indexMember.php" method="POST">
             <h1>Новый член партии</h1>
             ФИО:<br>

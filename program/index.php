@@ -39,12 +39,12 @@
                     <td class="nullCell">
                         <form class="nullForm" action="actionMember.php" method="POST">
                             <input type="hidden" name="id" value=%d>
-                            <input type="hidden" name="fio" value=%s>
-                            <input type="hidden" name="tel" value=%s>
-                            <input type="hidden" name="email" value=%s>
-                            <input type="hidden" name="birth" value=%s>
-                            <input type="hidden" name="gender" value=%s>
-                            <input type="hidden" name="post" value=%s>
+                            <input type="hidden" name="fio" value="%s">
+                            <input type="hidden" name="tel" value="%s">
+                            <input type="hidden" name="email" value="%s">
+                            <input type="hidden" name="birth" value="%s">
+                            <input type="hidden" name="gender" value="%s">
+                            <input type="hidden" name="post" value="%s">
                             <input type="submit" name="change" class="ButtonCh" value="изменить"/>
                             <input type="submit" name="delete" class="ButtonDel" value="удалить"/>
                         </form>
@@ -88,11 +88,11 @@
                     <td class="nullCell">
                         <form class="nullForm" action="actionEvent.php" method="POST">
                             <input type="hidden" name="id" value=%d>
-                            <input type="hidden" name="name" value=%s>
-                            <input type="hidden" name="city" value=%s>
-                            <input type="hidden" name="place" value=%s>
-                            <input type="hidden" name="date" value=%s>
-                            <input type="hidden" name="time" value=%s>
+                            <input type="hidden" name="name" value="%s">
+                            <input type="hidden" name="city" value="%s">
+                            <input type="hidden" name="place" value="%s">
+                            <input type="hidden" name="date" value="%s">
+                            <input type="hidden" name="time" value="%s">
                             <input type="submit" name="change" class="ButtonCh" value="изменить"/>
                             <input type="submit" name="delete" class="ButtonDel" value="удалить"/>
                         </form>

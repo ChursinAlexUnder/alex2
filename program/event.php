@@ -8,11 +8,6 @@
     </style>
 </head>
 <body>
-    <?php
-        if (!empty($messages['success'])) {
-            printf('<div>%s</div><br>', $messages['success']);
-        }
-    ?>
     <form action="indexEvent.php" method="POST">
         <h1>Новое мероприятие</h1>
         Название:<br>

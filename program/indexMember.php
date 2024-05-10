@@ -66,13 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     include ('member.php');
 } else {
     $errors = FALSE;
-    if (empty($_POST['fio']) || !preg_match('/[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+/u', $_POST['fio']) || strlen($_POST['fio']) > 150) {
+    if (empty($_POST['fio']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+\s+[a-zA-Zа-яА-ЯёЁ]+$/u', $_POST['fio']) || strlen($_POST['fio']) > 150) {
         setcookie('fio_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
     setcookie('fio_value', $_POST['fio'], time() + 24 * 60 * 60);
 
-    if (empty($_POST['tel']) || !preg_match('/^\+?([0-9]{11})/', $_POST['tel'])) {
+    if (empty($_POST['tel']) || !preg_match('/^\+?([0-9]{11})$/', $_POST['tel'])) {
         setcookie('tel_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
