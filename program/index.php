@@ -29,27 +29,29 @@
                 $members = $sth->fetchAll();
                 foreach($members as $member) {
                     printf('<tr>
-                    <td>%1%d</td>
-                    <td>%2%s</td>
-                    <td>%3%s</td>
-                    <td>%4%s</td>
-                    <td>%5%s</td>
-                    <td>%6%s</td>
-                    <td>%7%s</td>
-                        <td class="hiddenCell">
-                            <form action="actionMember.php" method="POST">
-                                <input type="hidden" name="id" value=%1%d>
-                                <input type="hidden" name="fio" value=%2%s>
-                                <input type="hidden" name="tel" value=%3%s>
-                                <input type="hidden" name="email" value=%4%s>
-                                <input type="hidden" name="birth" value=%5%s>
-                                <input type="hidden" name="gender" value=%6%s>
-                                <input type="hidden" name="post" value=%7%s>
-                                <input type="submit" name="change" class="ButtonCh" value="изменить"/>
-                                <input type="submit" name="delete" class="ButtonDel" value="удалить"/>
-                            </form>
-                        </td>
+                    <td>%d</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td class="nullCell">
+                        <form action="actionMember.php" method="POST">
+                            <input type="hidden" name="id" value=%d>
+                            <input type="hidden" name="fio" value=%s>
+                            <input type="hidden" name="tel" value=%s>
+                            <input type="hidden" name="email" value=%s>
+                            <input type="hidden" name="birth" value=%s>
+                            <input type="hidden" name="gender" value=%s>
+                            <input type="hidden" name="post" value=%s>
+                            <input type="submit" name="change" class="ButtonCh" value="изменить"/>
+                            <input type="submit" name="delete" class="ButtonDel" value="удалить"/>
+                        </form>
+                    </td>
                     </tr>',
+                    $member['id'], $member['fio'], $member['tel'], $member['email'],
+                    $member['birth'], $member['gender'], $member['post'],
                     $member['id'], $member['fio'], $member['tel'], $member['email'],
                     $member['birth'], $member['gender'], $member['post']);
                 }
@@ -77,25 +79,27 @@
                 $events = $sth->fetchAll();
                 foreach($events as $event) {
                     printf('<tr>
-                    <td>%1%d</td>
-                    <td>%2%s</td>
-                    <td>%3%s</td>
-                    <td>%4%s</td>
-                    <td>%5%s</td>
-                    <td>%6%s</td>
-                        <td class="hiddenCell">
-                            <form action="actionEvent.php" method="POST">
-                                <input type="hidden" name="id" value=%1%d>
-                                <input type="hidden" name="name" value=%2%s>
-                                <input type="hidden" name="city" value=%3%s>
-                                <input type="hidden" name="place" value=%4%s>
-                                <input type="hidden" name="date" value=%5%s>
-                                <input type="hidden" name="time" value=%6%s>
-                                <input type="submit" name="change" class="ButtonCh" value="изменить"/>
-                                <input type="submit" name="delete" class="ButtonDel" value="удалить"/>
-                            </form>
-                        </td>
+                    <td>%d</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td>%s</td>
+                    <td class="nullCell">
+                        <form action="actionEvent.php" method="POST">
+                            <input type="hidden" name="id" value=%d>
+                            <input type="hidden" name="name" value=%s>
+                            <input type="hidden" name="city" value=%s>
+                            <input type="hidden" name="place" value=%s>
+                            <input type="hidden" name="date" value=%s>
+                            <input type="hidden" name="time" value=%s>
+                            <input type="submit" name="change" class="ButtonCh" value="изменить"/>
+                            <input type="submit" name="delete" class="ButtonDel" value="удалить"/>
+                        </form>
+                    </td>
                     </tr>',
+                    $event['id'], $event['name'], $event['city'], $event['place'],
+                    $event['date'], $event['time'],
                     $event['id'], $event['name'], $event['city'], $event['place'],
                     $event['date'], $event['time']);
                 }
