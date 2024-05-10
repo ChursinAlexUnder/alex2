@@ -140,10 +140,3 @@ $users_lang = $sth->fetchAll();
 <form action="index.php" method="POST">
   <input type="submit" class="finalBut Button" name="exit_admin" value="Выход">
 </form>
-
-<?php
-// *********
-// Здесь нужно прочитать отправленные ранее пользователями данные и вывести в таблицу.
-// Реализовать просмотр и удаление всех данных.
-// *********
-?>

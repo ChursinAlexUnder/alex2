@@ -1,12 +1,12 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
-      <style>
-        /* Сообщения об ошибках и поля с ошибками выводим с красным бордюром. */
-        .error {
-          border: 2px solid red;
-        }
-      </style>
+    <style>
+      /* Сообщения об ошибках и поля с ошибками выводим с красным бордюром. */
+      .error {
+        border: 2px solid red;
+      }
+    </style>
   </head>
   <body>
     <?php
