@@ -8,14 +8,12 @@ CREATE TABLE members (
   post varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (id) 
 );
-
 CREATE TABLE events_members (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   id_event int(10) NOT NULL DEFAULT 0,
   id_member int(10) NOT NULL DEFAULT 0,
   PRIMARY KEY (id)
 );
-
 CREATE TABLE events (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   name varchar(100) NOT NULL DEFAULT '',
@@ -25,7 +23,6 @@ CREATE TABLE events (
   time varchar(5) NOT NULL DEFAULT '',
   PRIMARY KEY (id)
 );
-
 CREATE TABLE cities (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   id_event int(10) NOT NULL DEFAULT 0,
