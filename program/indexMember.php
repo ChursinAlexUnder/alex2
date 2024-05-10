@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if ($errors['post']) {
         setcookie('post_error', '', 100000);
         setcookie('post_value', '', 100000);
-        $messages['post'] = '<div class="error">Напишите что-нибудь о себе.</div>';
+        $messages['post'] = '<div class="error">Напишите вашу должность првильно.</div>';
     }
 
     $values = array();
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     setcookie('gender_value', $_POST['gender'], time() + 24 * 60 * 60);
 
-    if (empty($_POST['post']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9\s.,:;-]+$/u', $_POST['post'])) {
+    if (empty($_POST['post']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9\s.,():;-]+$/u', $_POST['post'])) {
         setcookie('post_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
