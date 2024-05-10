@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         setcookie('hour_value', intval(substr($_POST['time'], 0, 2)), time() + 24 * 60 * 60);
         setcookie('minute_value', intval(substr($_POST['time'], 3, 2)), time() + 24 * 60 * 60);
         setcookie('team_value', serialize($_POST['team']), time() + 24 * 60 * 60);
-        header('Location: indexMember.php');
+        header('Location: indexEvent.php');
     } elseif (isset($_POST['delete'])) {
         $stmt = $db->prepare("DELETE FROM events WHERE id = ?");
         $stmt->execute([$_POST['id']]);
