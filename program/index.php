@@ -37,7 +37,7 @@
                     <td>%s</td>
                     <td>%s</td>
                     <td class="nullCell">
-                        <form action="actionMember.php" method="POST">
+                        <form class="nullForm" action="actionMember.php" method="POST">
                             <input type="hidden" name="id" value=%d>
                             <input type="hidden" name="fio" value=%s>
                             <input type="hidden" name="tel" value=%s>
@@ -86,7 +86,7 @@
                     <td>%s</td>
                     <td>%s</td>
                     <td class="nullCell">
-                        <form action="actionEvent.php" method="POST">
+                        <form class="nullForm" action="actionEvent.php" method="POST">
                             <input type="hidden" name="id" value=%d>
                             <input type="hidden" name="name" value=%s>
                             <input type="hidden" name="city" value=%s>

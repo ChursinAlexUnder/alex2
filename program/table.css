@@ -28,30 +28,33 @@ th, td {
 .nullCell {
     border: none;
 }
+.nullForm {
+    margin: 0;
+}
 
 .ButtonCh {
+    width: 100%;
     background-color: #5550c9;
     border: none;
     color: white;
     padding: 5px 10px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
-    font-size: 12px;
-    margin: 2px 2px;
+    border-radius: 5px;
+    font-size: 14px;
     cursor: pointer;
 }
 
 .ButtonDel {
+    width: 100%;
     background-color: #f44336;
     border: none;
     color: white;
     padding: 5px 10px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
-    font-size: 12px;
-    margin: 2px 2px;
+    border-radius: 5px;
+    font-size: 14px;
     cursor: pointer;
 }
 .finalBut {
@@ -73,3 +76,9 @@ th, td {
 .finalBut-1:hover {
     background-color: #54bd3c;
 }
+.ButtonCh:hover {
+    background-color: #2e46c8;
+  }
+  .ButtonDel:hover {
+    background-color: #d03838;
+  }
