@@ -84,19 +84,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     include ('event.php');
 } else {
     $errors = FALSE;
-    if (empty($_POST['name']) || !preg_match('/^([a-zA-Zа-яА-ЯёЁ0-9.,]+\s+)+$/u', $_POST['name']) || strlen($_POST['name']) > 100) {
+    if (empty($_POST['name']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9.,\s]+$/u', $_POST['name']) || strlen($_POST['name']) > 100) {
         setcookie('name_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
     setcookie('name_value', $_POST['name'], time() + 24 * 60 * 60);
 
-    if (empty($_POST['city']) || !preg_match('/^([a-zA-Zа-яА-ЯёЁ0-9.,-]+\s+)+$/u', $_POST['city']) || strlen($_POST['city']) > 100) {
+    if (empty($_POST['city']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9\s.,-]+$/u', $_POST['city']) || strlen($_POST['city']) > 100) {
         setcookie('city_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
     setcookie('city_value', $_POST['city'], time() + 24 * 60 * 60);
 
-    if (empty($_POST['place']) || !preg_match('/^([a-zA-Zа-яА-ЯёЁ0-9.,-\/]+\s+)+$/u', $_POST['place']) || strlen($_POST['place']) > 100) {
+    if (empty($_POST['place']) || !preg_match('/^[a-zA-Zа-яА-ЯёЁ0-9\s.,-\/]+$/u', $_POST['place']) || strlen($_POST['place']) > 100) {
         setcookie('place_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
@@ -136,11 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     include ('password.php');
     $error_team = FALSE;
-    if (empty($_POST['team'])) {
-        setcookie('team_error', '1', time() + 24 * 60 * 60);
-        $error_team = TRUE;
-        $errors = TRUE;
-    } else {
+    if (!empty($_POST['team'])) {
         $sth = $db->prepare("SELECT id FROM members");
         $sth->execute();
         $members = $sth->fetchAll();
