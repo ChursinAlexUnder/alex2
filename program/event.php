@@ -71,7 +71,7 @@
                 $sth->execute();
                 $members = $sth->fetchAll();
                 foreach($members as $member) {
-                    printf('<option %s value=%d>%s</option>', strval(condition_memb($values, $member['id'])), $member['id'], $member['fio']);
+                    printf('<option %s value=%d>%s</option>', condition_memb($values, $member['id']), $member['id'], $member['fio']);
                 }
             ?>
         </select>
