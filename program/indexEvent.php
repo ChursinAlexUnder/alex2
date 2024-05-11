@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         foreach ($_POST['team'] as $id_memb) {
             $error_team = TRUE;
             foreach ($members as $member) {
-                if ($id_memb == $member['id']) {
+                if (intval($id_memb) == $member['id']) {
                     $error_team = FALSE;
                     break;
                 }
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $i = count($events_members) + 1;
             $stmt = $db->prepare("INSERT INTO events_members SET id = ?, id_event = ?, id_member = ?");
             foreach ($_POST['team'] as $id_member) {
-                $stmt->execute([$i, $id, $id_member]);
+                $stmt->execute([$i, $id, intval($id_member)]);
                 $i++;
             }
 
