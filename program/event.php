@@ -82,7 +82,7 @@
                     print($value . ' ' . gettype($value) . '<br>');
                 }
                 print('<br>');
-                print(condition_memb($values, $member['id']));
+                print(condition_memb($values, $member['id']) . ' ' . gettype(condition_memb($values, $member['id'])));
             }
         ?>
         <div class="finalBut">
