@@ -3,15 +3,15 @@
         <link rel="stylesheet" href="table.css">
     </head>
     <body>
-    <?php
-        if (!empty($_COOKIE['save'])) {
-            setcookie('save', '', 100000);
-            print('<div class="message">База данных успешно изменена.</div><br>');
-        }
-        foreach($_COOKIE as $key => $value) {
-            setcookie($key, '', 100000);
-        }
-    ?>
+        <?php
+            if (!empty($_COOKIE['save'])) {
+                setcookie('save', '', 100000);
+                print('<div class="message">База данных успешно изменена.</div><br>');
+            }
+            foreach($_COOKIE as $key => $value) {
+                setcookie($key, '', 100000);
+            }
+        ?>
         <h1>Партийная работа</h1>
         <h2>Список членов партии</h2>
         <table class="members">

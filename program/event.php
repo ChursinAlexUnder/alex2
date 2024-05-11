@@ -77,7 +77,11 @@
         </select>
         <?php
             foreach($values['team'] as $value) {
-                print($value . '  ');
+                print($value . ' ' . gettype($value));
+            }
+            print('<br>');
+            foreach($members as $member) {
+                print($member . ' ' . gettype($member));
             }
         ?>
         <div class="finalBut">
