@@ -81,7 +81,7 @@
             }
             print('<br>');
             foreach($members as $member) {
-                print($member . ' ' . gettype($member));
+                print($member['id'] . ' ' . gettype($member['id']));
             }
         ?>
         <div class="finalBut">
