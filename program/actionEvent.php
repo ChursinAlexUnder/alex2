@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = $db->prepare("UPDATE events SET id = ? WHERE id = ?");
             $stmt->execute([$i, $event['id']]);
             $stmt = $db->prepare("UPDATE events_members SET id_event = ? WHERE id_event = ?");
-            $stmt->execute([$i, $member['id']]);
+            $stmt->execute([$i, $event['id']]);
             $i++;
         }
         include('events_membersRenameID');
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $i = 1;
         foreach ($cities as $city) {
             $stmt = $db->prepare("UPDATE cities SET id = ? WHERE id = ?");
-            $stmt->execute([$i, $event['id']]);
+            $stmt->execute([$i, $city['id']]);
             $i++;
         }
         setcookie('save', '1');
