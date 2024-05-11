@@ -76,12 +76,13 @@
             ?>
         </select>
         <?php
-            foreach($values['team'] as $value) {
-                print($value . ' ' . gettype($value));
-            }
-            print('<br>');
             foreach($members as $member) {
-                print($member['id'] . ' ' . gettype($member['id']));
+                print($member['id'] . ' ' . gettype($member['id']) . '<br>');
+                foreach($values['team'] as $value) {
+                    print($value . ' ' . gettype($value) . '<br>');
+                }
+                print('<br>');
+                print(condition_memb($values, $member['id']));
             }
         ?>
         <div class="finalBut">
