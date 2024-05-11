@@ -79,7 +79,12 @@
                 $events = $sth->fetchAll();
                 $sth = $db->prepare("SELECT id_member FROM events_members");
                 $sth->execute();
-                $events_members = serialize($sth->fetchAll());
+                $events_members = $sth->fetchAll();
+                $id_members = array();
+                foreach($events_members as $event_member) {
+                    array_push($id_members, $event_member['id_member']);
+                }
+                $id_members = serialize($id_members);
                 foreach($events as $event) {
                     printf('<tr>
                     <td>%d</td>
@@ -105,7 +110,7 @@
                     $event['id'], $event['name'], $event['city'], $event['place'],
                     $event['date'], $event['time'],
                     $event['id'], $event['name'], $event['city'], $event['place'],
-                    $event['date'], $event['time'], $events_members);
+                    $event['date'], $event['time'], $id_members);
                 }
             ?>
         </table>
