@@ -31,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->execute([$i, $event['id']]);
             $stmt = $db->prepare("UPDATE events_members SET id_event = ? WHERE id_event = ?");
             $stmt->execute([$i, $event['id']]);
+            $stmt = $db->prepare("UPDATE cities SET id_event = ? WHERE id_event = ?");
+            $stmt->execute([$i, $event['id']]);
             $i++;
         }
         include('events_membersRenameID');
