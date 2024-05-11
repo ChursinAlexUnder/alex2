@@ -31,27 +31,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if ($errors['year']) {
         setcookie('year_error', '', 100000);
         setcookie('year_value', '', 100000);
-        $messages['year'] = '<div class="error">Заполните год правильно.</div>';
+        $messages['year'] = '<div class="error">Заполните год правильно (дата не должна быть задним числом).</div>';
     }
     if ($errors['month']) {
         setcookie('month_error', '', 100000);
         setcookie('month_value', '', 100000);
-        $messages['month'] = '<div class="error">Заполните месяц правильно.</div>';
+        $messages['month'] = '<div class="error">Заполните месяц правильно (дата не должна быть задним числом).</div>';
     }
     if ($errors['day']) {
         setcookie('day_error', '', 100000);
         setcookie('day_value', '', 100000);
-        $messages['day'] = '<div class="error">Заполните день правильно.</div>';
+        $messages['day'] = '<div class="error">Заполните день правильно (дата не должна быть задним числом).</div>';
     }
     if ($errors['hour']) {
         setcookie('hour_error', '', 100000);
         setcookie('hour_value', '', 100000);
-        $messages['hour'] = '<div class="error">Заполните время (часы) правильно.</div>';
+        $messages['hour'] = '<div class="error">Заполните время (часы) правильно (дата не должна быть задним числом).</div>';
     }
     if ($errors['minute']) {
         setcookie('minute_error', '', 100000);
         setcookie('minute_value', '', 100000);
-        $messages['minute'] = '<div class="error">Заполните время (минуты) правильно.</div>';
+        $messages['minute'] = '<div class="error">Заполните время (минуты) правильно (дата не должна быть задним числом).</div>';
     }
     if ($errors['team']) {
         setcookie('team_error', '', 100000);
