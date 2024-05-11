@@ -75,16 +75,6 @@
                 }
             ?>
         </select>
-        <?php
-            foreach($members as $member) {
-                print($member['id'] . ' ' . gettype($member['id']) . '<br>');
-                foreach($values['team'] as $value) {
-                    print($value . ' ' . gettype($value) . '<br>');
-                }
-                print('<br>');
-                print(gettype(condition_memb($values, $member['id'])));
-            }
-        ?>
         <div class="finalBut">
             <input class="finalBut-1" type="submit" value="OK" />
         </div>
