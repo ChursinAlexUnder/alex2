@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->execute([$i, $member['id']]);
             $i++;
         }
-        include('events_membersRenameID');
+        include('events_membersRenameID.php');
         setcookie('save', '1');
         header('Location: index.php');
     }

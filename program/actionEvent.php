@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->execute([$i, $event['id']]);
             $i++;
         }
-        include('events_membersRenameID');
+        include('events_membersRenameID.php');
 
         $sth = $db->prepare("SELECT id FROM cities");
         $sth->execute();

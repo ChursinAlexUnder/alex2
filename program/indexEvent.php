@@ -189,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $stmt = $db->prepare("UPDATE cities SET city = ? WHERE id_event = ?");
             $stmt->execute([$_POST['city'], $id]);
 
-            include('events_membersRenameID');
+            include('events_membersRenameID.php');
             setcookie('id_value', '', 100000);
         } else {
             $sth = $db->prepare("SELECT id FROM events");
