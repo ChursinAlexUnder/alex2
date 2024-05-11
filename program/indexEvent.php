@@ -221,14 +221,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 
     setcookie('save', '1');
-    setcookie('name_value', '', 100000);
-    setcookie('place_value', '', 100000);
-    setcookie('city_value', '', 100000);
-    setcookie('year_value', '', 100000);
-    setcookie('month_value', '', 100000);
-    setcookie('day_value', '', 100000);
-    setcookie('hour_value', '', 100000);
-    setcookie('minute_value', '', 100000);
-    setcookie('team_value', '', 100000);
     header('Location: index.php');
 }

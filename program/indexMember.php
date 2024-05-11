@@ -151,13 +151,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 
     setcookie('save', '1');
-    setcookie('fio_value', '', 100000);
-    setcookie('tel_value', '', 100000);
-    setcookie('email_value', '', 100000);
-    setcookie('year_value', '', 100000);
-    setcookie('month_value', '', 100000);
-    setcookie('day_value', '', 100000);
-    setcookie('gender_value', '', 100000);
-    setcookie('post_value', '', 100000);
     header('Location: index.php');
 }
