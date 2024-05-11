@@ -57,7 +57,7 @@
             <select class="time-1" name="minute" <?php if ($errors['minute']) {print 'class="error"';} ?>>
                 <?php
                     for ($i = 0; $i <= 59; $i++) {
-                        printf('<option %s value="%s">%s</option>', $values['minute'] == $i ? 'selected' : '', strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i));
+                        printf('<option %s value=%s>%s</option>', $values['minute'] == $i ? 'selected' : '', strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i), strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i));
                     }
                 ?>
             </select><br>
