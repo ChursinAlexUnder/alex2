@@ -7,8 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         setcookie('name_value', $_POST['name'], time() + 24 * 60 * 60);
         setcookie('city_value', $_POST['city'], time() + 24 * 60 * 60);
         setcookie('place_value', $_POST['place'], time() + 24 * 60 * 60);
-        $pos1 = strpos($_POST['date'],':');
-        $pos2 = strrpos($_POST['date'],':');
+        $pos1 = strpos($_POST['date'],'.');
+        $pos2 = strrpos($_POST['date'],'.');
         setcookie('year_value', intval(substr($_POST['date'], $pos2 + 1, 4)), time() + 24 * 60 * 60);
         setcookie('month_value', intval(substr($_POST['date'], $pos1 + 1, $pos2 - $pos1 - 1)), time() + 24 * 60 * 60);
         setcookie('day_value', intval(substr($_POST['date'], 0, $pos1)), time() + 24 * 60 * 60);

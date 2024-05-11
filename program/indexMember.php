@@ -136,14 +136,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (!empty($_COOKIE['id_value'])) {
             $id = $_COOKIE['id_value'];
             $stmt = $db->prepare("UPDATE members SET fio = ?, tel = ?, email = ?, birth = ?, gender = ?, post = ? WHERE id = ?");
-            $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['post'], $id]);
+            $stmt->execute([$_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . '.' . $_POST['month'] . '.' . $_POST['year'], $_POST['gender'], $_POST['post'], $id]);
             setcookie('id_value', '', 100000);
         } else {
             $sth = $db->prepare("SELECT id FROM members");
             $sth->execute();
             $members = $sth->fetchAll();
             $stmt = $db->prepare("INSERT INTO members SET id = ?, fio = ?, tel = ?, email = ?, birth = ?, gender = ?, post = ?");
-            $stmt->execute([count($members) + 1, $_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['gender'], $_POST['post']]);
+            $stmt->execute([count($members) + 1, $_POST['fio'], $_POST['tel'], $_POST['email'], $_POST['day'] . '.' . $_POST['month'] . '.' . $_POST['year'], $_POST['gender'], $_POST['post']]);
         }
     } catch (PDOException $e) {
         print ('Error : ' . $e->getMessage());

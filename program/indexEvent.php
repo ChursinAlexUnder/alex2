@@ -177,7 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         if (!empty($_COOKIE['id_value'])) {
             $id = $_COOKIE['id_value'];
             $stmt = $db->prepare("UPDATE events SET name = ?, city = ?, place = ?, date = ?, time = ? WHERE id = ?");
-            $stmt->execute([$_POST['name'], $_POST['city'], $_POST['place'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['hour'] . ':' . $_POST['minute'], $id]);
+            $stmt->execute([$_POST['name'], $_POST['city'], $_POST['place'], $_POST['day'] . '.' . $_POST['month'] . '.' . $_POST['year'], $_POST['hour'] . ':' . $_POST['minute'], $id]);
 
             $stmt = $db->prepare("DELETE FROM events_members WHERE id_event = ?");
             $stmt->execute([$id]);
@@ -194,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $sth->execute();
             $events = $sth->fetchAll();
             $stmt = $db->prepare("INSERT INTO events SET id = ?, name = ?, city = ?, place = ?, date = ?, time = ?");
-            $stmt->execute([count($events) + 1, $_POST['name'], $_POST['city'], $_POST['place'], $_POST['day'] . ':' . $_POST['month'] . ':' . $_POST['year'], $_POST['hour'] . ':' . $_POST['minute']]);
+            $stmt->execute([count($events) + 1, $_POST['name'], $_POST['city'], $_POST['place'], $_POST['day'] . '.' . $_POST['month'] . '.' . $_POST['year'], $_POST['hour'] . ':' . $_POST['minute']]);
 
             $id = $db->lastInsertId();
             $sth = $db->prepare("SELECT id FROM events_members");
