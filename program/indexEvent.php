@@ -102,13 +102,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     setcookie('place_value', $_POST['place'], time() + 24 * 60 * 60);
 
-    if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year']) || $_POST['year'] < date('Y')) {
+    if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year']) || 
+    $_POST['year'] < date('Y')) {
         setcookie('year_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
     setcookie('year_value', $_POST['year'], time() + 24 * 60 * 60);
 
-    if (empty($_POST['month']) || !is_numeric($_POST['month']) || !preg_match('/^\d+$/', $_POST['month']) || $_POST['month'] < date('m')) {
+    if (empty($_POST['month']) || !is_numeric($_POST['month']) || !preg_match('/^\d+$/', $_POST['month']) || 
+    ($_POST['year'] == date('Y') && $_POST['month'] < date('m'))) {
         setcookie('month_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
@@ -116,19 +118,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     $months[1] += ($_POST['year'] % 4 == 0);
-    if (empty($_POST['day']) || $_POST['day'] > $months[$_POST['month'] - 1] || !is_numeric($_POST['day']) || !preg_match('/^\d+$/', $_POST['day']) || $_POST['month'] < date('d')) {
+    if (empty($_POST['day']) || $_POST['day'] > $months[$_POST['month'] - 1] || !is_numeric($_POST['day']) || !preg_match('/^\d+$/', $_POST['day']) || 
+    ($_POST['year'] == date('Y') && $_POST['month'] == date('m') && $_POST['day'] < date('d'))) {
         setcookie('day_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
     setcookie('day_value', $_POST['day'], time() + 24 * 60 * 60);
 
-    if (empty($_POST['hour']) || !preg_match('/^\d+$/', $_POST['hour']) || $_POST['hour'] < date('H')+3) {
+    if (empty($_POST['hour']) || !preg_match('/^\d+$/', $_POST['hour']) || 
+    ($_POST['year'] == date('Y') && $_POST['month'] == date('m') && $_POST['day'] == date('d') && $_POST['hour'] < date('H')+3)) {
         setcookie('hour_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
     setcookie('hour_value', $_POST['hour'], time() + 24 * 60 * 60);
 
-    if (empty($_POST['minute']) || !preg_match('/^\d+$/', $_POST['minute']) || $_POST['minute'] < date('i')) {
+    if (empty($_POST['minute']) || !preg_match('/^\d+$/', $_POST['minute']) || 
+    ($_POST['year'] == date('Y') && $_POST['month'] == date('m') && $_POST['day'] == date('d') && $_POST['hour'] == date('H')+3 && $_POST['minute'] < date('i'))) {
         setcookie('minute_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
