@@ -49,7 +49,7 @@
             <select class="time-1" name="hour" <?php if ($errors['hour']) {print 'class="error"';} ?>>
                 <?php
                     for ($i = 0; $i <= 23; $i++) {
-                        printf('<option %s value="%d">%s</option>', $values['hour'] == $i ? 'selected' : '', $i, strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i));
+                        printf('<option %s value=%s>%s</option>', $values['hour'] == $i ? 'selected' : '', strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i), strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i));
                     }
                 ?>
             </select>
@@ -57,7 +57,7 @@
             <select class="time-1" name="minute" <?php if ($errors['minute']) {print 'class="error"';} ?>>
                 <?php
                     for ($i = 0; $i <= 59; $i++) {
-                        printf('<option %1%s value="%2%s">%2%s</option>', $values['minute'] == $i ? 'selected' : '', strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i));
+                        printf('<option %s value="%s">%s</option>', $values['minute'] == $i ? 'selected' : '', strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i));
                     }
                 ?>
             </select><br>
