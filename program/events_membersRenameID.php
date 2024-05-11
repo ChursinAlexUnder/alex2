@@ -5,6 +5,6 @@ $events_members = $sth->fetchAll();
 $i = 1;
 foreach ($events_members as $event_member) {
     $stmt = $db->prepare("UPDATE events_members SET id = ? WHERE id = ?");
-    $stmt->execute([$i, $event['id']]);
+    $stmt->execute([$i, $event_member['id']]);
     $i++;
 }
