@@ -23,7 +23,7 @@
         <select class="information" name="year" <?php if ($errors['year']) {print 'class="error"';} ?>>
             <?php
                 for ($i = date('Y'); $i <= 2030; $i++) {
-                    printf('<option %s value="%d">%d год</option>', $values['year'] == $i ? 'selected' : '', $i, $i);
+                    printf('<option %s value="%d">%d год</option>', $values['year'] == $i ? "selected" : '', $i, $i);
                 }
             ?>
         </select><br>
@@ -31,7 +31,7 @@
         <select class="information" name="month" <?php if ($errors['month']) {print 'class="error"';} ?>>
             <?php
                 for ($i = date('m'); $i <= 12; $i++) {
-                    printf('<option %s value="%d">%d месяц</option>', $values['month'] == $i ? 'selected' : '', $i, $i);
+                    printf('<option %s value="%d">%d месяц</option>', $values['month'] == $i ? "selected" : '', $i, $i);
                 }
             ?>
         </select><br>
@@ -39,7 +39,7 @@
         <select class="information" name="day" <?php if ($errors['day']) {print 'class="error"';} ?>>
             <?php
                 for ($i = date('d'); $i <= 31; $i++) {
-                    printf('<option %s value="%d">%d день</option>', $values['day'] == $i ? 'selected' : '', $i, $i);
+                    printf('<option %s value="%d">%d день</option>', $values['day'] == $i ? "selected" : '', $i, $i);
                 }
             ?>
         </select><br>
@@ -49,7 +49,7 @@
             <select class="time-1" name="hour" <?php if ($errors['hour']) {print 'class="error"';} ?>>
                 <?php
                     for ($i = date('H')+3; $i <= 23; $i++) {
-                        printf('<option %s value=%s>%s</option>', $values['hour'] == $i ? 'selected' : '', strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i), strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i));
+                        printf('<option %s value=%s>%s</option>', $values['hour'] == $i ? "selected" : '', strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i), strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i));
                     }
                 ?>
             </select>
@@ -57,7 +57,7 @@
             <select class="time-1" name="minute" <?php if ($errors['minute']) {print 'class="error"';} ?>>
                 <?php
                     for ($i = date('i'); $i <= 59; $i++) {
-                        printf('<option %s value=%s>%s</option>', $values['minute'] == $i ? 'selected' : '', strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i), strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i));
+                        printf('<option %s value=%s>%s</option>', $values['minute'] == $i ? "selected" : '', strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i), strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i));
                     }
                 ?>
             </select><br>
