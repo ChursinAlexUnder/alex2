@@ -53,7 +53,6 @@
                     }
                 ?>
             </select>
-            <?php if ($errors['hour']) {print($messages['hour']); print('<br>');}?>
             <select class="time-1" name="minute" <?php if ($errors['minute']) {print 'class="error"';} ?>>
                 <?php
                     for ($i = 0; $i <= 59; $i++) {
@@ -61,8 +60,9 @@
                     }
                 ?>
             </select><br>
-            <?php if ($errors['minute']) {print($messages['minute']); print('<br>');}?>
         </div>
+        <?php if ($errors['hour']) {print($messages['hour']); print('<br>');}?>
+        <?php if ($errors['minute']) {print($messages['minute']); print('<br>');}?>
         Участники мероприятия:<br>
         <select class="information" name="team[]" multiple="multiple" <?php if ($errors['team']) {print 'class="error"';} ?>>
             <?php
