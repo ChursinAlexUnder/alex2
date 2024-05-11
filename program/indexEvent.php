@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     {
         if (!empty($values) && !empty($values['team'])) {
             foreach ($values['team'] as $value) {
-                if (intval($value) == intval($tmp)) {
+                if ($value == $tmp) {
                     print("selected");
                 }
             }
