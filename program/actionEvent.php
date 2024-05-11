@@ -21,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute([$_POST['id']]);
         $stmt = $db->prepare("DELETE FROM events_members WHERE id_event = ?");
         $stmt->execute([$_POST['id']]);
+        $stmt = $db->prepare("DELETE FROM cities WHERE id_event = ?");
+        $stmt->execute([$_POST['id']]);
 
         $sth = $db->prepare("SELECT id FROM events");
         $sth->execute();
@@ -36,8 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $i++;
         }
         include('events_membersRenameID');
-        $stmt = $db->prepare("DELETE FROM cities WHERE id_event = ?");
-        $stmt->execute([$_POST['id']]);
+        
         $sth = $db->prepare("SELECT id FROM cities");
         $sth->execute();
         $cities = $sth->fetchAll();
