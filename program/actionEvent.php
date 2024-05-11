@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         setcookie('day_value', intval(substr($_POST['date'], 0, $pos1)), time() + 24 * 60 * 60);
         setcookie('hour_value', intval(substr($_POST['time'], 0, 2)), time() + 24 * 60 * 60);
         setcookie('minute_value', intval(substr($_POST['time'], 3, 2)), time() + 24 * 60 * 60);
-        setcookie('team_value', serialize($_POST['team']), time() + 24 * 60 * 60);
+        setcookie('team_value', $_POST['team'], time() + 24 * 60 * 60);
         header('Location: indexEvent.php');
     } elseif (isset($_POST['delete'])) {
         $stmt = $db->prepare("DELETE FROM events WHERE id = ?");
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $i++;
         }
         include('events_membersRenameID');
-        
+
         $sth = $db->prepare("SELECT id FROM cities");
         $sth->execute();
         $cities = $sth->fetchAll();

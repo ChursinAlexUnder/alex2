@@ -77,6 +77,9 @@
                 $sth = $db->prepare("SELECT * FROM events");
                 $sth->execute();
                 $events = $sth->fetchAll();
+                $sth = $db->prepare("SELECT id_member FROM events_members");
+                $sth->execute();
+                $events_members = serialize($sth->fetchAll());
                 foreach($events as $event) {
                     printf('<tr>
                     <td>%d</td>
@@ -93,6 +96,7 @@
                             <input type="hidden" name="place" value="%s">
                             <input type="hidden" name="date" value="%s">
                             <input type="hidden" name="time" value="%s">
+                            <input type="hidden" name="team" value="%s">
                             <input type="submit" name="change" class="ButtonCh" value="изменить"/>
                             <input type="submit" name="delete" class="ButtonDel" value="удалить"/>
                         </form>
@@ -101,7 +105,7 @@
                     $event['id'], $event['name'], $event['city'], $event['place'],
                     $event['date'], $event['time'],
                     $event['id'], $event['name'], $event['city'], $event['place'],
-                    $event['date'], $event['time']);
+                    $event['date'], $event['time'], $events_members);
                 }
             ?>
         </table>
