@@ -22,7 +22,7 @@
         Дата проведения:<br>
         <select class="information" name="year" <?php if ($errors['year']) {print 'class="error"';} ?>>
             <?php
-                for ($i = 2024; $i <= 2030; $i++) {
+                for ($i = 2024; $i <= 2050; $i++) {
                     printf('<option %s value="%d">%d год</option>', $values['year'] == $i ? "selected" : '', $i, $i);
                 }
             ?>
