@@ -48,7 +48,7 @@
         <div class="time">
             <select class="time-1" name="hour" <?php if ($errors['hour']) {print 'class="error"';} ?>>
                 <?php
-                    for ($i = date('H'); $i <= 23; $i++) {
+                    for ($i = date('H')+3; $i <= 23; $i++) {
                         printf('<option %s value=%s>%s</option>', $values['hour'] == $i ? 'selected' : '', strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i), strlen(strval($i)) == 1 ? '0'.strval($i) : strval($i));
                     }
                 ?>
