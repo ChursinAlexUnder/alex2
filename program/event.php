@@ -75,6 +75,11 @@
                 }
             ?>
         </select>
+        <?php
+            foreach($values['team'] as $value) {
+                print($value . '  ');
+            }
+        ?>
         <div class="finalBut">
             <input class="finalBut-1" type="submit" value="OK" />
         </div>
