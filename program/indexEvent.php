@@ -122,13 +122,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     setcookie('day_value', $_POST['day'], time() + 24 * 60 * 60);
 
-    if (empty($_POST['hour']) || !is_numeric($_POST['hour'])) {
+    if (empty($_POST['hour']) || !preg_match('/^\d+$/', $_POST['hour'])) {
         setcookie('hour_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
     setcookie('hour_value', $_POST['hour'], time() + 24 * 60 * 60);
 
-    if (empty($_POST['minute']) || !is_numeric($_POST['minute'])) {
+    if (empty($_POST['minute']) || !preg_match('/^\d+$/', $_POST['hour'])) {
         setcookie('minute_error', '1', time() + 24 * 60 * 60);
         $errors = TRUE;
     }
