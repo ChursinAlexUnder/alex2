@@ -77,15 +77,15 @@
                 $sth = $db->prepare("SELECT * FROM events");
                 $sth->execute();
                 $events = $sth->fetchAll();
-                $sth = $db->prepare("SELECT id_member FROM events_members");
-                $sth->execute();
-                $events_members = $sth->fetchAll();
-                $id_members = array();
-                foreach($events_members as $event_member) {
-                    array_push($id_members, $event_member['id_member']);
-                }
-                $id_members = serialize($id_members);
                 foreach($events as $event) {
+                    $sth = $db->prepare("SELECT id_member FROM events_members WHERE id_event = ?");
+                    $sth->execute([$event['id']]);
+                    $events_members = $sth->fetchAll();
+                    $id_members = array();
+                    foreach($events_members as $event_member) {
+                        array_push($id_members, $event_member['id_member']);
+                    }
+                    $id_members = serialize($id_members);
                     printf('<tr>
                     <td>%d</td>
                     <td>%s</td>
