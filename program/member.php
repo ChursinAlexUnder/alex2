@@ -23,7 +23,7 @@
             <select class="information" name="year" <?php if ($errors['year']) {print 'class="error"';} ?>>
                 <?php
                     for ($i = 1922; $i <= 2024; $i++) {
-                        printf('<option %s value="%d">%d год</option>', $values['year'] == $i ? 'selected' : '', $i, $i);
+                        printf('<option %s value="%d">%d год</option>', $values['year'] == $i ? "selected" : '', $i, $i);
                     }
                 ?>
             </select><br>
@@ -32,7 +32,7 @@
             <select class="information" name="month" <?php if ($errors['month']) {print 'class="error"';} ?>>
                 <?php
                     for ($i = 1; $i <= 12; $i++) {
-                        printf('<option %s value="%d">%d месяц</option>', $values['month'] == $i ? 'selected' : '', $i, $i);
+                        printf('<option %s value="%d">%d месяц</option>', $values['month'] == $i ? "selected" : '', $i, $i);
                     }
                 ?>
             </select><br>
@@ -41,7 +41,7 @@
             <select class="information" name="day" <?php if ($errors['day']) {print 'class="error"';} ?>>
                 <?php
                     for ($i = 1; $i <= 31; $i++) {
-                        printf('<option %s value="%d">%d день</option>', $values['day'] == $i ? 'selected' : '', $i, $i);
+                        printf('<option %s value="%d">%d день</option>', $values['day'] == $i ? "selected" : '', $i, $i);
                     }
                 ?>
             </select><br>
